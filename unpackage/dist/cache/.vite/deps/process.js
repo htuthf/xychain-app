@@ -1,10 +1,10 @@
 import {
   __commonJS
-} from "./chunk-Y2F7D3TJ.js";
+} from "./chunk-TEKDPTAQ.js";
 
-// ../../../../workspace/github/xychain_app/node_modules/process/browser.js
+// ../../../../workspace/uniapp/alphmeta_app/node_modules/process/browser.js
 var require_browser = __commonJS({
-  "../../../../workspace/github/xychain_app/node_modules/process/browser.js"(exports, module) {
+  "../../../../workspace/uniapp/alphmeta_app/node_modules/process/browser.js"(exports, module) {
     var process = module.exports = {};
     var cachedSetTimeout;
     var cachedClearTimeout;

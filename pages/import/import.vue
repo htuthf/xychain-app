@@ -9,7 +9,7 @@
 		onShow
 	} from '@dcloudio/uni-app'
 	import {
-		ethers
+		Wallet,encryptKeystoreJson
 	} from "ethers";
 	import {
 		storeToRefs
@@ -63,24 +63,22 @@
 			case 'account':
 
 				try {
-					uni.showLoading({
-						mask: true,
-						title: ''
+					uni.showToast({
+						icon:"loading",
+						duration:0
 					})
 					const words = inputWords.value.join(' ')
-					const wallet = ethers.Wallet.fromMnemonic(words.trim())
+					const wallet = Wallet.fromPhrase(words.trim())
+					
+			
 					console.log(wallet)
-					// const child = hdNode.derivePath("m/44'/60'/0'/0/0")
-					// const wallet = new ethers.Wallet(child.privateKey)
-					// console.log(hdNode)
-					// console.log(wallet)
 					mnemonic.value = wallet.mnemonic.phrase;
 					privateKey.value = wallet.publicKey;
 					address.value = wallet.address;
 					setWallet(wallet)
 					console.log(appPin.value)
 					if (appPin.value) {
-						const encryptedJson = await wallet.encrypt(appPin.value)
+						const encryptedJson = await encryptKeystoreJson(wallet,appPin.value)
 						console.log(encryptedJson)
 						encryptedData.value = encryptedJson
 						uni.reLaunch({

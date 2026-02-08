@@ -11,7 +11,8 @@
 
 
 	import {
-		ethers
+		Wallet,
+		encryptKeystoreJson
 	} from "ethers";
 	import {
 		storeToRefs
@@ -223,7 +224,7 @@
 							left: 50%;
 							top: 50%;
 							transform: translate(-50%, -50%);
-							content: '';
+							content: '丨';
 							color: #ffffff;
 							animation: blink 1s steps(1) infinite;
 						}

@@ -9,7 +9,8 @@
 	} from '@dcloudio/uni-app'
 
 	import {
-		ethers
+		Wallet,
+		encryptKeystoreJson
 	} from "ethers";
 	import {
 		storeToRefs
@@ -30,21 +31,29 @@
 	} = storeToRefs(appStore)
 	const getWords = async () => {
 		try {
-			uni.showLoading({
-				mask: true,
-				title: ''
-			})
-			const wallet = await ethers.Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
+			const wallet = await Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
 			words.value = wallet.mnemonic.phrase.split(' ')
 		} catch (error) {
-			console.error(error)
 			//TODO handle the exception
-		} finally {
-			uni.hideLoading()
 		}
 	}
-
-
+	const handleGoto = (type) => {
+		disabled.value = true
+		switch (type) {
+			case 'verifyCreated':
+				uni.navigateTo({
+					url: '/pages/verifyCreated/verifyCreated'
+				});
+				disabled.value = false;
+				break;
+			case 'import':
+				uni.navigateTo({
+					url: '/pages/import/import'
+				})
+				disabled.value = false;
+				break;
+		}
+	}
 
 	const showMask = ref(true)
 	const handleHide = () => {

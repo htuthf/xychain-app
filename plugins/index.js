@@ -1,6 +1,6 @@
 import {
-		ethers
-	} from "ethers";
+	ethers
+} from "ethers";
 import dayjs from 'dayjs'
 export const pickRandomIndexes = (total, count) => {
 	const indexes = Array.from({
@@ -129,7 +129,7 @@ export function filterAddress(val, strLength = 18, lastLength = 5) {
 
 export const ethrpc = "http://18.167.160.220:8545"
 export const Provider = () => {
-	return new ethers.providers.JsonRpcProvider(ethrpc)
+	return new ethers.JsonRpcProvider(ethrpc)
 }
 
 export const RetainDecimal = (val, size = 3) => {

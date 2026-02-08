@@ -12,13 +12,13 @@
 		onShow,
 		onReachBottom
 	} from '@dcloudio/uni-app'
-
-
+	import {
+		formatEther
+	} from 'ethers'
 	import {
 		Provider,
 		toThousands,
-		filterDate,
-		formatEther
+		filterDate
 	} from '@/plugins/index.js'
 	import {
 		request

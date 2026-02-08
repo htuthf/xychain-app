@@ -11,7 +11,8 @@
 
 
 	import {
-		ethers
+		Wallet,
+		encryptKeystoreJson
 	} from "ethers";
 	import {
 		storeToRefs
@@ -94,12 +95,8 @@
 			let pinLength = pin.value.length;
 			if (pinLength >= 6) {
 				if (newPin.value === pin.value) {
-					uni.showLoading({
-						mask: true,
-						title: ''
-					})
-					const wallet = await ethers.Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
-					const encryptedJson = await wallet.encrypt(pin.value)
+					const wallet = await Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
+					const encryptedJson = await encryptKeystoreJson(wallet, pin.value)
 					console.log(encryptedJson)
 					encryptedData.value = encryptedJson
 					appPin.value = pin.value
@@ -111,10 +108,8 @@
 
 			}
 		} catch (error) {
-			console.error(error)
+
 			//TODO handle the exception
-		} finally {
-			uni.hideLoading()
 		}
 	}
 	const handleDelete = () => {
@@ -171,7 +166,7 @@
 
 		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" mode="center">
 			<view class="popup-body">
-
+			
 				<view class="title">
 					Oops! Try Again
 				</view>
@@ -186,7 +181,7 @@
 		</u-popup>
 		<u-popup :show="verifySuccessPopup" :overlayStyle="overlayStyle" mode="center">
 			<view class="popup-body">
-
+				
 				<view class="title">
 					Password Updated
 				</view>
@@ -266,7 +261,7 @@
 							left: 50%;
 							top: 50%;
 							transform: translate(-50%, -50%);
-							content: '';
+							content: '丨';
 							color: #ffffff;
 							animation: blink 1s steps(1) infinite;
 						}

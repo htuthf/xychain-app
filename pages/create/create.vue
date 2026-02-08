@@ -9,7 +9,7 @@
 		onShow
 	} from '@dcloudio/uni-app'
 	import {
-		ethers
+		Wallet
 	} from "ethers";
 	import {
 		storeToRefs
@@ -34,7 +34,7 @@
 
 
 	const getMnemonic = () => {
-		const wallet = ethers.Wallet.createRandom();
+		const wallet = Wallet.createRandom();
 		mnemonic.value = wallet.mnemonic.phrase;
 		privateKey.value = wallet.publicKey;
 		address.value = wallet.address;

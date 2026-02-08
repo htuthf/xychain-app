@@ -9,7 +9,8 @@
 		onShow
 	} from '@dcloudio/uni-app'
 	import {
-		ethers
+		Wallet,
+		encryptKeystoreJson
 	} from "ethers";
 	import {
 		storeToRefs
@@ -87,11 +88,7 @@
 			pin.value += code
 			let pinLength = pin.value.length;
 			if (pinLength >= 6) {
-				uni.showLoading({
-					mask: true
-				})
-				const wallet = await ethers.Wallet.fromEncryptedJson(encryptedData.value, pin.value)
-				console.log(wallet)
+				const wallet = await Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
 				offPayment.value = true
 				offVerifyPopup.value = true
 
@@ -100,8 +97,6 @@
 			//TODO handle the exception
 			verifyPopup.value = true
 			return false
-		} finally {
-			uni.hideLoading()
 		}
 	}
 	const handleDelete = () => {
@@ -257,7 +252,7 @@
 							left: 50%;
 							top: 50%;
 							transform: translate(-50%, -50%);
-							content: '';
+							content: '丨';
 							color: #ffffff;
 							animation: blink 1s steps(1) infinite;
 						}

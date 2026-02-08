@@ -1,10 +1,10 @@
 import {
   __commonJS
-} from "./chunk-Y2F7D3TJ.js";
+} from "./chunk-TEKDPTAQ.js";
 
-// ../../../../workspace/github/xychain_app/node_modules/base64-js/index.js
+// ../../../../workspace/uniapp/alphmeta_app/node_modules/base64-js/index.js
 var require_base64_js = __commonJS({
-  "../../../../workspace/github/xychain_app/node_modules/base64-js/index.js"(exports) {
+  "../../../../workspace/uniapp/alphmeta_app/node_modules/base64-js/index.js"(exports) {
     "use strict";
     exports.byteLength = byteLength;
     exports.toByteArray = toByteArray;
@@ -104,9 +104,9 @@ var require_base64_js = __commonJS({
   }
 });
 
-// ../../../../workspace/github/xychain_app/node_modules/ieee754/index.js
+// ../../../../workspace/uniapp/alphmeta_app/node_modules/ieee754/index.js
 var require_ieee754 = __commonJS({
-  "../../../../workspace/github/xychain_app/node_modules/ieee754/index.js"(exports) {
+  "../../../../workspace/uniapp/alphmeta_app/node_modules/ieee754/index.js"(exports) {
     exports.read = function(buffer, offset, isLE, mLen, nBytes) {
       var e, m;
       var eLen = nBytes * 8 - mLen - 1;
@@ -187,9 +187,9 @@ var require_ieee754 = __commonJS({
   }
 });
 
-// ../../../../workspace/github/xychain_app/node_modules/buffer/index.js
+// ../../../../workspace/uniapp/alphmeta_app/node_modules/buffer/index.js
 var require_buffer = __commonJS({
-  "../../../../workspace/github/xychain_app/node_modules/buffer/index.js"(exports) {
+  "../../../../workspace/uniapp/alphmeta_app/node_modules/buffer/index.js"(exports) {
     var base64 = require_base64_js();
     var ieee754 = require_ieee754();
     var customInspectSymbol = typeof Symbol === "function" && typeof Symbol["for"] === "function" ? Symbol["for"]("nodejs.util.inspect.custom") : null;

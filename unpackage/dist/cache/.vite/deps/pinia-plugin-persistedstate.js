@@ -1,6 +1,6 @@
-import "./chunk-Y2F7D3TJ.js";
+import "./chunk-TEKDPTAQ.js";
 
-// ../../../../workspace/github/xychain_app/node_modules/pinia-plugin-persistedstate/dist/index.js
+// ../../../../workspace/uniapp/alphmeta_app/node_modules/pinia-plugin-persistedstate/dist/index.js
 function get(obj, path) {
   if (obj == null)
     return void 0;

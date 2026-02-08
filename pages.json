@@ -66,6 +66,12 @@
 			}
 		},
 		{
+			"path": "pages/rank/rank",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/setup/setup",
 			"style": {
 				"navigationStyle": "custom"
