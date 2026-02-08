@@ -1,43 +1,49 @@
 {
-  "hash": "5e4e330c",
-  "configHash": "18e7b75c",
-  "lockfileHash": "d4d78857",
-  "browserHash": "e5dd5fba",
+  "hash": "181d3ddb",
+  "configHash": "edbce3b3",
+  "lockfileHash": "f2bb5f77",
+  "browserHash": "a344cac8",
   "optimized": {
-    "pinia-plugin-persistedstate": {
-      "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
-      "file": "pinia-plugin-persistedstate.js",
-      "fileHash": "44bd305a",
-      "needsInterop": false
-    },
-    "ethers": {
-      "src": "../../../../../node_modules/ethers/lib.esm/index.js",
-      "file": "ethers.js",
-      "fileHash": "d829940d",
-      "needsInterop": false
-    },
     "buffer": {
       "src": "../../../../../node_modules/buffer/index.js",
       "file": "buffer.js",
-      "fileHash": "a6866708",
+      "fileHash": "8f00b8d0",
       "needsInterop": true
+    },
+    "pinia-plugin-persistedstate": {
+      "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
+      "file": "pinia-plugin-persistedstate.js",
+      "fileHash": "6bfa2729",
+      "needsInterop": false
     },
     "process": {
       "src": "../../../../../node_modules/process/browser.js",
       "file": "process.js",
-      "fileHash": "415fdc02",
+      "fileHash": "afb4eca0",
       "needsInterop": true
+    },
+    "ethers": {
+      "src": "../../../../../node_modules/ethers/lib.esm/index.js",
+      "file": "ethers.js",
+      "fileHash": "f3488032",
+      "needsInterop": false
     },
     "dayjs": {
       "src": "../../../../../node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "ca6ec61c",
+      "fileHash": "fd385bfe",
       "needsInterop": true
     },
     "@qiun/ucharts": {
       "src": "../../../../../node_modules/@qiun/ucharts/u-charts.js",
       "file": "@qiun_ucharts.js",
-      "fileHash": "1b4eeeea",
+      "fileHash": "01d8cb81",
+      "needsInterop": false
+    },
+    "echarts": {
+      "src": "../../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "7b1517cd",
       "needsInterop": false
     }
   },

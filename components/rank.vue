@@ -2,7 +2,8 @@
 	import {
 		ref,
 		computed,
-		nextTick
+		nextTick,
+		reactive
 	} from "vue";
 	import {
 		onLoad,
@@ -16,7 +17,7 @@
 		pickRandomIndexes,
 		verifyMnemonic
 	} from "@/plugins";
-	import uCharts from '@qiun/ucharts'
+
 	import CustomBar from '@/components/customBar.vue'
 
 	const navHeight = ref(44)
@@ -36,6 +37,76 @@
 		inputWords.value = []
 		verifyPopup.value = false
 	}
+	const chartData = ref({
+		"categories": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+		"series": [{
+			"name": "",
+			"data": [3, 5, 2, 7.3, 6, 4.5, 5, ],
+
+		}, ]
+	})
+	const chartOptions = reactive({
+		color: ['#4381FF'],
+		dataLabel: false,
+
+		legend: {
+			show: false
+		},
+		xAxis: {
+			disabled: false,
+			axisLine: false
+		},
+		yAxis: {
+			
+			
+			 data: [
+			            {
+			             
+			              type: "value",
+			              position: "left",
+			              disabled: false,
+			              axisLine: true,
+			              axisLineColor: "#141518",
+			              calibration: false,
+			              fontColor: "#666666",
+			              fontSize: 13,
+			              textAlign: "left",
+			            
+			              titleFontSize: 13,
+			              titleOffsetY: 0,
+			              titleOffsetX: 0,
+			              titleFontColor: "#666666",
+			              max: null,
+			              tofix: null,
+			              unit: "",
+			              format: "yAxisDemo1"
+			            }
+			          ],
+			          disabled: false,
+			          disableGrid: false,
+			          splitNumber: 5,
+			          gridType: "dash",
+			          dashLength: 8,
+			          gridColor: "#5D6588",
+			          padding: 10,
+			          showTitle: false
+
+		},
+		extra: {
+			column: {
+				seriesGap: 5,
+				barBorderRadius: [6, 6, 6, 6],
+				activeBgColor: "#ffffff"
+				
+			},
+			tooltip:{
+				legendShape:'circle'
+			}
+
+		},
+
+	})
+
 
 
 	const handleGoto = (type) => {
@@ -74,71 +145,7 @@
 				break;
 		}
 	}
-	const initChart = () => {
 
-
-		const ctx = uni.createCanvasContext('returnChart')
-
-
-
-		const categories = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-		const values = [3, 5, 2, 7.36, 6, 3, 4]
-		new uCharts({
-			type: 'column',
-			context: ctx,
-			canvasId: 'returnChart',
-			width: '100%',
-			height: '100%',
-			background: '#0f1115',
-			animation: true,
-
-			categories,
-			series: [{
-				name: 'Return',
-				data: values,
-				color: '#2a2d34'
-			}],
-
-			xAxis: {
-				fontColor: '#6b7280',
-				disableGrid: true
-			},
-
-			yAxis: {
-				min: 0,
-				max: 9,
-				splitNumber: 3,
-				gridType: 'dash',
-				gridColor: '#2a2d34',
-				fontColor: '#6b7280',
-				format: v => v + '%'
-			},
-
-			tooltip: {
-				showBox: true,
-				bgColor: '#3b82f6',
-				fontColor: '#fff',
-				format: item => `Return\n${item.data}%`
-			},
-
-			extra: {
-				column: {
-					width: 32
-				},
-				barBorderRadius: [
-					6,
-					6,
-					6,
-					6
-				]
-			},
-
-			// ⭐ 核心：绘制完成后手动画高亮
-			afterDraw: (ctx, chartData) => {
-				drawActiveColumn(ctx, chartData)
-			}
-		})
-	}
 	onLoad(async () => {
 		await nextTick()
 		uni.createSelectorQuery()
@@ -150,7 +157,8 @@
 			.exec()
 	})
 	onLoad(() => {
-		initChart()
+
+
 	})
 </script>
 
@@ -167,7 +175,8 @@
 				</view>
 			</view>
 			<view class="chart-contianer">
-				<canvas id="returnChart" canvas-id="returnChart" class="chart-canvas" />
+				<qiun-data-charts type="column" :opts="chartOptions" :chartData="chartData"
+					tooltipFormat="tooltipDemo1" />
 			</view>
 			<view class="group-wrapper">
 				<view class="item-wrapper">

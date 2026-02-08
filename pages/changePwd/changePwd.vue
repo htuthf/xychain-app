@@ -11,7 +11,7 @@
 
 
 	import {
-		Wallet
+		ethers
 	} from "ethers";
 	import {
 		storeToRefs
@@ -87,7 +87,11 @@
 			pin.value += code
 			let pinLength = pin.value.length;
 			if (pinLength >= 6) {
-				const data = await Wallet.fromEncryptedJson(encryptedData.value, pin.value)
+				uni.showLoading({
+					mask: true,
+					title: ''
+				})
+				const data = await ethers.Wallet.fromEncryptedJson(encryptedData.value, pin.value)
 				uni.navigateTo({
 					url: '/pages/enterNewPwd/enterNewPwd'
 				})
@@ -96,6 +100,8 @@
 			//TODO handle the exception
 			verifyPopup.value = true
 			return false
+		} finally {
+			uni.hideLoading()
 		}
 
 	}
@@ -232,7 +238,7 @@
 							left: 50%;
 							top: 50%;
 							transform: translate(-50%, -50%);
-							content: '丨';
+							content: '';
 							color: #ffffff;
 							animation: blink 1s steps(1) infinite;
 						}

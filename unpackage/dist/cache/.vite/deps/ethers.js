@@ -17,9 +17,9 @@ var require_buffer = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/bn.js/lib/bn.js
+// ../../../../workspace/github/xychain_app/node_modules/bn.js/lib/bn.js
 var require_bn = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/bn.js/lib/bn.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/bn.js/lib/bn.js"(exports, module) {
     (function(module2, exports2) {
       "use strict";
       function assert2(val, msg) {
@@ -2954,9 +2954,9 @@ var require_bn = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/js-sha3/src/sha3.js
+// ../../../../workspace/github/xychain_app/node_modules/js-sha3/src/sha3.js
 var require_sha3 = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/js-sha3/src/sha3.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/js-sha3/src/sha3.js"(exports, module) {
     (function() {
       "use strict";
       var INPUT_ERROR = "input is invalid type";
@@ -3603,9 +3603,9 @@ var require_sha3 = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/minimalistic-assert/index.js
+// ../../../../workspace/github/xychain_app/node_modules/minimalistic-assert/index.js
 var require_minimalistic_assert = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/minimalistic-assert/index.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/minimalistic-assert/index.js"(exports, module) {
     module.exports = assert2;
     function assert2(val, msg) {
       if (!val)
@@ -3618,9 +3618,9 @@ var require_minimalistic_assert = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/inherits/inherits_browser.js
+// ../../../../workspace/github/xychain_app/node_modules/inherits/inherits_browser.js
 var require_inherits_browser = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/inherits/inherits_browser.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/inherits/inherits_browser.js"(exports, module) {
     if (typeof Object.create === "function") {
       module.exports = function inherits(ctor, superCtor) {
         if (superCtor) {
@@ -3650,9 +3650,9 @@ var require_inherits_browser = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/utils.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/utils.js
 var require_utils = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/utils.js"(exports) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/utils.js"(exports) {
     "use strict";
     var assert2 = require_minimalistic_assert();
     var inherits = require_inherits_browser();
@@ -3895,9 +3895,9 @@ var require_utils = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/common.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/common.js
 var require_common = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/common.js"(exports) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/common.js"(exports) {
     "use strict";
     var utils = require_utils();
     var assert2 = require_minimalistic_assert();
@@ -3974,9 +3974,9 @@ var require_common = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/common.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/common.js
 var require_common2 = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/common.js"(exports) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/common.js"(exports) {
     "use strict";
     var utils = require_utils();
     var rotr32 = utils.rotr32;
@@ -4020,9 +4020,9 @@ var require_common2 = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/1.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/1.js
 var require__ = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/1.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/1.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var common = require_common();
@@ -4092,9 +4092,9 @@ var require__ = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/256.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/256.js
 var require__2 = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/256.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/256.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var common = require_common();
@@ -4244,9 +4244,9 @@ var require__2 = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/224.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/224.js
 var require__3 = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/224.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/224.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var SHA256 = require__2();
@@ -4280,9 +4280,9 @@ var require__3 = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/512.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/512.js
 var require__4 = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/512.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/512.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var common = require_common();
@@ -4719,9 +4719,9 @@ var require__4 = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/384.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/384.js
 var require__5 = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha/384.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha/384.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var SHA512 = require__4();
@@ -4763,9 +4763,9 @@ var require__5 = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha.js
 var require_sha = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/sha.js"(exports) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/sha.js"(exports) {
     "use strict";
     exports.sha1 = require__();
     exports.sha224 = require__3();
@@ -4775,9 +4775,9 @@ var require_sha = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/ripemd.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/ripemd.js
 var require_ripemd = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/ripemd.js"(exports) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/ripemd.js"(exports) {
     "use strict";
     var utils = require_utils();
     var common = require_common();
@@ -5216,9 +5216,9 @@ var require_ripemd = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/hmac.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/hmac.js
 var require_hmac = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash/hmac.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash/hmac.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var assert2 = require_minimalistic_assert();
@@ -5257,9 +5257,9 @@ var require_hmac = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash.js
+// ../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash.js
 var require_hash = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/hash.js/lib/hash.js"(exports) {
+  "../../../../workspace/github/xychain_app/node_modules/hash.js/lib/hash.js"(exports) {
     var hash3 = exports;
     hash3.utils = require_utils();
     hash3.common = require_common();
@@ -5275,9 +5275,9 @@ var require_hash = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/aes-js/index.js
+// ../../../../workspace/github/xychain_app/node_modules/aes-js/index.js
 var require_aes_js = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/aes-js/index.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/aes-js/index.js"(exports, module) {
     "use strict";
     (function(root) {
       function checkInt(value) {
@@ -5827,9 +5827,9 @@ var require_aes_js = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/scrypt-js/scrypt.js
+// ../../../../workspace/github/xychain_app/node_modules/scrypt-js/scrypt.js
 var require_scrypt = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/scrypt-js/scrypt.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/scrypt-js/scrypt.js"(exports, module) {
     "use strict";
     (function(root) {
       const MAX_VALUE = 2147483647;
@@ -6298,9 +6298,9 @@ var require_scrypt = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/bech32/index.js
+// ../../../../workspace/github/xychain_app/node_modules/bech32/index.js
 var require_bech32 = __commonJS({
-  "../../../../workspace/uniapp/alphmeta_app/node_modules/bech32/index.js"(exports, module) {
+  "../../../../workspace/github/xychain_app/node_modules/bech32/index.js"(exports, module) {
     "use strict";
     var ALPHABET = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
     var ALPHABET_MAP = {};
@@ -6465,7 +6465,7 @@ var require_bech32 = __commonJS({
   }
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/ethers/lib.esm/ethers.js
+// ../../../../workspace/github/xychain_app/node_modules/ethers/lib.esm/ethers.js
 var ethers_exports = {};
 __export(ethers_exports, {
   BaseContract: () => BaseContract,
@@ -6487,13 +6487,13 @@ __export(ethers_exports, {
   wordlists: () => wordlists
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/bignumber/lib.esm/bignumber.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bignumber/lib.esm/bignumber.js
 var import_bn = __toESM(require_bn());
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/logger/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/logger/lib.esm/_version.js
 var version = "logger/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/logger/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/logger/lib.esm/index.js
 var _permanentCensorErrors = false;
 var _censorErrors = false;
 var LogLevels = { debug: 1, "default": 2, info: 2, warning: 3, error: 4, off: 5 };
@@ -6781,10 +6781,10 @@ var Logger = class _Logger {
 Logger.errors = ErrorCode;
 Logger.levels = LogLevel;
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/bytes/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bytes/lib.esm/_version.js
 var version2 = "bytes/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/bytes/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bytes/lib.esm/index.js
 var logger = new Logger(version2);
 function isHexable(value) {
   return !!value.toHexString;
@@ -7149,10 +7149,10 @@ function joinSignature(signature2) {
   ]));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/bignumber/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bignumber/lib.esm/_version.js
 var version3 = "bignumber/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/bignumber/lib.esm/bignumber.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bignumber/lib.esm/bignumber.js
 var BN = import_bn.default.BN;
 var logger2 = new Logger(version3);
 var _constructorGuard = {};
@@ -7418,7 +7418,7 @@ function _base16To36(value) {
   return new BN(value, 16).toString(36);
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/bignumber/lib.esm/fixednumber.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bignumber/lib.esm/fixednumber.js
 var logger3 = new Logger(version3);
 var _constructorGuard2 = {};
 var Zero = BigNumber.from(0);
@@ -7759,10 +7759,10 @@ var FixedNumber = class _FixedNumber {
 var ONE = FixedNumber.from(1);
 var BUMP = FixedNumber.from("0.5");
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/properties/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/properties/lib.esm/_version.js
 var version4 = "properties/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/properties/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/properties/lib.esm/index.js
 var __awaiter = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -7896,10 +7896,10 @@ var Description = class {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/_version.js
 var version5 = "abi/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/fragments.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/fragments.js
 var logger5 = new Logger(version5);
 var _constructorGuard3 = {};
 var ModifiersBytes = { calldata: true, memory: true, storage: true };
@@ -8707,7 +8707,7 @@ function splitNesting(value) {
   return result;
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/abstract-coder.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/abstract-coder.js
 var logger6 = new Logger(version5);
 function checkResultErrors(result) {
   const errors = [];
@@ -8850,23 +8850,23 @@ var Reader = class _Reader {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/keccak256/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/keccak256/lib.esm/index.js
 var import_js_sha3 = __toESM(require_sha3());
 function keccak256(data) {
   return "0x" + import_js_sha3.default.keccak_256(arrayify(data));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/rlp/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/rlp/lib.esm/index.js
 var lib_exports = {};
 __export(lib_exports, {
   decode: () => decode,
   encode: () => encode
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/rlp/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/rlp/lib.esm/_version.js
 var version6 = "rlp/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/rlp/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/rlp/lib.esm/index.js
 var logger7 = new Logger(version6);
 function arrayifyInteger(value) {
   const result = [];
@@ -8976,10 +8976,10 @@ function decode(data) {
   return decoded.result;
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/address/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/address/lib.esm/_version.js
 var version7 = "address/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/address/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/address/lib.esm/index.js
 var logger8 = new Logger(version7);
 function getChecksumAddress(address) {
   if (!isHexString(address, 20)) {
@@ -9095,7 +9095,7 @@ function getCreate2Address(from, salt, initCodeHash) {
   return getAddress(hexDataSlice(keccak256(concat(["0xff", getAddress(from), salt, initCodeHash])), 12));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/address.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/address.js
 var AddressCoder = class extends Coder {
   constructor(localName) {
     super("address", "address", localName, false);
@@ -9116,7 +9116,7 @@ var AddressCoder = class extends Coder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/anonymous.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/anonymous.js
 var AnonymousCoder = class extends Coder {
   constructor(coder) {
     super(coder.name, coder.type, void 0, coder.dynamic);
@@ -9133,7 +9133,7 @@ var AnonymousCoder = class extends Coder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/array.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/array.js
 var logger9 = new Logger(version5);
 function pack(writer, coders, values) {
   let arrayValues = null;
@@ -9322,7 +9322,7 @@ var ArrayCoder = class extends Coder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/boolean.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/boolean.js
 var BooleanCoder = class extends Coder {
   constructor(localName) {
     super("bool", "bool", localName, false);
@@ -9338,7 +9338,7 @@ var BooleanCoder = class extends Coder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/bytes.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/bytes.js
 var DynamicBytesCoder = class extends Coder {
   constructor(type, localName) {
     super(type, type, localName, true);
@@ -9365,7 +9365,7 @@ var BytesCoder = class extends DynamicBytesCoder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/fixed-bytes.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/fixed-bytes.js
 var FixedBytesCoder = class extends Coder {
   constructor(size, localName) {
     let name = "bytes" + String(size);
@@ -9387,7 +9387,7 @@ var FixedBytesCoder = class extends Coder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/null.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/null.js
 var NullCoder = class extends Coder {
   constructor(localName) {
     super("null", "", localName, false);
@@ -9407,7 +9407,7 @@ var NullCoder = class extends Coder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/constants/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/constants/lib.esm/index.js
 var lib_exports2 = {};
 __export(lib_exports2, {
   AddressZero: () => AddressZero,
@@ -9423,10 +9423,10 @@ __export(lib_exports2, {
   Zero: () => Zero2
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/constants/lib.esm/addresses.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/constants/lib.esm/addresses.js
 var AddressZero = "0x0000000000000000000000000000000000000000";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/constants/lib.esm/bignumbers.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/constants/lib.esm/bignumbers.js
 var NegativeOne2 = BigNumber.from(-1);
 var Zero2 = BigNumber.from(0);
 var One = BigNumber.from(1);
@@ -9436,13 +9436,13 @@ var MaxUint256 = BigNumber.from("0xfffffffffffffffffffffffffffffffffffffffffffff
 var MinInt256 = BigNumber.from("-0x8000000000000000000000000000000000000000000000000000000000000000");
 var MaxInt256 = BigNumber.from("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/constants/lib.esm/hashes.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/constants/lib.esm/hashes.js
 var HashZero = "0x0000000000000000000000000000000000000000000000000000000000000000";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/constants/lib.esm/strings.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/constants/lib.esm/strings.js
 var EtherSymbol = "Ξ";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/number.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/number.js
 var NumberCoder = class extends Coder {
   constructor(size, signed2, localName) {
     const name = (signed2 ? "int" : "uint") + size * 8;
@@ -9479,10 +9479,10 @@ var NumberCoder = class extends Coder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/strings/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/strings/lib.esm/_version.js
 var version8 = "strings/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/strings/lib.esm/utf8.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/strings/lib.esm/utf8.js
 var logger10 = new Logger(version8);
 var UnicodeNormalizationForm;
 (function(UnicodeNormalizationForm2) {
@@ -9681,7 +9681,7 @@ function toUtf8CodePoints(str, form = UnicodeNormalizationForm.current) {
   return getUtf8CodePoints(toUtf8Bytes(str, form));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/strings/lib.esm/bytes32.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/strings/lib.esm/bytes32.js
 function formatBytes32String(text) {
   const bytes = toUtf8Bytes(text);
   if (bytes.length > 31) {
@@ -9704,7 +9704,7 @@ function parseBytes32String(bytes) {
   return toUtf8String(data.slice(0, length));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/strings/lib.esm/idna.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/strings/lib.esm/idna.js
 function bytes2(data) {
   if (data.length % 4 !== 0) {
     throw new Error("bad data");
@@ -9877,7 +9877,7 @@ function nameprep(value) {
   return name;
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/string.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/string.js
 var StringCoder = class extends DynamicBytesCoder {
   constructor(localName) {
     super("string", localName);
@@ -9893,7 +9893,7 @@ var StringCoder = class extends DynamicBytesCoder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/coders/tuple.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/coders/tuple.js
 var TupleCoder = class extends Coder {
   constructor(coders, localName) {
     let dynamic = false;
@@ -9946,7 +9946,7 @@ var TupleCoder = class extends Coder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/abi-coder.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/abi-coder.js
 var logger11 = new Logger(version5);
 var paramTypeBytes = new RegExp(/^bytes([0-9]*)$/);
 var paramTypeNumber = new RegExp(/^(u?int)([0-9]*)$/);
@@ -10026,22 +10026,22 @@ var AbiCoder = class {
 };
 var defaultAbiCoder = new AbiCoder();
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hash/lib.esm/id.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/id.js
 function id(text) {
   return keccak256(toUtf8Bytes(text));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hash/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/_version.js
 var version9 = "hash/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/base64/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/base64/lib.esm/index.js
 var lib_exports3 = {};
 __export(lib_exports3, {
   decode: () => decode2,
   encode: () => encode2
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/base64/lib.esm/base64.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/base64/lib.esm/base64.js
 function decode2(textData) {
   textData = atob(textData);
   const data = [];
@@ -10059,7 +10059,7 @@ function encode2(data) {
   return btoa(textData);
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hash/lib.esm/ens-normalize/decoder.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/ens-normalize/decoder.js
 function flat(array, depth) {
   if (depth == null) {
     depth = 1;
@@ -10278,12 +10278,12 @@ function read_emoji_trie(next) {
   }
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hash/lib.esm/ens-normalize/include.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/ens-normalize/include.js
 function getData() {
   return read_compressed_payload(decode2("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"));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hash/lib.esm/ens-normalize/lib.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/ens-normalize/lib.js
 var r = getData();
 var VALID = new Set(read_member_array(r));
 var IGNORED = new Set(read_member_array(r));
@@ -10385,7 +10385,7 @@ function consume_emoji_reversed(cps, eaten) {
   return emoji;
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hash/lib.esm/namehash.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/namehash.js
 var logger12 = new Logger(version9);
 var Zeros = new Uint8Array(32);
 Zeros.fill(0);
@@ -10445,7 +10445,7 @@ function dnsEncode(name) {
   }))) + "00";
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hash/lib.esm/message.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/message.js
 var messagePrefix = "Ethereum Signed Message:\n";
 function hashMessage(message) {
   if (typeof message === "string") {
@@ -10458,7 +10458,7 @@ function hashMessage(message) {
   ]));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hash/lib.esm/typed-data.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/typed-data.js
 var __awaiter2 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -10883,7 +10883,7 @@ var TypedDataEncoder = class _TypedDataEncoder {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abi/lib.esm/interface.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/interface.js
 var logger14 = new Logger(version5);
 var LogDescription = class extends Description {
 };
@@ -11439,10 +11439,10 @@ var Interface = class {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abstract-provider/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abstract-provider/lib.esm/_version.js
 var version10 = "abstract-provider/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abstract-provider/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abstract-provider/lib.esm/index.js
 var __awaiter3 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -11511,10 +11511,10 @@ var Provider = class _Provider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abstract-signer/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abstract-signer/lib.esm/_version.js
 var version11 = "abstract-signer/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/abstract-signer/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abstract-signer/lib.esm/index.js
 var __awaiter4 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -11815,7 +11815,7 @@ var VoidSigner = class _VoidSigner extends Signer {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/signing-key/lib.esm/elliptic.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/signing-key/lib.esm/elliptic.js
 var import_bn2 = __toESM(require_bn());
 var import_hash2 = __toESM(require_hash());
 function createCommonjsModule(fn, basedir, module) {
@@ -13734,10 +13734,10 @@ var elliptic_1 = createCommonjsModule(function(module, exports) {
 });
 var EC$1 = elliptic_1.ec;
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/signing-key/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/signing-key/lib.esm/_version.js
 var version12 = "signing-key/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/signing-key/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/signing-key/lib.esm/index.js
 var logger17 = new Logger(version12);
 var _curve = null;
 function getCurve() {
@@ -13812,10 +13812,10 @@ function computePublicKey(key2, compressed) {
   return logger17.throwArgumentError("invalid public or private key", "key", "[REDACTED]");
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/transactions/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/transactions/lib.esm/_version.js
 var version13 = "transactions/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/transactions/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/transactions/lib.esm/index.js
 var logger18 = new Logger(version13);
 var TransactionTypes;
 (function(TransactionTypes2) {
@@ -14165,10 +14165,10 @@ function parse(rawTransaction) {
   });
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/contracts/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/contracts/lib.esm/_version.js
 var version14 = "contracts/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/contracts/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/contracts/lib.esm/index.js
 var __awaiter5 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -15103,7 +15103,7 @@ var ContractFactory = class {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/basex/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/basex/lib.esm/index.js
 var BaseX = class {
   constructor(alphabet) {
     defineReadOnly(this, "alphabet", alphabet);
@@ -15175,20 +15175,20 @@ var BaseX = class {
 var Base32 = new BaseX("abcdefghijklmnopqrstuvwxyz234567");
 var Base58 = new BaseX("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz");
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/sha2/lib.esm/sha2.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/sha2/lib.esm/sha2.js
 var import_hash3 = __toESM(require_hash());
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/sha2/lib.esm/types.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/sha2/lib.esm/types.js
 var SupportedAlgorithm;
 (function(SupportedAlgorithm2) {
   SupportedAlgorithm2["sha256"] = "sha256";
   SupportedAlgorithm2["sha512"] = "sha512";
 })(SupportedAlgorithm || (SupportedAlgorithm = {}));
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/sha2/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/sha2/lib.esm/_version.js
 var version15 = "sha2/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/sha2/lib.esm/sha2.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/sha2/lib.esm/sha2.js
 var logger20 = new Logger(version15);
 function ripemd160(data) {
   return "0x" + import_hash3.default.ripemd160().update(arrayify(data)).digest("hex");
@@ -15209,7 +15209,7 @@ function computeHmac(algorithm, key2, data) {
   return "0x" + import_hash3.default.hmac(import_hash3.default[algorithm], arrayify(key2)).update(arrayify(data)).digest("hex");
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/pbkdf2/lib.esm/pbkdf2.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/pbkdf2/lib.esm/pbkdf2.js
 function pbkdf2(password, salt, iterations, keylen, hashAlgorithm) {
   password = arrayify(password);
   salt = arrayify(salt);
@@ -15245,10 +15245,10 @@ function pbkdf2(password, salt, iterations, keylen, hashAlgorithm) {
   return hexlify(DK);
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/wordlists/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wordlists/lib.esm/_version.js
 var version16 = "wordlists/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/wordlists/lib.esm/wordlist.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wordlists/lib.esm/wordlist.js
 var exportWordlist = false;
 var logger21 = new Logger(version16);
 var Wordlist = class _Wordlist {
@@ -15293,7 +15293,7 @@ var Wordlist = class _Wordlist {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/wordlists/lib.esm/lang-en.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wordlists/lib.esm/lang-en.js
 var words = "AbandonAbilityAbleAboutAboveAbsentAbsorbAbstractAbsurdAbuseAccessAccidentAccountAccuseAchieveAcidAcousticAcquireAcrossActActionActorActressActualAdaptAddAddictAddressAdjustAdmitAdultAdvanceAdviceAerobicAffairAffordAfraidAgainAgeAgentAgreeAheadAimAirAirportAisleAlarmAlbumAlcoholAlertAlienAllAlleyAllowAlmostAloneAlphaAlreadyAlsoAlterAlwaysAmateurAmazingAmongAmountAmusedAnalystAnchorAncientAngerAngleAngryAnimalAnkleAnnounceAnnualAnotherAnswerAntennaAntiqueAnxietyAnyApartApologyAppearAppleApproveAprilArchArcticAreaArenaArgueArmArmedArmorArmyAroundArrangeArrestArriveArrowArtArtefactArtistArtworkAskAspectAssaultAssetAssistAssumeAsthmaAthleteAtomAttackAttendAttitudeAttractAuctionAuditAugustAuntAuthorAutoAutumnAverageAvocadoAvoidAwakeAwareAwayAwesomeAwfulAwkwardAxisBabyBachelorBaconBadgeBagBalanceBalconyBallBambooBananaBannerBarBarelyBargainBarrelBaseBasicBasketBattleBeachBeanBeautyBecauseBecomeBeefBeforeBeginBehaveBehindBelieveBelowBeltBenchBenefitBestBetrayBetterBetweenBeyondBicycleBidBikeBindBiologyBirdBirthBitterBlackBladeBlameBlanketBlastBleakBlessBlindBloodBlossomBlouseBlueBlurBlushBoardBoatBodyBoilBombBoneBonusBookBoostBorderBoringBorrowBossBottomBounceBoxBoyBracketBrainBrandBrassBraveBreadBreezeBrickBridgeBriefBrightBringBriskBroccoliBrokenBronzeBroomBrotherBrownBrushBubbleBuddyBudgetBuffaloBuildBulbBulkBulletBundleBunkerBurdenBurgerBurstBusBusinessBusyButterBuyerBuzzCabbageCabinCableCactusCageCakeCallCalmCameraCampCanCanalCancelCandyCannonCanoeCanvasCanyonCapableCapitalCaptainCarCarbonCardCargoCarpetCarryCartCaseCashCasinoCastleCasualCatCatalogCatchCategoryCattleCaughtCauseCautionCaveCeilingCeleryCementCensusCenturyCerealCertainChairChalkChampionChangeChaosChapterChargeChaseChatCheapCheckCheeseChefCherryChestChickenChiefChildChimneyChoiceChooseChronicChuckleChunkChurnCigarCinnamonCircleCitizenCityCivilClaimClapClarifyClawClayCleanClerkCleverClickClientCliffClimbClinicClipClockClogCloseClothCloudClownClubClumpClusterClutchCoachCoastCoconutCodeCoffeeCoilCoinCollectColorColumnCombineComeComfortComicCommonCompanyConcertConductConfirmCongressConnectConsiderControlConvinceCookCoolCopperCopyCoralCoreCornCorrectCostCottonCouchCountryCoupleCourseCousinCoverCoyoteCrackCradleCraftCramCraneCrashCraterCrawlCrazyCreamCreditCreekCrewCricketCrimeCrispCriticCropCrossCrouchCrowdCrucialCruelCruiseCrumbleCrunchCrushCryCrystalCubeCultureCupCupboardCuriousCurrentCurtainCurveCushionCustomCuteCycleDadDamageDampDanceDangerDaringDashDaughterDawnDayDealDebateDebrisDecadeDecemberDecideDeclineDecorateDecreaseDeerDefenseDefineDefyDegreeDelayDeliverDemandDemiseDenialDentistDenyDepartDependDepositDepthDeputyDeriveDescribeDesertDesignDeskDespairDestroyDetailDetectDevelopDeviceDevoteDiagramDialDiamondDiaryDiceDieselDietDifferDigitalDignityDilemmaDinnerDinosaurDirectDirtDisagreeDiscoverDiseaseDishDismissDisorderDisplayDistanceDivertDivideDivorceDizzyDoctorDocumentDogDollDolphinDomainDonateDonkeyDonorDoorDoseDoubleDoveDraftDragonDramaDrasticDrawDreamDressDriftDrillDrinkDripDriveDropDrumDryDuckDumbDuneDuringDustDutchDutyDwarfDynamicEagerEagleEarlyEarnEarthEasilyEastEasyEchoEcologyEconomyEdgeEditEducateEffortEggEightEitherElbowElderElectricElegantElementElephantElevatorEliteElseEmbarkEmbodyEmbraceEmergeEmotionEmployEmpowerEmptyEnableEnactEndEndlessEndorseEnemyEnergyEnforceEngageEngineEnhanceEnjoyEnlistEnoughEnrichEnrollEnsureEnterEntireEntryEnvelopeEpisodeEqualEquipEraEraseErodeErosionErrorEruptEscapeEssayEssenceEstateEternalEthicsEvidenceEvilEvokeEvolveExactExampleExcessExchangeExciteExcludeExcuseExecuteExerciseExhaustExhibitExileExistExitExoticExpandExpectExpireExplainExposeExpressExtendExtraEyeEyebrowFabricFaceFacultyFadeFaintFaithFallFalseFameFamilyFamousFanFancyFantasyFarmFashionFatFatalFatherFatigueFaultFavoriteFeatureFebruaryFederalFeeFeedFeelFemaleFenceFestivalFetchFeverFewFiberFictionFieldFigureFileFilmFilterFinalFindFineFingerFinishFireFirmFirstFiscalFishFitFitnessFixFlagFlameFlashFlatFlavorFleeFlightFlipFloatFlockFloorFlowerFluidFlushFlyFoamFocusFogFoilFoldFollowFoodFootForceForestForgetForkFortuneForumForwardFossilFosterFoundFoxFragileFrameFrequentFreshFriendFringeFrogFrontFrostFrownFrozenFruitFuelFunFunnyFurnaceFuryFutureGadgetGainGalaxyGalleryGameGapGarageGarbageGardenGarlicGarmentGasGaspGateGatherGaugeGazeGeneralGeniusGenreGentleGenuineGestureGhostGiantGiftGiggleGingerGiraffeGirlGiveGladGlanceGlareGlassGlideGlimpseGlobeGloomGloryGloveGlowGlueGoatGoddessGoldGoodGooseGorillaGospelGossipGovernGownGrabGraceGrainGrantGrapeGrassGravityGreatGreenGridGriefGritGroceryGroupGrowGruntGuardGuessGuideGuiltGuitarGunGymHabitHairHalfHammerHamsterHandHappyHarborHardHarshHarvestHatHaveHawkHazardHeadHealthHeartHeavyHedgehogHeightHelloHelmetHelpHenHeroHiddenHighHillHintHipHireHistoryHobbyHockeyHoldHoleHolidayHollowHomeHoneyHoodHopeHornHorrorHorseHospitalHostHotelHourHoverHubHugeHumanHumbleHumorHundredHungryHuntHurdleHurryHurtHusbandHybridIceIconIdeaIdentifyIdleIgnoreIllIllegalIllnessImageImitateImmenseImmuneImpactImposeImproveImpulseInchIncludeIncomeIncreaseIndexIndicateIndoorIndustryInfantInflictInformInhaleInheritInitialInjectInjuryInmateInnerInnocentInputInquiryInsaneInsectInsideInspireInstallIntactInterestIntoInvestInviteInvolveIronIslandIsolateIssueItemIvoryJacketJaguarJarJazzJealousJeansJellyJewelJobJoinJokeJourneyJoyJudgeJuiceJumpJungleJuniorJunkJustKangarooKeenKeepKetchupKeyKickKidKidneyKindKingdomKissKitKitchenKiteKittenKiwiKneeKnifeKnockKnowLabLabelLaborLadderLadyLakeLampLanguageLaptopLargeLaterLatinLaughLaundryLavaLawLawnLawsuitLayerLazyLeaderLeafLearnLeaveLectureLeftLegLegalLegendLeisureLemonLendLengthLensLeopardLessonLetterLevelLiarLibertyLibraryLicenseLifeLiftLightLikeLimbLimitLinkLionLiquidListLittleLiveLizardLoadLoanLobsterLocalLockLogicLonelyLongLoopLotteryLoudLoungeLoveLoyalLuckyLuggageLumberLunarLunchLuxuryLyricsMachineMadMagicMagnetMaidMailMainMajorMakeMammalManManageMandateMangoMansionManualMapleMarbleMarchMarginMarineMarketMarriageMaskMassMasterMatchMaterialMathMatrixMatterMaximumMazeMeadowMeanMeasureMeatMechanicMedalMediaMelodyMeltMemberMemoryMentionMenuMercyMergeMeritMerryMeshMessageMetalMethodMiddleMidnightMilkMillionMimicMindMinimumMinorMinuteMiracleMirrorMiseryMissMistakeMixMixedMixtureMobileModelModifyMomMomentMonitorMonkeyMonsterMonthMoonMoralMoreMorningMosquitoMotherMotionMotorMountainMouseMoveMovieMuchMuffinMuleMultiplyMuscleMuseumMushroomMusicMustMutualMyselfMysteryMythNaiveNameNapkinNarrowNastyNationNatureNearNeckNeedNegativeNeglectNeitherNephewNerveNestNetNetworkNeutralNeverNewsNextNiceNightNobleNoiseNomineeNoodleNormalNorthNoseNotableNoteNothingNoticeNovelNowNuclearNumberNurseNutOakObeyObjectObligeObscureObserveObtainObviousOccurOceanOctoberOdorOffOfferOfficeOftenOilOkayOldOliveOlympicOmitOnceOneOnionOnlineOnlyOpenOperaOpinionOpposeOptionOrangeOrbitOrchardOrderOrdinaryOrganOrientOriginalOrphanOstrichOtherOutdoorOuterOutputOutsideOvalOvenOverOwnOwnerOxygenOysterOzonePactPaddlePagePairPalacePalmPandaPanelPanicPantherPaperParadeParentParkParrotPartyPassPatchPathPatientPatrolPatternPausePavePaymentPeacePeanutPearPeasantPelicanPenPenaltyPencilPeoplePepperPerfectPermitPersonPetPhonePhotoPhrasePhysicalPianoPicnicPicturePiecePigPigeonPillPilotPinkPioneerPipePistolPitchPizzaPlacePlanetPlasticPlatePlayPleasePledgePluckPlugPlungePoemPoetPointPolarPolePolicePondPonyPoolPopularPortionPositionPossiblePostPotatoPotteryPovertyPowderPowerPracticePraisePredictPreferPreparePresentPrettyPreventPricePridePrimaryPrintPriorityPrisonPrivatePrizeProblemProcessProduceProfitProgramProjectPromoteProofPropertyProsperProtectProudProvidePublicPuddingPullPulpPulsePumpkinPunchPupilPuppyPurchasePurityPurposePursePushPutPuzzlePyramidQualityQuantumQuarterQuestionQuickQuitQuizQuoteRabbitRaccoonRaceRackRadarRadioRailRainRaiseRallyRampRanchRandomRangeRapidRareRateRatherRavenRawRazorReadyRealReasonRebelRebuildRecallReceiveRecipeRecordRecycleReduceReflectReformRefuseRegionRegretRegularRejectRelaxReleaseReliefRelyRemainRememberRemindRemoveRenderRenewRentReopenRepairRepeatReplaceReportRequireRescueResembleResistResourceResponseResultRetireRetreatReturnReunionRevealReviewRewardRhythmRibRibbonRiceRichRideRidgeRifleRightRigidRingRiotRippleRiskRitualRivalRiverRoadRoastRobotRobustRocketRomanceRoofRookieRoomRoseRotateRoughRoundRouteRoyalRubberRudeRugRuleRunRunwayRuralSadSaddleSadnessSafeSailSaladSalmonSalonSaltSaluteSameSampleSandSatisfySatoshiSauceSausageSaveSayScaleScanScareScatterSceneSchemeSchoolScienceScissorsScorpionScoutScrapScreenScriptScrubSeaSearchSeasonSeatSecondSecretSectionSecuritySeedSeekSegmentSelectSellSeminarSeniorSenseSentenceSeriesServiceSessionSettleSetupSevenShadowShaftShallowShareShedShellSheriffShieldShiftShineShipShiverShockShoeShootShopShortShoulderShoveShrimpShrugShuffleShySiblingSickSideSiegeSightSignSilentSilkSillySilverSimilarSimpleSinceSingSirenSisterSituateSixSizeSkateSketchSkiSkillSkinSkirtSkullSlabSlamSleepSlenderSliceSlideSlightSlimSloganSlotSlowSlushSmallSmartSmileSmokeSmoothSnackSnakeSnapSniffSnowSoapSoccerSocialSockSodaSoftSolarSoldierSolidSolutionSolveSomeoneSongSoonSorrySortSoulSoundSoupSourceSouthSpaceSpareSpatialSpawnSpeakSpecialSpeedSpellSpendSphereSpiceSpiderSpikeSpinSpiritSplitSpoilSponsorSpoonSportSpotSpraySpreadSpringSpySquareSqueezeSquirrelStableStadiumStaffStageStairsStampStandStartStateStaySteakSteelStemStepStereoStickStillStingStockStomachStoneStoolStoryStoveStrategyStreetStrikeStrongStruggleStudentStuffStumbleStyleSubjectSubmitSubwaySuccessSuchSuddenSufferSugarSuggestSuitSummerSunSunnySunsetSuperSupplySupremeSureSurfaceSurgeSurpriseSurroundSurveySuspectSustainSwallowSwampSwapSwarmSwearSweetSwiftSwimSwingSwitchSwordSymbolSymptomSyrupSystemTableTackleTagTailTalentTalkTankTapeTargetTaskTasteTattooTaxiTeachTeamTellTenTenantTennisTentTermTestTextThankThatThemeThenTheoryThereTheyThingThisThoughtThreeThriveThrowThumbThunderTicketTideTigerTiltTimberTimeTinyTipTiredTissueTitleToastTobaccoTodayToddlerToeTogetherToiletTokenTomatoTomorrowToneTongueTonightToolToothTopTopicToppleTorchTornadoTortoiseTossTotalTouristTowardTowerTownToyTrackTradeTrafficTragicTrainTransferTrapTrashTravelTrayTreatTreeTrendTrialTribeTrickTriggerTrimTripTrophyTroubleTruckTrueTrulyTrumpetTrustTruthTryTubeTuitionTumbleTunaTunnelTurkeyTurnTurtleTwelveTwentyTwiceTwinTwistTwoTypeTypicalUglyUmbrellaUnableUnawareUncleUncoverUnderUndoUnfairUnfoldUnhappyUniformUniqueUnitUniverseUnknownUnlockUntilUnusualUnveilUpdateUpgradeUpholdUponUpperUpsetUrbanUrgeUsageUseUsedUsefulUselessUsualUtilityVacantVacuumVagueValidValleyValveVanVanishVaporVariousVastVaultVehicleVelvetVendorVentureVenueVerbVerifyVersionVeryVesselVeteranViableVibrantViciousVictoryVideoViewVillageVintageViolinVirtualVirusVisaVisitVisualVitalVividVocalVoiceVoidVolcanoVolumeVoteVoyageWageWagonWaitWalkWallWalnutWantWarfareWarmWarriorWashWaspWasteWaterWaveWayWealthWeaponWearWeaselWeatherWebWeddingWeekendWeirdWelcomeWestWetWhaleWhatWheatWheelWhenWhereWhipWhisperWideWidthWifeWildWillWinWindowWineWingWinkWinnerWinterWireWisdomWiseWishWitnessWolfWomanWonderWoodWoolWordWorkWorldWorryWorthWrapWreckWrestleWristWriteWrongYardYearYellowYouYoungYouthZebraZeroZoneZoo";
 var wordlist = null;
 function loadWords(lang) {
@@ -15322,15 +15322,15 @@ var LangEn = class extends Wordlist {
 var langEn = new LangEn();
 Wordlist.register(langEn);
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/wordlists/lib.esm/wordlists.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wordlists/lib.esm/wordlists.js
 var wordlists = {
   en: langEn
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hdnode/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hdnode/lib.esm/_version.js
 var version17 = "hdnode/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/hdnode/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hdnode/lib.esm/index.js
 var logger22 = new Logger(version17);
 var N = BigNumber.from("0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141");
 var MasterSecret = toUtf8Bytes("Bitcoin seed");
@@ -15611,10 +15611,10 @@ function getAccountPath(index) {
   return `m/44'/60'/${index}'/0/0`;
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/random/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/random/lib.esm/_version.js
 var version18 = "random/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/random/lib.esm/random.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/random/lib.esm/random.js
 var logger23 = new Logger(version18);
 function getGlobal() {
   if (typeof self !== "undefined") {
@@ -15649,7 +15649,7 @@ function randomBytes(length) {
   return arrayify(result);
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/random/lib.esm/shuffle.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/random/lib.esm/shuffle.js
 function shuffled(array) {
   array = array.slice();
   for (let i = array.length - 1; i > 0; i--) {
@@ -15661,13 +15661,13 @@ function shuffled(array) {
   return array;
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/json-wallets/lib.esm/crowdsale.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/crowdsale.js
 var import_aes_js = __toESM(require_aes_js());
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/json-wallets/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/_version.js
 var version19 = "json-wallets/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/json-wallets/lib.esm/utils.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/utils.js
 function looseArrayify(hexString) {
   if (typeof hexString === "string" && hexString.substring(0, 2) !== "0x") {
     hexString = "0x" + hexString;
@@ -15719,7 +15719,7 @@ function uuidV4(randomBytes2) {
   ].join("-");
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/json-wallets/lib.esm/crowdsale.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/crowdsale.js
 var logger24 = new Logger(version19);
 var CrowdsaleAccount = class extends Description {
   isCrowdsaleAccount(value) {
@@ -15752,7 +15752,7 @@ function decrypt(json, password) {
   });
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/json-wallets/lib.esm/inspect.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/inspect.js
 function isCrowdsaleWallet(json) {
   let data = null;
   try {
@@ -15792,7 +15792,7 @@ function getJsonWalletAddress(json) {
   return null;
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/json-wallets/lib.esm/keystore.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/keystore.js
 var import_aes_js2 = __toESM(require_aes_js());
 var import_scrypt_js = __toESM(require_scrypt());
 var __awaiter6 = function(thisArg, _arguments, P, generator) {
@@ -16079,7 +16079,7 @@ function encrypt(account, password, options, progressCallback) {
   });
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/json-wallets/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/index.js
 function decryptJsonWallet(json, password, progressCallback) {
   if (isCrowdsaleWallet(json)) {
     if (progressCallback) {
@@ -16106,10 +16106,10 @@ function decryptJsonWalletSync(json, password) {
   throw new Error("invalid JSON wallet");
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/wallet/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wallet/lib.esm/_version.js
 var version20 = "wallet/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/wallet/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wallet/lib.esm/index.js
 var __awaiter7 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -16288,7 +16288,7 @@ function verifyTypedData(domain, types, value, signature2) {
   return recoverAddress(TypedDataEncoder.hash(domain, types, value), signature2);
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/index.js
 var lib_exports4 = {};
 __export(lib_exports4, {
   AlchemyProvider: () => AlchemyProvider,
@@ -16321,10 +16321,10 @@ __export(lib_exports4, {
   showThrottleMessage: () => showThrottleMessage
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/networks/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/networks/lib.esm/_version.js
 var version21 = "networks/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/networks/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/networks/lib.esm/index.js
 var logger27 = new Logger(version21);
 function isRenetworkable(value) {
   return value && typeof value.renetwork === "function";
@@ -16568,10 +16568,10 @@ function getNetwork(network) {
   };
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/web/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/web/lib.esm/_version.js
 var version22 = "web/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/web/lib.esm/geturl.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/web/lib.esm/geturl.js
 var __awaiter8 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -16656,7 +16656,7 @@ function getUrl(href, options) {
   });
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/web/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/web/lib.esm/index.js
 var __awaiter9 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -17037,13 +17037,13 @@ function poll(func, options) {
   });
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/base-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/base-provider.js
 var import_bech32 = __toESM(require_bech32());
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/_version.js
 var version23 = "providers/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/formatter.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/formatter.js
 var logger29 = new Logger(version23);
 var Formatter = class _Formatter {
   constructor() {
@@ -17467,7 +17467,7 @@ function showThrottleMessage() {
   console.log("==========================");
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/base-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/base-provider.js
 var __awaiter10 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -19281,7 +19281,7 @@ var BaseProvider = class extends Provider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/json-rpc-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/json-rpc-provider.js
 var __awaiter11 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -19941,7 +19941,7 @@ var JsonRpcProvider = class extends BaseProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/ws.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/ws.js
 var WS = null;
 try {
   WS = WebSocket;
@@ -19957,7 +19957,7 @@ try {
   };
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/websocket-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/websocket-provider.js
 var __awaiter12 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -20229,7 +20229,7 @@ var WebSocketProvider = class extends JsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/url-json-rpc-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/url-json-rpc-provider.js
 var __awaiter13 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -20320,7 +20320,7 @@ var UrlJsonRpcProvider = class _UrlJsonRpcProvider extends StaticJsonRpcProvider
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/alchemy-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/alchemy-provider.js
 var logger34 = new Logger(version23);
 var defaultApiKey = "_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC";
 var AlchemyWebSocketProvider = class extends WebSocketProvider {
@@ -20402,7 +20402,7 @@ var AlchemyProvider = class extends UrlJsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/ankr-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/ankr-provider.js
 var logger35 = new Logger(version23);
 var defaultApiKey2 = "9f7d929b018cdffb338517efa06f58359e86ff1ffd350bc889738523659e7972";
 function getHost(name) {
@@ -20464,7 +20464,7 @@ var AnkrProvider = class extends UrlJsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/cloudflare-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/cloudflare-provider.js
 var __awaiter14 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -20525,7 +20525,7 @@ var CloudflareProvider = class extends UrlJsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/etherscan-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/etherscan-provider.js
 var __awaiter15 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -20944,7 +20944,7 @@ var EtherscanProvider = class extends BaseProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/fallback-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/fallback-provider.js
 var __awaiter16 = function(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -21473,10 +21473,10 @@ var FallbackProvider = class extends BaseProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/ipc-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/ipc-provider.js
 var IpcProvider = null;
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/infura-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/infura-provider.js
 var logger39 = new Logger(version23);
 var defaultProjectId = "84842078b09946638c03157f83405213";
 var InfuraWebSocketProvider = class extends WebSocketProvider {
@@ -21587,7 +21587,7 @@ var InfuraProvider = class extends UrlJsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/json-rpc-batch-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/json-rpc-batch-provider.js
 var JsonRpcBatchProvider = class extends JsonRpcProvider {
   send(method, params) {
     const request = {
@@ -21651,7 +21651,7 @@ var JsonRpcBatchProvider = class extends JsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/nodesmith-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/nodesmith-provider.js
 var logger40 = new Logger(version23);
 var defaultApiKey3 = "ETHERS_JS_SHARED";
 var NodesmithProvider = class extends UrlJsonRpcProvider {
@@ -21687,7 +21687,7 @@ var NodesmithProvider = class extends UrlJsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/pocket-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/pocket-provider.js
 var logger41 = new Logger(version23);
 var defaultApplicationId = "62e1ad51b37b8e00394bda3b";
 var PocketProvider = class extends UrlJsonRpcProvider {
@@ -21754,7 +21754,7 @@ var PocketProvider = class extends UrlJsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/quicknode-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/quicknode-provider.js
 var logger42 = new Logger(version23);
 var defaultApiKey4 = "919b412a057b5e9c9b6dce193c5a60242d6efadb";
 var QuickNodeProvider = class extends UrlJsonRpcProvider {
@@ -21828,7 +21828,7 @@ var QuickNodeProvider = class extends UrlJsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/web3-provider.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/web3-provider.js
 var logger43 = new Logger(version23);
 var _nextId = 1;
 function buildWeb3LegacyFetcher(provider, sendFunc) {
@@ -21951,7 +21951,7 @@ var Web3Provider = class extends JsonRpcProvider {
   }
 };
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/providers/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/index.js
 var logger44 = new Logger(version23);
 function getDefaultProvider(network, options) {
   if (network == null) {
@@ -21995,7 +21995,7 @@ function getDefaultProvider(network, options) {
   }, options);
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/ethers/lib.esm/utils.js
+// ../../../../workspace/github/xychain_app/node_modules/ethers/lib.esm/utils.js
 var utils_exports = {};
 __export(utils_exports, {
   AbiCoder: () => AbiCoder,
@@ -22099,10 +22099,10 @@ __export(utils_exports, {
   zeroPad: () => zeroPad
 });
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/solidity/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/solidity/lib.esm/_version.js
 var version24 = "solidity/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/solidity/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/solidity/lib.esm/index.js
 var regexBytes = new RegExp("^bytes([0-9]+)$");
 var regexNumber = new RegExp("^(u?int)([0-9]*)$");
 var regexArray = new RegExp("^(.*)\\[([0-9]*)\\]$");
@@ -22184,10 +22184,10 @@ function sha2562(types, values) {
   return sha256(pack2(types, values));
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/units/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/units/lib.esm/_version.js
 var version25 = "units/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@ethersproject/units/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/units/lib.esm/index.js
 var logger46 = new Logger(version25);
 var names = [
   "wei",
@@ -22263,13 +22263,13 @@ function parseEther(ether) {
   return parseUnits(ether, 18);
 }
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/ethers/lib.esm/_version.js
+// ../../../../workspace/github/xychain_app/node_modules/ethers/lib.esm/_version.js
 var version26 = "ethers/5.8.0";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/ethers/lib.esm/ethers.js
+// ../../../../workspace/github/xychain_app/node_modules/ethers/lib.esm/ethers.js
 var logger47 = new Logger(version26);
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/ethers/lib.esm/index.js
+// ../../../../workspace/github/xychain_app/node_modules/ethers/lib.esm/index.js
 try {
   const anyGlobal2 = window;
   if (anyGlobal2._ethers == null) {

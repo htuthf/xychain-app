@@ -9,8 +9,7 @@
 		onShow
 	} from '@dcloudio/uni-app'
 	import {
-		HDNodeWallet,
-		encryptKeystoreJson
+		ethers
 	} from "ethers";
 	import {
 		storeToRefs
@@ -76,16 +75,27 @@
 	])
 	const pin = ref('')
 	const handleInput = async (code) => {
-		pin.value += code
-		let pinLength = pin.value.length;
-		if (pinLength >= 6) {
-			const wallet = getWallet()
-			const encryptedJson = await encryptKeystoreJson(wallet, pin.value)
-			encryptedData.value = encryptedJson
-			appPin.value = pin.value
-			uni.navigateTo({
-				url: '/pages/verifyPin/verifyPin'
-			});
+		try {
+			pin.value += code
+			let pinLength = pin.value.length;
+			if (pinLength >= 6) {
+				uni.showLoading({
+					mask:true,
+					title:''
+				})
+				const wallet = getWallet()
+				const encryptedJson = await wallet.encrypt(pin.value)
+				encryptedData.value = encryptedJson
+				appPin.value = pin.value
+				uni.navigateTo({
+					url: '/pages/verifyPin/verifyPin'
+				});
+			}
+		} catch (error) {
+			console.error(error)
+			//TODO handle the exception
+		}finally{
+			uni.hideLoading()
 		}
 	}
 	const handleDelete = () => {
@@ -196,7 +206,7 @@
 							left: 50%;
 							top: 50%;
 							transform: translate(-50%, -50%);
-							content: '丨';
+							content: "";
 							color: #ffffff;
 							animation: blink 1s steps(1) infinite;
 						}

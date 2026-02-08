@@ -11,7 +11,7 @@
 		onShow
 	} from '@dcloudio/uni-app'
 	import {
-		Wallet
+		ethers
 	} from "ethers";
 	import {
 		storeToRefs
@@ -28,12 +28,19 @@
 	const address = ref('')
 	const getWalletInfo = async () => {
 		try {
-			let data = await Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
+			uni.showLoading({
+				mask:true,
+				title:''
+			})
+			let data = await ethers.Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
 			console.log(data.address)
 			address.value = data.address.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
 
 		} catch (error) {
+			console.error(error)
 			//TODO handle the exception
+		}finally{
+			uni.hideLoading()
 		}
 	}
 

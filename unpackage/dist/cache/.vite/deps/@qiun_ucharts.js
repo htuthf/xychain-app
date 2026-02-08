@@ -1,6 +1,6 @@
 import "./chunk-ZS7NZCD4.js";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/@qiun/ucharts/u-charts.js
+// ../../../../workspace/github/xychain_app/node_modules/@qiun/ucharts/u-charts.js
 var config = {
   version: "v2.5.0-20230101",
   yAxisWidth: 15,

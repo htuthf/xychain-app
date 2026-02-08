@@ -63,19 +63,20 @@
 			case 'account':
 
 				try {
-					uni.showToast({
-						icon:"loading",
-						duration:0
+					uni.showLoading({
+						mask: true,
+						title: ''
 					})
 					const words = inputWords.value.join(' ')
-					const hdNode = ethers.utils.HDNode.fromMnemonic(words.trim())
-					const child = hdNode.derivePath("m/44'/60'/0'/0/0")
-					const wallet = new ethers.Wallet(child.privateKey)
-					console.log(hdNode)
+					const wallet = ethers.Wallet.fromMnemonic(words.trim())
 					console.log(wallet)
-					mnemonic.value = hdNode.mnemonic.phrase;
-					privateKey.value = hdNode.publicKey;
-					address.value = hdNode.address;
+					// const child = hdNode.derivePath("m/44'/60'/0'/0/0")
+					// const wallet = new ethers.Wallet(child.privateKey)
+					// console.log(hdNode)
+					// console.log(wallet)
+					mnemonic.value = wallet.mnemonic.phrase;
+					privateKey.value = wallet.publicKey;
+					address.value = wallet.address;
 					setWallet(wallet)
 					console.log(appPin.value)
 					if (appPin.value) {

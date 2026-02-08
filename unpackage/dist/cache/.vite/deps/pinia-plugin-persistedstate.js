@@ -1,6 +1,6 @@
 import "./chunk-ZS7NZCD4.js";
 
-// ../../../../workspace/uniapp/alphmeta_app/node_modules/pinia-plugin-persistedstate/dist/index.js
+// ../../../../workspace/github/xychain_app/node_modules/pinia-plugin-persistedstate/dist/index.js
 function get(obj, path) {
   if (obj == null)
     return void 0;

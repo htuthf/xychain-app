@@ -9,8 +9,7 @@
 		onShow
 	} from '@dcloudio/uni-app'
 	import {
-		HDNodeWallet,
-		Wallet
+		ethers
 	} from "ethers";
 	import {
 		storeToRefs
@@ -51,9 +50,15 @@
 
 		try {
 			disabled.value = true
+			uni.showLoading({
+				mask:true,
+				title:""
+			})
 			const words = inputWords.value.join(' ')
-			const wallet = HDNodeWallet.fromPhrase(words)
-			const oldWallet = await Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
+			const hdNode = ethers.utils.HDNode.fromMnemonic(words.trim())
+			const child = hdNode.derivePath("m/44'/60'/0'/0/0")
+			const wallet = new ethers.Wallet(child.privateKey)
+			const oldWallet = await ethers.Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
 			console.log(wallet.address)
 			console.log(oldWallet.address)
 			if (wallet.address === oldWallet.address) {
@@ -70,6 +75,7 @@
 			//TODO handle the exception
 		} finally {
 			disabled.value = false
+			uni.hideLoading()
 		}
 
 
