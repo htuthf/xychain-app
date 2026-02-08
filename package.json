@@ -12,7 +12,6 @@
     "@qiun/ucharts": "^2.5.0-20230101",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.19",
-    "echarts": "^6.0.0",
     "ethers": "^5.8.0",
     "pinia-plugin-persistedstate": "^4.7.1",
     "process": "^0.11.10"

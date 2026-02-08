@@ -6480,7 +6480,7 @@ __export(ethers_exports, {
   constants: () => lib_exports2,
   errors: () => ErrorCode,
   getDefaultProvider: () => getDefaultProvider,
-  logger: () => logger47,
+  logger: () => logger46,
   providers: () => lib_exports4,
   utils: () => utils_exports,
   version: () => version26,
@@ -6491,7 +6491,7 @@ __export(ethers_exports, {
 var import_bn = __toESM(require_bn());
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/logger/lib.esm/_version.js
-var version = "logger/5.8.0";
+var version = "logger/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/logger/lib.esm/index.js
 var _permanentCensorErrors = false;
@@ -6782,7 +6782,7 @@ Logger.errors = ErrorCode;
 Logger.levels = LogLevel;
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bytes/lib.esm/_version.js
-var version2 = "bytes/5.8.0";
+var version2 = "bytes/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bytes/lib.esm/index.js
 var logger = new Logger(version2);
@@ -7150,7 +7150,7 @@ function joinSignature(signature2) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bignumber/lib.esm/_version.js
-var version3 = "bignumber/5.8.0";
+var version3 = "bignumber/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/bignumber/lib.esm/bignumber.js
 var BN = import_bn.default.BN;
@@ -7760,7 +7760,7 @@ var ONE = FixedNumber.from(1);
 var BUMP = FixedNumber.from("0.5");
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/properties/lib.esm/_version.js
-var version4 = "properties/5.8.0";
+var version4 = "properties/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/properties/lib.esm/index.js
 var __awaiter = function(thisArg, _arguments, P, generator) {
@@ -7897,7 +7897,7 @@ var Description = class {
 };
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/_version.js
-var version5 = "abi/5.8.0";
+var version5 = "abi/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abi/lib.esm/fragments.js
 var logger5 = new Logger(version5);
@@ -8864,7 +8864,7 @@ __export(lib_exports, {
 });
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/rlp/lib.esm/_version.js
-var version6 = "rlp/5.8.0";
+var version6 = "rlp/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/rlp/lib.esm/index.js
 var logger7 = new Logger(version6);
@@ -8977,7 +8977,7 @@ function decode(data) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/address/lib.esm/_version.js
-var version7 = "address/5.8.0";
+var version7 = "address/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/address/lib.esm/index.js
 var logger8 = new Logger(version7);
@@ -9480,7 +9480,7 @@ var NumberCoder = class extends Coder {
 };
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/strings/lib.esm/_version.js
-var version8 = "strings/5.8.0";
+var version8 = "strings/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/strings/lib.esm/utf8.js
 var logger10 = new Logger(version8);
@@ -10032,7 +10032,7 @@ function id(text) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hash/lib.esm/_version.js
-var version9 = "hash/5.8.0";
+var version9 = "hash/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/base64/lib.esm/index.js
 var lib_exports3 = {};
@@ -11440,7 +11440,7 @@ var Interface = class {
 };
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abstract-provider/lib.esm/_version.js
-var version10 = "abstract-provider/5.8.0";
+var version10 = "abstract-provider/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abstract-provider/lib.esm/index.js
 var __awaiter3 = function(thisArg, _arguments, P, generator) {
@@ -11512,7 +11512,7 @@ var Provider = class _Provider {
 };
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abstract-signer/lib.esm/_version.js
-var version11 = "abstract-signer/5.8.0";
+var version11 = "abstract-signer/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/abstract-signer/lib.esm/index.js
 var __awaiter4 = function(thisArg, _arguments, P, generator) {
@@ -11904,13 +11904,10 @@ var utils_1$1 = createCommonjsModule(function(module, exports) {
   utils.encode = utils_1.encode;
   function getNAF2(num, w, bits) {
     var naf = new Array(Math.max(num.bitLength(), bits) + 1);
-    var i;
-    for (i = 0; i < naf.length; i += 1) {
-      naf[i] = 0;
-    }
+    naf.fill(0);
     var ws = 1 << w + 1;
     var k = num.clone();
-    for (i = 0; i < naf.length; i++) {
+    for (var i = 0; i < naf.length; i++) {
       var z;
       var mod = k.andln(ws - 1);
       if (k.isOdd()) {
@@ -13364,8 +13361,8 @@ KeyPair.prototype.derive = function derive(pub) {
 KeyPair.prototype.sign = function sign(msg, enc, options) {
   return this.ec.sign(msg, this, enc, options);
 };
-KeyPair.prototype.verify = function verify(msg, signature2, options) {
-  return this.ec.verify(msg, signature2, this, void 0, options);
+KeyPair.prototype.verify = function verify(msg, signature2) {
+  return this.ec.verify(msg, signature2, this);
 };
 KeyPair.prototype.inspect = function inspect3() {
   return "<Key priv: " + (this.priv && this.priv.toString(16, 2)) + " pub: " + (this.pub && this.pub.inspect()) + " >";
@@ -13395,9 +13392,6 @@ function getLength(buf, p) {
   }
   var octetLen = initial & 15;
   if (octetLen === 0 || octetLen > 4) {
-    return false;
-  }
-  if (buf[p.place] === 0) {
     return false;
   }
   var val = 0;
@@ -13443,9 +13437,6 @@ Signature.prototype._importDER = function _importDER(data, enc) {
   if (rlen === false) {
     return false;
   }
-  if ((data[p.place] & 128) !== 0) {
-    return false;
-  }
   var r2 = data.slice(p.place, rlen + p.place);
   p.place += rlen;
   if (data[p.place++] !== 2) {
@@ -13456,9 +13447,6 @@ Signature.prototype._importDER = function _importDER(data, enc) {
     return false;
   }
   if (data.length !== slen + p.place) {
-    return false;
-  }
-  if ((data[p.place] & 128) !== 0) {
     return false;
   }
   var s = data.slice(p.place, slen + p.place);
@@ -13574,23 +13562,8 @@ EC.prototype.genKeyPair = function genKeyPair(options) {
     return this.keyFromPrivate(priv);
   }
 };
-EC.prototype._truncateToN = function _truncateToN(msg, truncOnly, bitLength) {
-  var byteLength;
-  if (import_bn2.default.isBN(msg) || typeof msg === "number") {
-    msg = new import_bn2.default(msg, 16);
-    byteLength = msg.byteLength();
-  } else if (typeof msg === "object") {
-    byteLength = msg.length;
-    msg = new import_bn2.default(msg, 16);
-  } else {
-    var str = msg.toString();
-    byteLength = str.length + 1 >>> 1;
-    msg = new import_bn2.default(str, 16);
-  }
-  if (typeof bitLength !== "number") {
-    bitLength = byteLength * 8;
-  }
-  var delta = bitLength - this.n.bitLength();
+EC.prototype._truncateToN = function _truncateToN(msg, truncOnly) {
+  var delta = msg.byteLength() * 8 - this.n.bitLength();
   if (delta > 0)
     msg = msg.ushrn(delta);
   if (!truncOnly && msg.cmp(this.n) >= 0)
@@ -13605,22 +13578,11 @@ EC.prototype.sign = function sign2(msg, key2, enc, options) {
   }
   if (!options)
     options = {};
-  if (typeof msg !== "string" && typeof msg !== "number" && !import_bn2.default.isBN(msg)) {
-    assert$5(
-      typeof msg === "object" && msg && typeof msg.length === "number",
-      "Expected message to be an array-like, a hex string, or a BN instance"
-    );
-    assert$5(msg.length >>> 0 === msg.length);
-    for (var i = 0; i < msg.length; i++)
-      assert$5((msg[i] & 255) === msg[i]);
-  }
   key2 = this.keyFromPrivate(key2, enc);
-  msg = this._truncateToN(msg, false, options.msgBitLength);
-  assert$5(!msg.isNeg(), "Can not sign a negative message");
+  msg = this._truncateToN(new import_bn2.default(msg, 16));
   var bytes = this.n.byteLength();
   var bkey = key2.getPrivate().toArray("be", bytes);
   var nonce = msg.toArray("be", bytes);
-  assert$5(new import_bn2.default(nonce).eq(msg), "Can not sign message");
   var drbg = new hmacDrbg({
     hash: this.hash,
     entropy: bkey,
@@ -13653,10 +13615,8 @@ EC.prototype.sign = function sign2(msg, key2, enc, options) {
     return new signature({ r: r2, s, recoveryParam });
   }
 };
-EC.prototype.verify = function verify2(msg, signature$1, key2, enc, options) {
-  if (!options)
-    options = {};
-  msg = this._truncateToN(msg, false, options.msgBitLength);
+EC.prototype.verify = function verify2(msg, signature$1, key2, enc) {
+  msg = this._truncateToN(new import_bn2.default(msg, 16));
   key2 = this.keyFromPublic(key2, enc);
   signature$1 = new signature(signature$1, "hex");
   var r2 = signature$1.r;
@@ -13720,7 +13680,7 @@ var elliptic_1 = createCommonjsModule(function(module, exports) {
   "use strict";
   var elliptic = exports;
   elliptic.version = /*RicMoo:ethers*/
-  { version: "6.6.1" }.version;
+  { version: "6.5.4" }.version;
   elliptic.utils = utils_1$1;
   elliptic.rand = /*RicMoo:ethers:require(brorand)*/
   function() {
@@ -13735,7 +13695,7 @@ var elliptic_1 = createCommonjsModule(function(module, exports) {
 var EC$1 = elliptic_1.ec;
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/signing-key/lib.esm/_version.js
-var version12 = "signing-key/5.8.0";
+var version12 = "signing-key/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/signing-key/lib.esm/index.js
 var logger17 = new Logger(version12);
@@ -13813,7 +13773,7 @@ function computePublicKey(key2, compressed) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/transactions/lib.esm/_version.js
-var version13 = "transactions/5.8.0";
+var version13 = "transactions/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/transactions/lib.esm/index.js
 var logger18 = new Logger(version13);
@@ -14166,7 +14126,7 @@ function parse(rawTransaction) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/contracts/lib.esm/_version.js
-var version14 = "contracts/5.8.0";
+var version14 = "contracts/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/contracts/lib.esm/index.js
 var __awaiter5 = function(thisArg, _arguments, P, generator) {
@@ -15186,7 +15146,7 @@ var SupportedAlgorithm;
 })(SupportedAlgorithm || (SupportedAlgorithm = {}));
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/sha2/lib.esm/_version.js
-var version15 = "sha2/5.8.0";
+var version15 = "sha2/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/sha2/lib.esm/sha2.js
 var logger20 = new Logger(version15);
@@ -15246,7 +15206,7 @@ function pbkdf2(password, salt, iterations, keylen, hashAlgorithm) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wordlists/lib.esm/_version.js
-var version16 = "wordlists/5.8.0";
+var version16 = "wordlists/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wordlists/lib.esm/wordlist.js
 var exportWordlist = false;
@@ -15328,7 +15288,7 @@ var wordlists = {
 };
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hdnode/lib.esm/_version.js
-var version17 = "hdnode/5.8.0";
+var version17 = "hdnode/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/hdnode/lib.esm/index.js
 var logger22 = new Logger(version17);
@@ -15612,7 +15572,7 @@ function getAccountPath(index) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/random/lib.esm/_version.js
-var version18 = "random/5.8.0";
+var version18 = "random/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/random/lib.esm/random.js
 var logger23 = new Logger(version18);
@@ -15665,7 +15625,7 @@ function shuffled(array) {
 var import_aes_js = __toESM(require_aes_js());
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/_version.js
-var version19 = "json-wallets/5.8.0";
+var version19 = "json-wallets/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/json-wallets/lib.esm/utils.js
 function looseArrayify(hexString) {
@@ -16107,7 +16067,7 @@ function decryptJsonWalletSync(json, password) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wallet/lib.esm/_version.js
-var version20 = "wallet/5.8.0";
+var version20 = "wallet/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/wallet/lib.esm/index.js
 var __awaiter7 = function(thisArg, _arguments, P, generator) {
@@ -16308,7 +16268,6 @@ __export(lib_exports4, {
   NodesmithProvider: () => NodesmithProvider,
   PocketProvider: () => PocketProvider,
   Provider: () => Provider,
-  QuickNodeProvider: () => QuickNodeProvider,
   Resolver: () => Resolver,
   StaticJsonRpcProvider: () => StaticJsonRpcProvider,
   UrlJsonRpcProvider: () => UrlJsonRpcProvider,
@@ -16322,7 +16281,7 @@ __export(lib_exports4, {
 });
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/networks/lib.esm/_version.js
-var version21 = "networks/5.8.0";
+var version21 = "networks/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/networks/lib.esm/index.js
 var logger27 = new Logger(version21);
@@ -16354,7 +16313,7 @@ function ethDefaultProvider(network) {
       }
     }
     if (providers.PocketProvider && options.pocket !== "-") {
-      const skip = ["goerli", "ropsten", "rinkeby", "sepolia"];
+      const skip = ["goerli", "ropsten", "rinkeby"];
       try {
         const provider = new providers.PocketProvider(network, options.pocket);
         if (provider.network && skip.indexOf(provider.network.name) === -1) {
@@ -16376,12 +16335,6 @@ function ethDefaultProvider(network) {
         if (provider.network && skip.indexOf(provider.network.name) === -1) {
           providerList.push(provider);
         }
-      } catch (error) {
-      }
-    }
-    if (providers.QuickNodeProvider && options.quicknode !== "-") {
-      try {
-        providerList.push(new providers.QuickNodeProvider(network, options.quicknode));
       } catch (error) {
       }
     }
@@ -16458,17 +16411,6 @@ var networks = {
     _defaultProvider: ethDefaultProvider("goerli")
   },
   kintsugi: { chainId: 1337702, name: "kintsugi" },
-  sepolia: {
-    chainId: 11155111,
-    ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
-    name: "sepolia",
-    _defaultProvider: ethDefaultProvider("sepolia")
-  },
-  holesky: {
-    chainId: 17e3,
-    name: "holesky",
-    _defaultProvider: ethDefaultProvider("holesky")
-  },
   // ETC (See: #351)
   classic: {
     chainId: 61,
@@ -16489,11 +16431,7 @@ var networks = {
     name: "matic",
     _defaultProvider: ethDefaultProvider("matic")
   },
-  maticmum: {
-    chainId: 80001,
-    name: "maticmum",
-    _defaultProvider: ethDefaultProvider("maticmum")
-  },
+  maticmum: { chainId: 80001, name: "maticmum" },
   optimism: {
     chainId: 10,
     name: "optimism",
@@ -16501,11 +16439,9 @@ var networks = {
   },
   "optimism-kovan": { chainId: 69, name: "optimism-kovan" },
   "optimism-goerli": { chainId: 420, name: "optimism-goerli" },
-  "optimism-sepolia": { chainId: 11155420, name: "optimism-sepolia" },
   arbitrum: { chainId: 42161, name: "arbitrum" },
   "arbitrum-rinkeby": { chainId: 421611, name: "arbitrum-rinkeby" },
   "arbitrum-goerli": { chainId: 421613, name: "arbitrum-goerli" },
-  "arbitrum-sepolia": { chainId: 421614, name: "arbitrum-sepolia" },
   bnb: { chainId: 56, name: "bnb" },
   bnbt: { chainId: 97, name: "bnbt" }
 };
@@ -16569,7 +16505,7 @@ function getNetwork(network) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/web/lib.esm/_version.js
-var version22 = "web/5.8.0";
+var version22 = "web/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/web/lib.esm/geturl.js
 var __awaiter8 = function(thisArg, _arguments, P, generator) {
@@ -16709,11 +16645,6 @@ function bodyify(value, type) {
   }
   return value;
 }
-function unpercent(value) {
-  return toUtf8Bytes(value.replace(/%([0-9a-f][0-9a-f])/gi, (all, code) => {
-    return String.fromCharCode(parseInt(code, 16));
-  }));
-}
 function _fetchData(connection, body, processFunc) {
   const attemptLimit = typeof connection === "object" && connection.throttleLimit != null ? connection.throttleLimit : 12;
   logger28.assertArgument(attemptLimit > 0 && attemptLimit % 1 === 0, "invalid connection throttle limit", "connection.throttleLimit", attemptLimit);
@@ -16764,15 +16695,15 @@ function _fetchData(connection, body, processFunc) {
       options.fetchOptions = shallowCopy(connection.fetchOptions);
     }
   }
-  const reData = new RegExp("^data:([^;:]*)?(;base64)?,(.*)$", "i");
+  const reData = new RegExp("^data:([a-z0-9-]+/[a-z0-9-]+);base64,(.*)$", "i");
   const dataMatch = url ? url.match(reData) : null;
   if (dataMatch) {
     try {
       const response = {
         statusCode: 200,
         statusMessage: "OK",
-        headers: { "content-type": dataMatch[1] || "text/plain" },
-        body: dataMatch[2] ? decode2(dataMatch[3]) : unpercent(dataMatch[3])
+        headers: { "content-type": dataMatch[1] },
+        body: decode2(dataMatch[2])
       };
       let result = response.body;
       if (processFunc) {
@@ -17041,7 +16972,7 @@ function poll(func, options) {
 var import_bech32 = __toESM(require_bech32());
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/_version.js
-var version23 = "providers/5.8.0";
+var version23 = "providers/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/formatter.js
 var logger29 = new Logger(version23);
@@ -19374,7 +19305,7 @@ function checkError(method, error, params) {
     message = error.responseText;
   }
   message = (message || "").toLowerCase();
-  if (message.match(/insufficient funds|base fee exceeds gas limit|InsufficientFunds/i)) {
+  if (message.match(/insufficient funds|base fee exceeds gas limit/i)) {
     logger31.throwError("insufficient funds for intrinsic transaction cost", Logger.errors.INSUFFICIENT_FUNDS, {
       error,
       method,
@@ -19402,7 +19333,7 @@ function checkError(method, error, params) {
       transaction
     });
   }
-  if (errorGas.indexOf(method) >= 0 && message.match(/gas required exceeds allowance|always failing transaction|execution reverted|revert/)) {
+  if (errorGas.indexOf(method) >= 0 && message.match(/gas required exceeds allowance|always failing transaction|execution reverted/)) {
     logger31.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
       error,
       method,
@@ -19557,7 +19488,7 @@ var JsonRpcSigner = class extends Signer {
           logger31.throwError("user rejected signing", Logger.errors.ACTION_REJECTED, {
             action: "signMessage",
             from: address,
-            messageData: message
+            message: data
           });
         }
         throw error;
@@ -19575,7 +19506,7 @@ var JsonRpcSigner = class extends Signer {
           logger31.throwError("user rejected signing", Logger.errors.ACTION_REJECTED, {
             action: "_legacySignMessage",
             from: address,
-            messageData: message
+            message: data
           });
         }
         throw error;
@@ -19598,7 +19529,7 @@ var JsonRpcSigner = class extends Signer {
           logger31.throwError("user rejected signing", Logger.errors.ACTION_REJECTED, {
             action: "_signTypedData",
             from: address,
-            messageData: { domain: populated.domain, types, value: populated.value }
+            message: { domain: populated.domain, types, value: populated.value }
           });
         }
         throw error;
@@ -19949,9 +19880,9 @@ try {
     throw new Error("inject please");
   }
 } catch (error) {
-  const logger48 = new Logger(version23);
+  const logger47 = new Logger(version23);
   WS = function() {
-    logger48.throwError("WebSockets not supported in this environment", Logger.errors.UNSUPPORTED_OPERATION, {
+    logger47.throwError("WebSockets not supported in this environment", Logger.errors.UNSUPPORTED_OPERATION, {
       operation: "new WebSocket()"
     });
   };
@@ -20353,11 +20284,17 @@ var AlchemyProvider = class extends UrlJsonRpcProvider {
       case "homestead":
         host = "eth-mainnet.alchemyapi.io/v2/";
         break;
-      case "goerli":
-        host = "eth-goerli.g.alchemy.com/v2/";
+      case "ropsten":
+        host = "eth-ropsten.alchemyapi.io/v2/";
         break;
-      case "sepolia":
-        host = "eth-sepolia.g.alchemy.com/v2/";
+      case "rinkeby":
+        host = "eth-rinkeby.alchemyapi.io/v2/";
+        break;
+      case "goerli":
+        host = "eth-goerli.alchemyapi.io/v2/";
+        break;
+      case "kovan":
+        host = "eth-kovan.alchemyapi.io/v2/";
         break;
       case "matic":
         host = "polygon-mainnet.g.alchemy.com/v2/";
@@ -20368,20 +20305,20 @@ var AlchemyProvider = class extends UrlJsonRpcProvider {
       case "arbitrum":
         host = "arb-mainnet.g.alchemy.com/v2/";
         break;
+      case "arbitrum-rinkeby":
+        host = "arb-rinkeby.g.alchemy.com/v2/";
+        break;
       case "arbitrum-goerli":
         host = "arb-goerli.g.alchemy.com/v2/";
-        break;
-      case "arbitrum-sepolia":
-        host = "arb-sepolia.g.alchemy.com/v2/";
         break;
       case "optimism":
         host = "opt-mainnet.g.alchemy.com/v2/";
         break;
+      case "optimism-kovan":
+        host = "opt-kovan.g.alchemy.com/v2/";
+        break;
       case "optimism-goerli":
         host = "opt-goerli.g.alchemy.com/v2/";
-        break;
-      case "optimism-sepolia":
-        host = "opt-sepolia.g.alchemy.com/v2/";
         break;
       default:
         logger34.throwArgumentError("unsupported network", "network", arguments[0]);
@@ -20415,18 +20352,8 @@ function getHost(name) {
       return "rpc.ankr.com/eth_rinkeby/";
     case "goerli":
       return "rpc.ankr.com/eth_goerli/";
-    case "sepolia":
-      return "rpc.ankr.com/eth_sepolia/";
     case "matic":
       return "rpc.ankr.com/polygon/";
-    case "maticmum":
-      return "rpc.ankr.com/polygon_mumbai/";
-    case "optimism":
-      return "rpc.ankr.com/optimism/";
-    case "optimism-goerli":
-      return "rpc.ankr.com/optimism_testnet/";
-    case "optimism-sepolia":
-      return "rpc.ankr.com/optimism_sepolia/";
     case "arbitrum":
       return "rpc.ankr.com/arbitrum/";
   }
@@ -20692,22 +20619,18 @@ var EtherscanProvider = class extends BaseProvider {
     switch (this.network ? this.network.name : "invalid") {
       case "homestead":
         return "https://api.etherscan.io";
+      case "ropsten":
+        return "https://api-ropsten.etherscan.io";
+      case "rinkeby":
+        return "https://api-rinkeby.etherscan.io";
+      case "kovan":
+        return "https://api-kovan.etherscan.io";
       case "goerli":
         return "https://api-goerli.etherscan.io";
-      case "sepolia":
-        return "https://api-sepolia.etherscan.io";
-      case "matic":
-        return "https://api.polygonscan.com";
-      case "maticmum":
-        return "https://api-testnet.polygonscan.com";
-      case "arbitrum":
-        return "https://api.arbiscan.io";
-      case "arbitrum-goerli":
-        return "https://api-goerli.arbiscan.io";
       case "optimism":
         return "https://api-optimistic.etherscan.io";
-      case "optimism-goerli":
-        return "https://api-goerli-optimistic.etherscan.io";
+      case "optimism-kovan":
+        return "https://api-kovan-optimistic.etherscan.io";
       default:
     }
     return logger37.throwArgumentError("unsupported network", "network", this.network.name);
@@ -21530,11 +21453,17 @@ var InfuraProvider = class extends UrlJsonRpcProvider {
       case "homestead":
         host = "mainnet.infura.io";
         break;
+      case "ropsten":
+        host = "ropsten.infura.io";
+        break;
+      case "rinkeby":
+        host = "rinkeby.infura.io";
+        break;
+      case "kovan":
+        host = "kovan.infura.io";
+        break;
       case "goerli":
         host = "goerli.infura.io";
-        break;
-      case "sepolia":
-        host = "sepolia.infura.io";
         break;
       case "matic":
         host = "polygon-mainnet.infura.io";
@@ -21545,20 +21474,14 @@ var InfuraProvider = class extends UrlJsonRpcProvider {
       case "optimism":
         host = "optimism-mainnet.infura.io";
         break;
-      case "optimism-goerli":
-        host = "optimism-goerli.infura.io";
-        break;
-      case "optimism-sepolia":
-        host = "optimism-sepolia.infura.io";
+      case "optimism-kovan":
+        host = "optimism-kovan.infura.io";
         break;
       case "arbitrum":
         host = "arbitrum-mainnet.infura.io";
         break;
-      case "arbitrum-goerli":
-        host = "arbitrum-goerli.infura.io";
-        break;
-      case "arbitrum-sepolia":
-        host = "arbitrum-sepolia.infura.io";
+      case "arbitrum-rinkeby":
+        host = "arbitrum-rinkeby.infura.io";
         break;
       default:
         logger39.throwError("unsupported network", Logger.errors.INVALID_ARGUMENT, {
@@ -21754,82 +21677,8 @@ var PocketProvider = class extends UrlJsonRpcProvider {
   }
 };
 
-// ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/quicknode-provider.js
-var logger42 = new Logger(version23);
-var defaultApiKey4 = "919b412a057b5e9c9b6dce193c5a60242d6efadb";
-var QuickNodeProvider = class extends UrlJsonRpcProvider {
-  static getApiKey(apiKey) {
-    if (apiKey && typeof apiKey !== "string") {
-      logger42.throwArgumentError("invalid apiKey", "apiKey", apiKey);
-    }
-    return apiKey || defaultApiKey4;
-  }
-  static getUrl(network, apiKey) {
-    let host = null;
-    switch (network.name) {
-      case "homestead":
-        host = "ethers.quiknode.pro";
-        break;
-      case "goerli":
-        host = "ethers.ethereum-goerli.quiknode.pro";
-        break;
-      case "sepolia":
-        host = "ethers.ethereum-sepolia.quiknode.pro";
-        break;
-      case "holesky":
-        host = "ethers.ethereum-holesky.quiknode.pro";
-        break;
-      case "arbitrum":
-        host = "ethers.arbitrum-mainnet.quiknode.pro";
-        break;
-      case "arbitrum-goerli":
-        host = "ethers.arbitrum-goerli.quiknode.pro";
-        break;
-      case "arbitrum-sepolia":
-        host = "ethers.arbitrum-sepolia.quiknode.pro";
-        break;
-      case "base":
-        host = "ethers.base-mainnet.quiknode.pro";
-        break;
-      case "base-goerli":
-        host = "ethers.base-goerli.quiknode.pro";
-        break;
-      case "base-spolia":
-        host = "ethers.base-sepolia.quiknode.pro";
-        break;
-      case "bnb":
-        host = "ethers.bsc.quiknode.pro";
-        break;
-      case "bnbt":
-        host = "ethers.bsc-testnet.quiknode.pro";
-        break;
-      case "matic":
-        host = "ethers.matic.quiknode.pro";
-        break;
-      case "maticmum":
-        host = "ethers.matic-testnet.quiknode.pro";
-        break;
-      case "optimism":
-        host = "ethers.optimism.quiknode.pro";
-        break;
-      case "optimism-goerli":
-        host = "ethers.optimism-goerli.quiknode.pro";
-        break;
-      case "optimism-sepolia":
-        host = "ethers.optimism-sepolia.quiknode.pro";
-        break;
-      case "xdai":
-        host = "ethers.xdai.quiknode.pro";
-        break;
-      default:
-        logger42.throwArgumentError("unsupported network", "network", arguments[0]);
-    }
-    return "https://" + host + "/" + apiKey;
-  }
-};
-
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/web3-provider.js
-var logger43 = new Logger(version23);
+var logger42 = new Logger(version23);
 var _nextId = 1;
 function buildWeb3LegacyFetcher(provider, sendFunc) {
   const fetcher = "Web3LegacyFetcher";
@@ -21912,7 +21761,7 @@ function buildEip1193Fetcher(provider) {
 var Web3Provider = class extends JsonRpcProvider {
   constructor(provider, network) {
     if (provider == null) {
-      logger43.throwArgumentError("missing provider", "provider", provider);
+      logger42.throwArgumentError("missing provider", "provider", provider);
     }
     let path = null;
     let jsonRpcFetchFunc = null;
@@ -21936,7 +21785,7 @@ var Web3Provider = class extends JsonRpcProvider {
       } else if (provider.send) {
         jsonRpcFetchFunc = buildWeb3LegacyFetcher(provider, provider.send.bind(provider));
       } else {
-        logger43.throwArgumentError("unsupported provider", "provider", provider);
+        logger42.throwArgumentError("unsupported provider", "provider", provider);
       }
       if (!path) {
         path = "unknown:";
@@ -21952,7 +21801,7 @@ var Web3Provider = class extends JsonRpcProvider {
 };
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/providers/lib.esm/index.js
-var logger44 = new Logger(version23);
+var logger43 = new Logger(version23);
 function getDefaultProvider(network, options) {
   if (network == null) {
     network = "homestead";
@@ -21968,13 +21817,13 @@ function getDefaultProvider(network, options) {
         case "wss":
           return new WebSocketProvider(network);
         default:
-          logger44.throwArgumentError("unsupported URL scheme", "network", network);
+          logger43.throwArgumentError("unsupported URL scheme", "network", network);
       }
     }
   }
   const n = getNetwork(network);
   if (!n || !n._defaultProvider) {
-    logger44.throwError("unsupported getDefaultProvider network", Logger.errors.NETWORK_ERROR, {
+    logger43.throwError("unsupported getDefaultProvider network", Logger.errors.NETWORK_ERROR, {
       operation: "getDefaultProvider",
       network
     });
@@ -21989,7 +21838,6 @@ function getDefaultProvider(network, options) {
     JsonRpcProvider,
     NodesmithProvider,
     PocketProvider,
-    QuickNodeProvider,
     Web3Provider,
     IpcProvider
   }, options);
@@ -22100,14 +21948,14 @@ __export(utils_exports, {
 });
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/solidity/lib.esm/_version.js
-var version24 = "solidity/5.8.0";
+var version24 = "solidity/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/solidity/lib.esm/index.js
 var regexBytes = new RegExp("^bytes([0-9]+)$");
 var regexNumber = new RegExp("^(u?int)([0-9]*)$");
 var regexArray = new RegExp("^(.*)\\[([0-9]*)\\]$");
 var Zeros2 = "0000000000000000000000000000000000000000000000000000000000000000";
-var logger45 = new Logger(version24);
+var logger44 = new Logger(version24);
 function _pack(type, value, isArray) {
   switch (type) {
     case "address":
@@ -22130,7 +21978,7 @@ function _pack(type, value, isArray) {
   if (match) {
     let size = parseInt(match[2] || "256");
     if (match[2] && String(size) !== match[2] || size % 8 !== 0 || size === 0 || size > 256) {
-      logger45.throwArgumentError("invalid number type", "type", type);
+      logger44.throwArgumentError("invalid number type", "type", type);
     }
     if (isArray) {
       size = 256;
@@ -22142,10 +21990,10 @@ function _pack(type, value, isArray) {
   if (match) {
     const size = parseInt(match[1]);
     if (String(size) !== match[1] || size === 0 || size > 32) {
-      logger45.throwArgumentError("invalid bytes type", "type", type);
+      logger44.throwArgumentError("invalid bytes type", "type", type);
     }
     if (arrayify(value).byteLength !== size) {
-      logger45.throwArgumentError(`invalid value for ${type}`, "value", value);
+      logger44.throwArgumentError(`invalid value for ${type}`, "value", value);
     }
     if (isArray) {
       return arrayify((value + Zeros2).substring(0, 66));
@@ -22157,7 +22005,7 @@ function _pack(type, value, isArray) {
     const baseType = match[1];
     const count = parseInt(match[2] || String(value.length));
     if (count != value.length) {
-      logger45.throwArgumentError(`invalid array length for ${type}`, "value", value);
+      logger44.throwArgumentError(`invalid array length for ${type}`, "value", value);
     }
     const result = [];
     value.forEach(function(value2) {
@@ -22165,11 +22013,11 @@ function _pack(type, value, isArray) {
     });
     return concat(result);
   }
-  return logger45.throwArgumentError("invalid type", "type", type);
+  return logger44.throwArgumentError("invalid type", "type", type);
 }
 function pack2(types, values) {
   if (types.length != values.length) {
-    logger45.throwArgumentError("wrong number of values; expected ${ types.length }", "values", values);
+    logger44.throwArgumentError("wrong number of values; expected ${ types.length }", "values", values);
   }
   const tight = [];
   types.forEach(function(type, index) {
@@ -22185,10 +22033,10 @@ function sha2562(types, values) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/units/lib.esm/_version.js
-var version25 = "units/5.8.0";
+var version25 = "units/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/@ethersproject/units/lib.esm/index.js
-var logger46 = new Logger(version25);
+var logger45 = new Logger(version25);
 var names = [
   "wei",
   "kwei",
@@ -22201,7 +22049,7 @@ var names = [
 function commify(value) {
   const comps = String(value).split(".");
   if (comps.length > 2 || !comps[0].match(/^-?[0-9]*$/) || comps[1] && !comps[1].match(/^[0-9]*$/) || value === "." || value === "-.") {
-    logger46.throwArgumentError("invalid value", "value", value);
+    logger45.throwArgumentError("invalid value", "value", value);
   }
   let whole = comps[0];
   let negative = "";
@@ -22246,7 +22094,7 @@ function formatUnits(value, unitName) {
 }
 function parseUnits(value, unitName) {
   if (typeof value !== "string") {
-    logger46.throwArgumentError("value must be a string", "value", value);
+    logger45.throwArgumentError("value must be a string", "value", value);
   }
   if (typeof unitName === "string") {
     const index = names.indexOf(unitName);
@@ -22264,10 +22112,10 @@ function parseEther(ether) {
 }
 
 // ../../../../workspace/github/xychain_app/node_modules/ethers/lib.esm/_version.js
-var version26 = "ethers/5.8.0";
+var version26 = "ethers/5.7.0";
 
 // ../../../../workspace/github/xychain_app/node_modules/ethers/lib.esm/ethers.js
-var logger47 = new Logger(version26);
+var logger46 = new Logger(version26);
 
 // ../../../../workspace/github/xychain_app/node_modules/ethers/lib.esm/index.js
 try {
@@ -22291,7 +22139,7 @@ export {
   ErrorCode as errors,
   ethers_exports as ethers,
   getDefaultProvider,
-  logger47 as logger,
+  logger46 as logger,
   lib_exports4 as providers,
   utils_exports as utils,
   version26 as version,
