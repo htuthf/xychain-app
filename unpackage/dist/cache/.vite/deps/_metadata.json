@@ -1,0 +1,49 @@
+{
+  "hash": "5e4e330c",
+  "configHash": "18e7b75c",
+  "lockfileHash": "d4d78857",
+  "browserHash": "e5dd5fba",
+  "optimized": {
+    "pinia-plugin-persistedstate": {
+      "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
+      "file": "pinia-plugin-persistedstate.js",
+      "fileHash": "44bd305a",
+      "needsInterop": false
+    },
+    "ethers": {
+      "src": "../../../../../node_modules/ethers/lib.esm/index.js",
+      "file": "ethers.js",
+      "fileHash": "d829940d",
+      "needsInterop": false
+    },
+    "buffer": {
+      "src": "../../../../../node_modules/buffer/index.js",
+      "file": "buffer.js",
+      "fileHash": "a6866708",
+      "needsInterop": true
+    },
+    "process": {
+      "src": "../../../../../node_modules/process/browser.js",
+      "file": "process.js",
+      "fileHash": "415fdc02",
+      "needsInterop": true
+    },
+    "dayjs": {
+      "src": "../../../../../node_modules/dayjs/dayjs.min.js",
+      "file": "dayjs.js",
+      "fileHash": "ca6ec61c",
+      "needsInterop": true
+    },
+    "@qiun/ucharts": {
+      "src": "../../../../../node_modules/@qiun/ucharts/u-charts.js",
+      "file": "@qiun_ucharts.js",
+      "fileHash": "1b4eeeea",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-ZS7NZCD4": {
+      "file": "chunk-ZS7NZCD4.js"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "alphmeta_app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@qiun/ucharts": "^2.5.0-20230101",
+    "buffer": "^6.0.3",
+    "dayjs": "^1.11.19",
+    "ethers": "^5.8.0",
+    "pinia-plugin-persistedstate": "^4.7.1",
+    "process": "^0.11.10"
+  }
+}
