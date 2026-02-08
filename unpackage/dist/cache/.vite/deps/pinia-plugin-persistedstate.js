@@ -1,4 +1,4 @@
-import "./chunk-ZS7NZCD4.js";
+import "./chunk-Y2F7D3TJ.js";
 
 // ../../../../workspace/github/xychain_app/node_modules/pinia-plugin-persistedstate/dist/index.js
 function get(obj, path) {

@@ -23,7 +23,7 @@ pnpm-debug.log*
 *.sw?
 
 #Electron-builder output
-/unpackage/cache
+/unpackage/cache~
 /unpackage/release
 /unpackage/debug
 /unpackage/dist/

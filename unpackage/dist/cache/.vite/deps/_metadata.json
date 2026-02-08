@@ -1,37 +1,31 @@
 {
-  "hash": "f1401a56",
+  "hash": "9f7b70ae",
   "configHash": "edbce3b3",
-  "lockfileHash": "0a178a96",
-  "browserHash": "1a32a57d",
+  "lockfileHash": "d4d78857",
+  "browserHash": "c3b8f453",
   "optimized": {
     "buffer": {
       "src": "../../../../../node_modules/buffer/index.js",
       "file": "buffer.js",
-      "fileHash": "a70d0395",
+      "fileHash": "b535bf5a",
       "needsInterop": true
     },
     "pinia-plugin-persistedstate": {
       "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
       "file": "pinia-plugin-persistedstate.js",
-      "fileHash": "b69256ba",
+      "fileHash": "2ade06ab",
       "needsInterop": false
     },
     "process": {
       "src": "../../../../../node_modules/process/browser.js",
       "file": "process.js",
-      "fileHash": "04d9e99d",
+      "fileHash": "812a8089",
       "needsInterop": true
-    },
-    "ethers": {
-      "src": "../../../../../node_modules/ethers/lib.esm/index.js",
-      "file": "ethers.js",
-      "fileHash": "2589c8ff",
-      "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-ZS7NZCD4": {
-      "file": "chunk-ZS7NZCD4.js"
+    "chunk-Y2F7D3TJ": {
+      "file": "chunk-Y2F7D3TJ.js"
     }
   }
 }

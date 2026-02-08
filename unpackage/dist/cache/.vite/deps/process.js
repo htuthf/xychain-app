@@ -1,6 +1,6 @@
 import {
   __commonJS
-} from "./chunk-ZS7NZCD4.js";
+} from "./chunk-Y2F7D3TJ.js";
 
 // ../../../../workspace/github/xychain_app/node_modules/process/browser.js
 var require_browser = __commonJS({
