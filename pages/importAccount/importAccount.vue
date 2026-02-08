@@ -6,7 +6,7 @@
 	import {
 		onLoad,
 		onReady,
-		onShow
+		onShow,onUnload
 	} from '@dcloudio/uni-app'
 
 	import {
@@ -47,6 +47,14 @@
 				navHeight.value = rect.height
 			})
 			.exec()
+	})
+	function blockBack() {
+	  history.pushState(null, '', location.href)
+	}
+	onUnload(() => {
+		// #ifdef H5
+		window.removeEventListener('popstate', blockBack)
+		// #endif
 	})
 </script>
 

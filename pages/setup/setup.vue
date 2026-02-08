@@ -8,7 +8,8 @@
 	import {
 		onLoad,
 		onReady,
-		onShow
+		onShow,
+		onUnload
 	} from '@dcloudio/uni-app'
 	import {
 		storeToRefs
@@ -78,6 +79,14 @@
 			url: '/pages/index/index'
 		})
 	}
+	function blockBack() {
+	  history.pushState(null, '', location.href)
+	}
+	onUnload(() => {
+		// #ifdef H5
+		window.removeEventListener('popstate', blockBack)
+		// #endif
+	})
 </script>
 
 <template>

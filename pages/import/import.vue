@@ -63,9 +63,10 @@
 			case 'account':
 
 				try {
-					uni.showToast({
-						icon:"loading",
-						duration:0
+					
+					uni.showLoading({
+						mask:true,
+						title:''
 					})
 					const words = inputWords.value.join(' ')
 					const wallet = Wallet.fromPhrase(words.trim())
@@ -81,7 +82,7 @@
 						const encryptedJson = await encryptKeystoreJson(wallet,appPin.value)
 						console.log(encryptedJson)
 						encryptedData.value = encryptedJson
-						uni.reLaunch({
+						uni.redirectTo({
 							url: '/pages/importAccount/importAccount'
 						});
 					} else {
