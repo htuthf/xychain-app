@@ -12,8 +12,9 @@
     "@qiun/ucharts": "^2.5.0-20230101",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.19",
-    "ethers": "^5.8.0",
+    "ethers": "5.7.2",
     "pinia-plugin-persistedstate": "^4.7.1",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "unorm": "^1.6.0"
   }
 }

@@ -1,3 +1,5 @@
+import './plugins/polyfills.js'
+
 import App from './App'
 
 import uviewPlus from '@/uni_modules/uview-plus'

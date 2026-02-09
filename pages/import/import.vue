@@ -83,7 +83,7 @@
 						const encryptedJson = await wallet.encrypt(appPin.value)
 						console.log(encryptedJson)
 						encryptedData.value = encryptedJson
-						uni.reLaunch({
+						uni.navigateTo({
 							url: '/pages/importAccount/importAccount'
 						});
 					} else {
