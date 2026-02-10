@@ -16,7 +16,8 @@
 		data() {
 			return {
 				balance: 0,
-				statusBarHeight: 0
+				statusBarHeight: 0,
+				tokenList: []
 			}
 		},
 		computed: {
@@ -69,13 +70,15 @@
 
 		mounted() {
 			const sysInfo = uni.getSystemInfoSync()
-			const statusBarHeight = sysInfo.statusBarHeight + 12 // 鐘舵�佹爮
-			this.navHeight = statusBarHeight + 44 // 44 = 鑷畾涔夊鑸爮楂樺害
+			console.log(sysInfo)
+			this.statusBarHeight = sysInfo.statusBarHeight + 12 // 鐘舵�佹爮
+			this.navHeight = this.statusBarHeight + 44 // 44 = 鑷畾涔夊鑸爮楂樺害
 			this.getBalance()
+			const $this = this;
 			socket.connectSocket()
 			socket.onMessage(data => {
-				console.log('socket data:', data)
-
+				// console./log('socket data:', data)
+				$this.tokenList = data.data
 				// 假设后端推送的是数组
 				// if (Array.isArray(data)) {
 				// 	this.list = data
@@ -108,7 +111,7 @@
 						Total Balance
 					</view>
 					<view class="banlace-value">
-						$ {{formatBalance}}
+						{{formatBalance}}
 					</view>
 				</view>
 				<view class="group-wrapper">
@@ -163,60 +166,42 @@
 					</view>
 					<view class="right-wrapper">
 						<view class="balance-text">
-							$45,43
+						{{formatBalance}}
 						</view>
-						<view class="arrow-wrapper">
+						<!-- <view class="arrow-wrapper">
 							<image src="/static/home/up-icon.png" mode="widthFix" class="arrow-icon"></image>
 							<view class="arrow-text up">
 								2.36%
 							</view>
-						</view>
+						</view> -->
 					</view>
 				</view>
-				<view class="token-item">
+				<view class="token-item" v-for="(item,key) in tokenList">
 					<view class="left-wrapper">
-						<image src="/static/home/eth-token.png" mode="widthFix" class="token-icon"></image>
+						<image v-if="key==='eth'" src="/static/home/eth-token.png" mode="widthFix" class="token-icon">
+						</image>
+						<image v-if="key==='btc'" src="/static/home/btc-token.png" mode="widthFix" class="token-icon">
+						</image>
+
 						<view class="name-wrapper">
 							<view class="token-name">
-								Ethereum
+								{{key==='eth'?'Ethereum':key==='btc'?'Bitcoin':''}}
 							</view>
 							<view class="token-text">
-								ETH
+								{{key.toUpperCase()}}
 							</view>
 						</view>
 					</view>
 					<view class="right-wrapper">
 						<view class="balance-text">
-							$45,43
+							${{item.price}}
 						</view>
 						<view class="arrow-wrapper">
-							<image src="/static/home/up-icon.png" mode="widthFix" class="arrow-icon"></image>
-							<view class="arrow-text up">
-								2.36%
-							</view>
-						</view>
-					</view>
-				</view>
-				<view class="token-item">
-					<view class="left-wrapper">
-						<image src="/static/home/btc-token.png" mode="widthFix" class="token-icon"></image>
-						<view class="name-wrapper">
-							<view class="token-name">
-								Bitcoin
-							</view>
-							<view class="token-text">
-								BTC
-							</view>
-						</view>
-					</view>
-					<view class="right-wrapper">
-						<view class="balance-text">
-							$45,43
-						</view>
-						<view class="arrow-wrapper">
-							<image src="/static/home/down-icon.png" mode="widthFix" class="arrow-icon"></image>
-							<view class="arrow-text down">
-								2.36%
+							<image v-if="item.change_percent>=0" src="/static/home/up-icon.png" mode="widthFix"
+								class="arrow-icon"></image>
+							<image v-else src="/static/home/down-icon.png" mode="widthFix" class="arrow-icon"></image>
+							<view class="arrow-text " :class="item.change_percent>=0?'up':'down'">
+								{{item.change_percent}}%
 							</view>
 						</view>
 					</view>
@@ -445,6 +430,7 @@
 					.arrow-wrapper {
 						display: flex;
 						align-items: center;
+						justify-content: flex-end;
 
 						.arrow-icon {
 							width: 28rpx;

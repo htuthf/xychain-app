@@ -73,7 +73,7 @@
 					let data = await provider.getBalance(wallet.address)
 					console.log('balance====>', data)
 					this.balance = formatEther(data)
-					
+
 
 				} catch (error) {
 					console.error(error)
@@ -159,7 +159,7 @@
 						Total Balance
 					</view>
 					<view class="banlace-value">
-						$ {{toThousands(balance)}}
+						{{toThousands(balance)}}
 					</view>
 					<view class="button-group flex item-center space-between" @click="handleReceived">
 						<button class="btn">
