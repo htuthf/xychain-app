@@ -1,7 +1,10 @@
 const user = {
 	state: {
-		mnemonic: uni.getStorageSync('mnemonic') || '',
-		newPin: uni.getStorageSync('newPin') || '',
+		// mnemonic: uni.getStorageSync('mnemonic') || '',
+		// newPin: uni.getStorageSync('newPin') || '',
+
+		mnemonic: '',
+		newPin: '',
 	},
 	actions: {
 		setMnemonic({
@@ -18,11 +21,11 @@ const user = {
 	mutations: {
 		SET_MNEMONIC: (state, value) => {
 			state.mnemonic = value
-			uni.setStorageSync('mnemonic', value)
+			// uni.setStorageSync('mnemonic', value)
 		},
 		SET_NEWPIN: (state, value) => {
 			state.newPin = value
-			uni.setStorageSync('newPin', value)
+			// uni.setStorageSync('newPin', value)
 		}
 	}
 }

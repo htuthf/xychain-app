@@ -90,16 +90,9 @@
 			swipeClick(index) {},
 		},
 		mounted() {
-			const $this = this;
-			this.$nextTick(()=>{
-				uni.createSelectorQuery()
-					.select('.header')
-					.boundingClientRect(rect => {
-						$this.navHeight = rect.height
-					})
-					.exec()
-			})
-			
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 鐘舵�佹爮
+			this.navHeight = statusBarHeight + 44 // 44 = 鑷畾涔夊鑸爮楂樺害
 		}
 	}
 </script>

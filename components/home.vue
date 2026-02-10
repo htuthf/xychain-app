@@ -2,7 +2,7 @@
 	import {
 		ethers
 	} from "ethers";
-
+	import socket from '@/plugins/socket.js'
 	import {
 		mapActions,
 		mapGetters
@@ -66,24 +66,28 @@
 			goNext() {},
 			clickMidButton() {},
 		},
-		onReady() {
-			const $this = this;
-			uni.createSelectorQuery()
-				.select('.header')
-				.boundingClientRect(rect => {
-					$this.navHeight = rect.height
-				})
-				.exec()
-		},
+
 		mounted() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 鐘舵�佹爮
+			this.navHeight = statusBarHeight + 44 // 44 = 鑷畾涔夊鑸爮楂樺害
 			this.getBalance()
+			socket.connectSocket()
+			socket.onMessage(data => {
+				console.log('socket data:', data)
+
+				// 假设后端推送的是数组
+				// if (Array.isArray(data)) {
+				// 	this.list = data
+				// }
+			})
 		}
 	}
 </script>
 <template>
 	<view class="page-body">
 		<view class="header-container">
-			 <!-- <video src="/static/media/bg.mp4" autoplay loop muted playsinline :controls="false"	:show-center-play-btn="false" class="home-bg"></video> -->
+			<!-- <video src="/static/media/bg.mp4" autoplay loop muted playsinline :controls="false"	:show-center-play-btn="false" class="home-bg"></video> -->
 			<image src="/static/home/homeBg.png" mode="widthFix" class="home-bg"></image>
 			<view class="header-body" :style="{paddingTop:statusBarHeight+'px'}">
 				<view class="top-wrapper">

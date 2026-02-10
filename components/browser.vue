@@ -87,15 +87,9 @@
 			}
 		},
 		mounted() {
-			this.$nextTick(() => {
-				const $this = this;
-				uni.createSelectorQuery()
-					.select('.header')
-					.boundingClientRect(rect => {
-						$this.navHeight = rect.height
-					})
-					.exec()
-			})
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状�栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
 		}
 	}
 </script>
