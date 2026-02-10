@@ -2,17 +2,22 @@
 	import {
 		ethers
 	} from "ethers";
+
 	import socket from '@/plugins/socket.js'
 	import {
 		mapActions,
 		mapGetters
 	} from 'vuex'
 	import {
-		Provider,
 		formatEther,
 		toThousands
 	} from '@/plugins/index.js'
+
+	import {
+		request
+	} from '@/plugins/request.js'
 	export default {
+
 		data() {
 			return {
 				balance: 0,
@@ -39,14 +44,15 @@
 						mask: true,
 						title: ''
 					})
-					console.log(this.encryptedData)
-					console.log(this.appPin)
-					const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
-					let provider = Provider()
-					let data = await provider.getBalance(wallet.address)
-					console.log('balance====>', data)
-					this.balance = formatEther(data)
 
+					const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
+					let {
+						data
+					} = await request({
+						url: `/addresses/${wallet.address}`,
+						method: 'get'
+					})
+					this.balance = formatEther(data.balance)
 				} catch (e) {
 					console.error(e)
 					uni.showToast({
@@ -166,7 +172,7 @@
 					</view>
 					<view class="right-wrapper">
 						<view class="balance-text">
-						{{formatBalance}}
+							{{formatBalance}}
 						</view>
 						<!-- <view class="arrow-wrapper">
 							<image src="/static/home/up-icon.png" mode="widthFix" class="arrow-icon"></image>

@@ -8,7 +8,6 @@
 	} from "ethers";
 
 	import {
-		Provider,
 		toThousands,
 		filterDate,
 		formatEther,

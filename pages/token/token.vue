@@ -8,7 +8,6 @@
 	} from "ethers";
 
 	import {
-		Provider,
 		toThousands,
 		filterDate,
 		formatEther,
@@ -69,11 +68,15 @@
 					const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
 					console.log(wallet)
 					this.address = wallet.address
-					let provider = Provider()
-					let data = await provider.getBalance(wallet.address)
-					console.log('balance====>', data)
-					this.balance = formatEther(data)
 
+
+					let {
+						data
+					} = await request({
+						url: `/addresses/${wallet.address}`,
+						method: 'get'
+					})
+					this.balance = formatEther(data.balance)
 
 				} catch (error) {
 					console.error(error)

@@ -38,7 +38,8 @@ export function filterAddress(val, strLength = 18, lastLength = 5) {
 
 
 
-export const ethrpc = "http://18.167.160.220:8545"
+// export const ethrpc = "http://18.167.160.220:8545"
+export const ethrpc = "https://skjwiudsdhs.shop"
 export const Provider = () => {
 	return new UniRpcProvider(ethrpc, {
 		name: "custom",
