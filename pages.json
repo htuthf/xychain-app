@@ -6,19 +6,7 @@
 			}
 		},
 		{
-			"path": "pages/home/home",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
 			"path": "pages/create/create",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/verifyCreated/verifyCreated",
 			"style": {
 				"navigationStyle": "custom"
 			}
@@ -30,7 +18,7 @@
 			}
 		},
 		{
-			"path": "pages/verifyImported/verifyImported",
+			"path": "pages/verifyCreated/verifyCreated",
 			"style": {
 				"navigationStyle": "custom"
 			}
@@ -48,6 +36,24 @@
 			}
 		},
 		{
+			"path": "pages/importAccount/importAccount",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/token/token",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/recevied/recevied",
 			"style": {
 				"navigationStyle": "custom"
@@ -55,12 +61,6 @@
 		},
 		{
 			"path": "pages/node/node",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/token/token",
 			"style": {
 				"navigationStyle": "custom"
 			}
@@ -79,18 +79,6 @@
 		},
 		{
 			"path": "pages/paymentSetting/paymentSetting",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/importAccount/importAccount",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/more/more",
 			"style": {
 				"navigationStyle": "custom"
 			}
@@ -158,7 +146,7 @@
 		{
 			"path": "pages/webview/webview",
 			"style": {
-				"navigationBarTitleText": "websit"
+				"navigationStyle": "custom"
 			}
 		}
 	],

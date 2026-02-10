@@ -1,77 +1,67 @@
-<script setup>
-	import {
-		computed,
-		ref
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
+<script>
 	import {
 		ethers
 	} from "ethers";
 	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useUserStore
-	} from '@/store/index.js'
+		mapActions,
+		mapGetters
+	} from 'vuex'
+
 	import {
 		setWallet
 	} from "@/runtime/walletRuntime";
 	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false
+			}
+		},
+		computed: {
+			...mapGetters(['mnemonic']),
+			getWords() {
+				return this.mnemonic.split(' ')
+			}
 
-	const userStore = useUserStore()
-	const {
-
-		mnemonic,
-		privateKey,
-		address
-	} = storeToRefs(userStore)
-	const navHeight = ref(44)
-	const disabled = ref(false)
-
-
-	const getMnemonic = () => {
-		const wallet = ethers.Wallet.createRandom();
-		mnemonic.value = wallet.mnemonic.phrase;
-		privateKey.value = wallet.publicKey;
-		address.value = wallet.address;
-		setWallet(wallet)
-	}
-
-	const getWords = computed(() => {
-		return mnemonic.value.split(' ')
-	})
-	const handleGoto = (type) => {
-		disabled.value = true
-		switch (type) {
-			case 'verifyCreated':
-				uni.navigateTo({
-					url: '/pages/verifyCreated/verifyCreated'
-				});
-				disabled.value = false;
-				break;
-			case 'import':
-				uni.navigateTo({
-					url: '/pages/import/import'
-				})
-				disabled.value = false;
-				break;
+		},
+		methods: {
+			...mapActions(['setMnemonic']),
+			getMnemonic() {
+				const wallet = ethers.Wallet.createRandom();
+				this.setMnemonic(wallet.mnemonic.phrase)
+				setWallet(wallet)
+			},
+			handleGoto(type) {
+				this.disabled = true
+				switch (type) {
+					case 'verifyCreated':
+						uni.navigateTo({
+							url: '/pages/verifyCreated/verifyCreated'
+						});
+						this.disabled = false;
+						break;
+					case 'import':
+						uni.navigateTo({
+							url: '/pages/import/import'
+						})
+						this.disabled = false;
+						break;
+				}
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+		onLoad() {
+			this.getMnemonic()
 		}
 	}
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
-	onLoad(() => {
-		getMnemonic()
-	})
 </script>
 
 <template>

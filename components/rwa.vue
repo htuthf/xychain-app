@@ -1,138 +1,108 @@
-<script setup>
-	import {
-		ref,
-		computed,
-		nextTick
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-	import {
-		Wallet
-	} from "ethers";
-	import {
-		pickRandomIndexes,
-		verifyMnemonic
-	} from "@/plugins";
-
+<script>
 	import CustomBar from '@/components/customBar.vue'
-
-	const navHeight = ref(44)
-	const overlayStyle = ref({
-		background: 'rgba(52, 56, 76, 0.3)',
-		backdropFilter: 'blur(2px)',
-		webkitBackdropFilter: 'blur(2px)'
-	})
-
-	const disabled = ref(false)
-	const inputWords = ref([])
-
-
-
-	const verifyPopup = ref(false)
-	const handleClose = () => {
-		inputWords.value = []
-		verifyPopup.value = false
-	}
-
-
-	const handleGoto = (type) => {
-		disabled.value = true
-
-	}
-
-	const blocks = ref([{
-		icon: '/static/rwa/nvda.png',
-		title: 'NVDA AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: 2.36
-	}, {
-		icon: '/static/rwa/goog.png',
-		title: 'GOOG AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: 2.36
-	}, {
-		icon: '/static/rwa/appl.png',
-		title: 'AAPL AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: 2.36
-	}, {
-		icon: '/static/rwa/msft.png',
-		title: 'MSFT AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: 2.36
-	}, {
-		icon: '/static/rwa/amzn.png',
-		title: 'AMZN AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: 2.36
-	}, {
-		icon: '/static/rwa/meta.png',
-		title: 'META AlphaMeta ',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: -2.36
-	}, {
-		icon: '/static/rwa/tsm.png',
-		title: 'TSM AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: 2.36
-	}, {
-		icon: '/static/rwa/tsla.png',
-		title: 'TSLA AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: -2.36
-	}, {
-		icon: '/static/rwa/avgo.png',
-		title: 'AVGO AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: 2.36
-	}, {
-		icon: '/static/rwa/mu.png',
-		title: 'MU AlphaMeta',
-		price: 0.3454364,
-		amount: 41.83,
-		rate: 2.36
-	}])
-
-
-	const sortType = ref(true)
-	const changeSortType = () => {
-		sortType.value = !sortType.value
-	}
-	const getSortData = computed(() => {
-		return [...blocks.value].sort((a, b) => {
-			if (sortType.value) {
-				return a.rate - b.rate
-			} else {
-				return b.rate - a.rate
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				sortType: true,
+				blocks: [{
+					icon: '/static/rwa/nvda.png',
+					title: 'NVDA AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: 2.36
+				}, {
+					icon: '/static/rwa/goog.png',
+					title: 'GOOG AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: 2.36
+				}, {
+					icon: '/static/rwa/appl.png',
+					title: 'AAPL AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: 2.36
+				}, {
+					icon: '/static/rwa/msft.png',
+					title: 'MSFT AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: 2.36
+				}, {
+					icon: '/static/rwa/amzn.png',
+					title: 'AMZN AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: 2.36
+				}, {
+					icon: '/static/rwa/meta.png',
+					title: 'META AlphaMeta ',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: -2.36
+				}, {
+					icon: '/static/rwa/tsm.png',
+					title: 'TSM AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: 2.36
+				}, {
+					icon: '/static/rwa/tsla.png',
+					title: 'TSLA AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: -2.36
+				}, {
+					icon: '/static/rwa/avgo.png',
+					title: 'AVGO AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: 2.36
+				}, {
+					icon: '/static/rwa/mu.png',
+					title: 'MU AlphaMeta',
+					price: 0.3454364,
+					amount: 41.83,
+					rate: 2.36
+				}]
 			}
-		})
-	})
-	const swipeChange = (index) => {}
-	const swipeClick = (index) => {}
-	onLoad(async () => {
-		await nextTick()
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', rect)
-				navHeight.value = rect.height
+		},
+		computed: {
+			getSortData() {
+				return [...this.blocks].sort((a, b) => {
+					if (this.sortType) {
+						return a.rate - b.rate
+					} else {
+						return b.rate - a.rate
+					}
+				})
+			}
+		},
+		methods: {
+			changeSortType() {
+				this.sortType = !this.sortType
+			},
+			swipeChange(index) {},
+			swipeClick(index) {},
+		},
+		mounted() {
+			const $this = this;
+			this.$nextTick(()=>{
+				uni.createSelectorQuery()
+					.select('.header')
+					.boundingClientRect(rect => {
+						$this.navHeight = rect.height
+					})
+					.exec()
 			})
-			.exec()
-	})
+			
+		}
+	}
 </script>
-
 <template>
 	<view class="page-body">
 		<custom-bar :is-back="false" title="RWA"></custom-bar>
@@ -142,9 +112,8 @@
 				Hot
 			</view>
 			<view class="swiper">
-				<up-swiper :height="94" :circular="true" :list="blocks" @change="swipeChange" @click="swipeClick"
-					bgColor="#1D1F25">
-					<template v-slot:default="{item}">
+				<swiper class="swiper-container">
+					<swiper-item v-for="(item,index) in blocks" :autoplay="true" :circular="true">
 						<view class="swipe-item">
 							<view class="top-wrapper">
 								<view class="token-wrapper">
@@ -168,8 +137,8 @@
 								${{item.price}}
 							</view>
 						</view>
-					</template>
-				</up-swiper>
+					</swiper-item>
+				</swiper>
 			</view>
 
 
@@ -224,7 +193,7 @@
 							{{item.amount}}M
 						</view>
 						<view class="arrow-wrapper">
-							
+
 							<image v-show="item.rate>0" src="/static/home/up-icon.png" mode="widthFix"
 								class="arrow-icon"></image>
 							<image v-show="item.rate<=0" src="/static/home/down-icon.png" mode="widthFix"
@@ -274,6 +243,10 @@
 		border-radius: 24rpx;
 		overflow: hidden;
 		background-color: #1D1F25;
+
+		.swiper-container {
+			height: 188rpx;
+		}
 
 		.swipe-item {
 			padding: 32rpx;

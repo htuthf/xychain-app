@@ -1,29 +1,23 @@
-/* ========= 1️⃣ 兜底全局对象 ========= */
 
-// iOS / uni-app / WebView 兼容
+// polyfills.js —— 第一层
+
+// 1️⃣ 先补 global / globalThis（你之前已经做过）
 if (typeof globalThis === 'undefined') {
-  // eslint-disable-next-line no-undef
-  if (typeof self !== 'undefined') {
-    self.globalThis = self
-  } else if (typeof window !== 'undefined') {
-    window.globalThis = window
-  } else {
-    // 最极端兜底
-    Function('return this')().globalThis = Function('return this')()
-  }
+  if (typeof self !== 'undefined') self.globalThis = self
+  else if (typeof window !== 'undefined') window.globalThis = window
+  else Function('return this')().globalThis = Function('return this')()
 }
 
-// ethers / buffer / unorm 会用到
 if (typeof global === 'undefined') {
-  // eslint-disable-next-line no-undef
   globalThis.global = globalThis
 }
 
-/* ========= 2️⃣ normalize polyfill ========= */
+// 2️⃣ 注入 crypto.getRandomValues（核心）
+import '@ethersproject/shims'
 
+// 3️⃣ normalize（你之前那套）
 import { nfc, nfd, nfkc, nfkd } from 'unorm'
 
-// 无条件覆盖（必须）
 String.prototype.normalize = function (form) {
   switch (form) {
     case 'NFC': return nfc(this)
@@ -34,4 +28,7 @@ String.prototype.normalize = function (form) {
   }
 }
 
-console.log('[polyfill] global + normalize patched')
+
+
+
+

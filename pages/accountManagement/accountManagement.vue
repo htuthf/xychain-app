@@ -1,61 +1,68 @@
-<script setup>
-	import {
-		ref,
-		computed
-	} from "vue";
-	import CustomBar from '@/components/customBar.vue'
-
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
+<script>
 	import {
 		ethers
 	} from "ethers";
-	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useAppStore
-	} from '@/store/index.js'
-	const appStore = useAppStore()
-	const {
-		encryptedData,
-		appPin
-	} = storeToRefs(appStore)
-	import { filterAddress } from "@/plugins";
-	const address = ref('')
-	const getWalletInfo = async () => {
-		try {
-			uni.showLoading({
-				mask:true,
-				title:''
-			})
-			let data = await ethers.Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
-			console.log(data.address)
-			address.value = data.address.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
 
-		} catch (error) {
-			console.error(error)
-			//TODO handle the exception
-		}finally{
-			uni.hideLoading()
+	import {
+		mapActions,
+		mapGetters
+	} from 'vuex'
+	
+	import {
+		filterAddress
+	} from "@/plugins";
+	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				address: ''
+			}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			fomartAddress() {
+				if (!this.address) return ''
+				const addres = this.address.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
+				return filterAddress(addres, 9, 4)
+			}
+		},
+		methods: {
+			async getAddress() {
+				try {
+					uni.showLoading({
+						mask: true,
+						title: ''
+					})
+					console.log(this.encryptedData)
+					console.log(this.appPin)
+					const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
+
+					console.log(wallet)
+					this.address = wallet.address
+
+				} catch (error) {
+					console.error(error)
+					//TODO handle the exception
+				} finally {
+					uni.hideLoading()
+				}
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+		onLoad() {
+			this.getAddress()
 		}
 	}
-
-	const navHeight = ref(44)
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height + 20
-			})
-			.exec()
-		getWalletInfo()
-	})
 </script>
+
 
 <template>
 	<view class="page-container">
@@ -75,7 +82,7 @@
 								Wallet address
 							</view>
 							<view class="address-text">
-							{{filterAddress(address,9,4)}}
+								{{fomartAddress}}
 							</view>
 						</view>
 

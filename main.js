@@ -1,34 +1,17 @@
-import './plugins/polyfills.js'
+import '@/plugins/polyfills.js' // ✅ 第一行，不能有任何 import 在前面
+
+import Vue from 'vue'
+
+import uView from 'uni_modules/uview-ui/index.js'
+Vue.use(uView)
 
 import App from './App'
-
-import uviewPlus from '@/uni_modules/uview-plus'
-import { Buffer } from 'buffer'
-import process from 'process'
 import store from "./store";
-
-// 注入到全局
-globalThis.Buffer = Buffer
-globalThis.process = process
-// #ifndef VUE3
-import Vue from 'vue'
 import './uni.promisify.adaptor'
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
-  ...App
+	store,
+	...App
 })
 app.$mount()
-// #endif
-
-// #ifdef VUE3
-import { createSSRApp } from 'vue'
-export function createApp() {
-  const app = createSSRApp(App)
-  app.use(uviewPlus)
-  app.use(store)
-  return {
-    app
-  }
-}
-// #endif

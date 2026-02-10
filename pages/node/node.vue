@@ -1,41 +1,25 @@
-<script setup>
-	import {
-		ref,
-		computed
-	} from "vue";
+<script>
 	import CustomBar from '@/components/customBar.vue'
-
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-
-	const navHeight = ref(44)
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height + 20
-			})
-			.exec()
-	})
-
-
-
-	const handleCopy = () => {
-		uni.setClipboardData({
-			data: 'asdfas',
-			success() {
-				uni.showToast({
-					title: 'Copy Success',
-					icon: 'none'
-				})
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
 			}
-		})
+		},
+		methods: {
+
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
 	}
 </script>
+
 
 <template>
 	<view class="page-container">

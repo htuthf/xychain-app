@@ -1,116 +1,120 @@
-<script setup>
-	import {
-		ref,
-		computed
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
+<script>
 	import {
 		ethers
 	} from "ethers";
 	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useAppStore,
-		useUserStore
-	} from '@/store/index.js'
+		mapActions,
+		mapGetters
+	} from 'vuex'
+
 	import {
 		getWallet
 	} from "@/runtime/walletRuntime";
-	const appStore = useAppStore()
-	const {
-		encryptedData,
-		appPin
-	} = storeToRefs(appStore)
-
-
-
 	import CustomBar from '@/components/customBar.vue'
-
-	const navHeight = ref(44)
-
-	const keyboard = ref([{
-			code: 1,
-			text: ''
-		}, {
-			code: 2,
-			text: 'ABC'
-		}, {
-			code: 3,
-			text: 'DEF'
-		}, {
-			code: 4,
-			text: 'GHI'
-		}, {
-			code: 5,
-			text: 'JKL'
-		}, {
-			code: 6,
-			text: 'MNO'
-		}, {
-			code: 7,
-			text: 'PQRS'
-		}, {
-			code: 8,
-			text: 'TUV'
-		}, {
-			code: 9,
-			text: 'WXYZ'
-		}, {
-			code: 'space',
-			text: ''
+	export default {
+		components: {
+			CustomBar
 		},
-		{
-			code: 0,
-			text: ''
-		},
-		{
-			code: 'delete',
-			text: ''
-		}
-	])
-	const pin = ref('')
-	const handleInput = async (code) => {
-		try {
-			pin.value += code
-			let pinLength = pin.value.length;
-			if (pinLength >= 6) {
-				uni.showLoading({
-					mask:true,
-					title:''
-				})
-				const wallet = getWallet()
-				const encryptedJson = await wallet.encrypt(pin.value)
-				encryptedData.value = encryptedJson
-				appPin.value = pin.value
-				uni.navigateTo({
-					url: '/pages/verifyPin/verifyPin'
-				});
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false,
+				verifyPopup: false,
+				pin: '',
+				keyboard: [{
+						code: 1,
+						text: ''
+					}, {
+						code: 2,
+						text: 'ABC'
+					}, {
+						code: 3,
+						text: 'DEF'
+					}, {
+						code: 4,
+						text: 'GHI'
+					}, {
+						code: 5,
+						text: 'JKL'
+					}, {
+						code: 6,
+						text: 'MNO'
+					}, {
+						code: 7,
+						text: 'PQRS'
+					}, {
+						code: 8,
+						text: 'TUV'
+					}, {
+						code: 9,
+						text: 'WXYZ'
+					}, {
+						code: 'space',
+						text: ''
+					},
+					{
+						code: 0,
+						text: ''
+					},
+					{
+						code: 'delete',
+						text: ''
+					}
+				],
+				overlayStyle: {
+					background: 'rgba(52, 56, 76, 0.3)',
+					backdropFilter: 'blur(2px)',
+					webkitBackdropFilter: 'blur(2px)'
+				}
 			}
-		} catch (error) {
-			console.error(error)
-			//TODO handle the exception
-		}finally{
-			uni.hideLoading()
-		}
-	}
-	const handleDelete = () => {
-		pin.value = pin.value.substring(0, pin.value.length - 1)
-	}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			getWords() {
+				return this.mnemonic.split(' ')
+			}
 
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
+		},
+		methods: {
+			...mapActions(['setEncryptedData', 'setAppPin']),
+			async handleInput(code) {
+				try {
+					this.pin += code
+					let pinLength = this.pin.length;
+					if (pinLength >= 6) {
+						uni.showLoading({
+							mask: true,
+							title: ''
+						})
+						const wallet = getWallet()
+						const encryptedJson = await wallet.encrypt(this.pin)
+						this.setEncryptedData(encryptedJson)
+						this.setAppPin(this.pin)
+						uni.navigateTo({
+							url: '/pages/verifyPin/verifyPin'
+						});
+					}
+				} catch (error) {
+					console.error(error)
+					//TODO handle the exception
+				} finally {
+					uni.hideLoading()
+				}
+			},
+			handleDelete() {
+				this.pin = this.pin.substring(0, this.pin.length - 1)
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+	}
 </script>
+
+
+
 
 <template>
 	<view class="page-container">

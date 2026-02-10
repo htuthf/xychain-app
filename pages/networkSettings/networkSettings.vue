@@ -1,27 +1,25 @@
-<script setup>
-	import {
-		ref,
-		computed
-	} from "vue";
+<script>
 	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+			}
+		},
+		methods: {
 
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-
-	const navHeight = ref(44)
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height + 20
-			})
-			.exec()
-	})
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+	}
 </script>
+
 
 <template>
 	<view class="page-container">

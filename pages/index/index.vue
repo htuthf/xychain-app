@@ -42,29 +42,35 @@
 		</view>
 	</view>
 </template>
-<script setup>
-	import {
-		ref
-	} from 'vue';
-	
-	const disabled = ref(false)
-	const handleGoto = (type) => {
-		console.log(type)
-		disabled.value = true
-		switch (type) {
-			case 'create':
-				uni.navigateTo({
-					url: '/pages/create/create'
-				});
-				disabled.value = false;
-				break;
-			case 'import':
-			console.log(1)
-				uni.navigateTo({
-					url: '/pages/import/import'
-				})
-				disabled.value = false;
-				break;
+<script>
+	export default {
+		data() {
+			return {
+				disabled: false
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+			handleGoto(type) {
+				console.log(type)
+				this.disabled = true
+				switch (type) {
+					case 'create':
+						uni.navigateTo({
+							url: '/pages/create/create'
+						});
+						this.disabled = false;
+						break;
+					case 'import':
+						uni.navigateTo({
+							url: '/pages/import/import'
+						})
+						this.disabled = false;
+						break;
+				}
+			}
 		}
 	}
 </script>
@@ -215,8 +221,9 @@
 		50% {
 			top: calc(100% - 136rpx);
 		}
+
 		100% {
-			top:0;
+			top: 0;
 		}
 	}
 </style>

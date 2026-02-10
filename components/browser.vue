@@ -1,133 +1,104 @@
-<script setup>
-	import {
-		ref,
-		computed,
-		nextTick,
-		reactive
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-	import {
-		Wallet
-	} from "ethers";
-	import {
-		pickRandomIndexes,
-		verifyMnemonic
-	} from "@/plugins";
-
+<script>
 	import CustomBar from '@/components/customBar.vue'
 
-	const navHeight = ref(44)
-	const overlayStyle = ref({
-		background: 'rgba(52, 56, 76, 0.3)',
-		backdropFilter: 'blur(2px)',
-		webkitBackdropFilter: 'blur(2px)'
-	})
-
-	const disabled = ref(false)
-	const inputWords = ref([])
-
-
-
-	const verifyPopup = ref(false)
-	const handleClose = () => {
-		inputWords.value = []
-		verifyPopup.value = false
-	}
-
-
-
-	onLoad(async () => {
-		await nextTick()
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', rect)
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
-
-	const tabActive = ref('DeFi')
-
-	const changeTab = (name) => {
-		tabActive.value = name
-	}
-
-
-	const tokenList = reactive({
-		DeFi: [{
-				icon: '/static/brower/OpenSea@2x.png',
-				title: 'OpenSea',
-				url: 'https://opensea.io/'
-			},
-			{
-				icon: '/static/brower/BLUR@2x.png',
-				title: 'BLUR',
-				url: 'https://blur.io/'
-			},
-			{
-				icon: '/static/brower/LarvaLabs@2x.png',
-				title: 'LarvaLabs',
-				url: 'https://www.larvalabs.com/'
-			},
-			{
-				icon: '/static/brower/Rarible@2x.png',
-				title: 'Rarible',
-				url: 'https://rarible.com/'
-			},
-			{
-				icon: '/static/brower/SuperRare@2x.png',
-				title: 'SuperRare',
-				url: 'https://superrare.com/'
-			},
-			{
-				icon: '/static/brower/Foundation@2x.png',
-				title: 'Foundation',
-				url: 'https://foundation.app/'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				tabActive: 'DeFi',
+				tokenList: {
+					DeFi: [{
+							icon: '/static/brower/OpenSea@2x.png',
+							title: 'OpenSea',
+							url: 'https://opensea.io/'
+						},
+						{
+							icon: '/static/brower/BLUR@2x.png',
+							title: 'BLUR',
+							url: 'https://blur.io/'
+						},
+						{
+							icon: '/static/brower/LarvaLabs@2x.png',
+							title: 'LarvaLabs',
+							url: 'https://www.larvalabs.com/'
+						},
+						{
+							icon: '/static/brower/Rarible@2x.png',
+							title: 'Rarible',
+							url: 'https://rarible.com/'
+						},
+						{
+							icon: '/static/brower/SuperRare@2x.png',
+							title: 'SuperRare',
+							url: 'https://superrare.com/'
+						},
+						{
+							icon: '/static/brower/Foundation@2x.png',
+							title: 'Foundation',
+							url: 'https://foundation.app/'
+						}
+					],
+					NFTs: [{
+							icon: '/static/brower/Ethereum@2x.png',
+							title: 'Ethereum',
+							url: 'https://ethereum.org/'
+						}, {
+							icon: '/static/brower/Polygon@2x.png',
+							title: 'Polygon',
+							url: 'https://polygon.com/'
+						}, {
+							icon: '/static/brower/Binance Chain@2x.png',
+							title: 'Binance Chain',
+							url: 'https://www.bnbchain.org/'
+						}, {
+							icon: '/static/brower/Arbitrum@2x.png',
+							title: 'Arbitrum',
+							url: 'https://arbitrum.io/'
+						}, {
+							icon: '/static/brower/Optimism@2x.png',
+							title: 'Optimism',
+							url: 'https://www.optimism.io/'
+						},
+						{
+							icon: '/static/brower/Solana@2x.png',
+							title: 'Solana',
+							url: 'https://solana.com/'
+						},
+					]
+				}
 			}
-		],
-		NFTs: [{
-				icon: '/static/brower/Ethereum@2x.png',
-				title: 'Ethereum',
-				url: 'https://ethereum.org/'
-			}, {
-				icon: '/static/brower/Polygon@2x.png',
-				title: 'Polygon',
-				url: 'https://polygon.com/'
-			}, {
-				icon: '/static/brower/Binance Chain@2x.png',
-				title: 'Binance Chain',
-				url: 'https://www.bnbchain.org/'
-			}, {
-				icon: '/static/brower/Arbitrum@2x.png',
-				title: 'Arbitrum',
-				url: 'https://arbitrum.io/'
-			}, {
-				icon: '/static/brower/Optimism@2x.png',
-				title: 'Optimism',
-				url: 'https://www.optimism.io/'
+		},
+		computed: {
+			getToken() {
+				return this.tokenList[this.tabActive]
+			}
+		},
+		methods: {
+			changeTab(name) {
+				this.tabActive = name
 			},
-			{
-				icon: '/static/brower/Solana@2x.png',
-				title: 'Solana',
-				url: 'https://solana.com/'
-			},
-		]
-	})
-	const getToken = computed(() => {
-		return tokenList[tabActive.value]
-	})
-	const handleGo = (row) => {
-		uni.navigateTo({
-			url: `/pages/webview/webview?src=${row.url}`
-		})
+			handleGo(row) {
+				uni.navigateTo({
+					url: `/pages/webview/webview?src=${row.url}`
+				})
+			}
+		},
+		mounted() {
+			this.$nextTick(() => {
+				const $this = this;
+				uni.createSelectorQuery()
+					.select('.header')
+					.boundingClientRect(rect => {
+						$this.navHeight = rect.height
+					})
+					.exec()
+			})
+		}
 	}
 </script>
-
 <template>
 	<view class="page-body">
 		<custom-bar :is-back="false" title="Browser"></custom-bar>
@@ -138,7 +109,7 @@
 						Your Web 3 Nacigator
 					</view>
 					<view class="sub-title">
-						The easiest way to discover web3 For the curious！
+						The easiest way to discover web3 For the curious !
 					</view>
 				</view>
 				<view class="image-wrapper">

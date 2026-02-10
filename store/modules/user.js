@@ -1,20 +1,30 @@
-import {
-	defineStore
-} from 'pinia'
-
-export const useUserStore = defineStore('user', {
-	state: () => ({
-		mnemonic: '',
-		address: '',
-		privateKey: '',
-		newPin:''
-	}),
-	
-	persist: {
-		storage: {
-			getItem: (key) => uni.getStorageSync(key),
-			setItem: (key, value) => uni.setStorageSync(key, value),
-			removeItem: (key) => uni.removeStorageSync(key),
+const user = {
+	state: {
+		mnemonic: uni.getStorageSync('mnemonic') || '',
+		newPin: uni.getStorageSync('newPin') || '',
+	},
+	actions: {
+		setMnemonic({
+			commit
+		}, value) {
+			commit('SET_MNEMONIC', value)
+		},
+		setNewPin({
+			commit
+		}, value) {
+			commit('SET_NEWPIN', value)
+		}
+	},
+	mutations: {
+		SET_MNEMONIC: (state, value) => {
+			state.mnemonic = value
+			uni.setStorageSync('mnemonic', value)
+		},
+		SET_NEWPIN: (state, value) => {
+			state.newPin = value
+			uni.setStorageSync('newPin', value)
 		}
 	}
-})
+}
+
+export default user

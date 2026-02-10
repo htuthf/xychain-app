@@ -1,96 +1,79 @@
-<script setup>
+<script>
 	import {
-		ref,
-		computed
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
+		mapActions,
+		mapGetters
+	} from 'vuex'
 	import {
 		ethers
 	} from "ethers";
-	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useAppStore,
-		useUserStore
-	} from '@/store/index.js'
 
 	import CustomBar from '@/components/customBar.vue'
 
-	const navHeight = ref(44)
-	const overlayStyle = ref({
-		background: 'rgba(52, 56, 76, 0.3)',
-		backdropFilter: 'blur(2px)',
-		webkitBackdropFilter: 'blur(2px)'
-	})
-
-	const disabled = ref(false)
-	const inputWords = ref(['piece', 'aspect', 'cabbage', 'utility', 'own', 'vivid', 'front', 'volcano', 'sell', 'kick',
-		'into', 'shop'
-	])
-
-
-
-	const verifyPopup = ref(false)
-	const handleClose = () => {
-		inputWords.value = []
-		verifyPopup.value = false
-	}
-	const appStore = useAppStore()
-	const {
-		encryptedData,
-		appPin
-	} = storeToRefs(appStore)
-
-	const handleGoto = async (type) => {
-
-		try {
-			disabled.value = true
-			uni.showLoading({
-				mask:true,
-				title:""
-			})
-			const words = inputWords.value.join(' ')
-			const hdNode = ethers.utils.HDNode.fromMnemonic(words.trim())
-			const child = hdNode.derivePath("m/44'/60'/0'/0/0")
-			const wallet = new ethers.Wallet(child.privateKey)
-			const oldWallet = await ethers.Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
-			console.log(wallet.address)
-			console.log(oldWallet.address)
-			if (wallet.address === oldWallet.address) {
-				uni.redirectTo({
-					url: '/pages/resetNewPwd/resetNewPwd'
-				})
-			} else {
-				verifyPopup.value = true
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false,
+				verifyPopup: false,
+				overlayStyle: {
+					background: 'rgba(52, 56, 76, 0.3)',
+					backdropFilter: 'blur(2px)',
+					webkitBackdropFilter: 'blur(2px)'
+				},
+				inputWords: ['piece', 'aspect', 'cabbage', 'utility', 'own', 'vivid', 'front', 'volcano', 'sell',
+					'kick',
+					'into', 'shop'
+				]
 			}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			getWords() {
+				return this.mnemonic.split(' ')
+			}
+		},
+		methods: {
+			async handleGoto(type) {
 
-		} catch (error) {
-			verifyPopup.value = true
-			console.error(error)
-			//TODO handle the exception
-		} finally {
-			disabled.value = false
-			uni.hideLoading()
-		}
+				try {
+					this.disabled = true
+					uni.showLoading({
+						mask: true,
+						title: ''
+					})
+					const words = this.inputWords.join(' ')
+					const wallet = ethers.Wallet.fromMnemonic(words.trim())
+					const oldWallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
+					console.log(wallet)
 
+					if (wallet.address === oldWallet.address) {
+						uni.redirectTo({
+							url: '/pages/resetNewPwd/resetNewPwd'
+						})
+					} else {
+						this.verifyPopup = true
+					}
+				} catch (error) {
+					console.error(error)
+					this.verifyPopup = true
 
+				} finally {
+					this.disabled = false;
+					uni.hideLoading()
+				}
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
 	}
-
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
 </script>
+
 
 <template>
 	<view class="page-container">
@@ -123,7 +106,7 @@
 		</view>
 
 
-		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" mode="center">
+		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
 			<view class="popup-body">
 				<view class="error-wrape">
 					<image src="/static/common/error-icon.png" mode="widthFix" class="error-icon"></image>

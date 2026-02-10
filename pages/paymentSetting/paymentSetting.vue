@@ -1,82 +1,77 @@
-<script setup>
+<script>
 	import {
-		ref,
-		computed
-	} from "vue";
+		mapActions,
+		mapGetters
+	} from 'vuex'
+
 	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false,
+				offVerifyPopup: false,
+				onVerifyPopup: false,
+				successVerifyPopup: false,
+				overlayStyle: {
+					background: 'rgba(52, 56, 76, 0.3)',
+					backdropFilter: 'blur(2px)',
+					webkitBackdropFilter: 'blur(2px)'
+				}
+			}
+		},
+		computed: {
+			...mapGetters(['offPayment']),
 
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useUserStore,useAppStore
-	} from '@/store/index.js'
-	const navHeight = ref(44)
-	const userStore = useUserStore()
-	const appStore = useAppStore()
-	const {
-		offPayment
-	} = storeToRefs(appStore)
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height + 20
-			})
-			.exec()
-	})
-
-	const handleGo = (page) => {
-		uni.navigateTo({
-			url: page
-		})
+		},
+		methods: {
+			...mapActions(['setOffPayment']),
+			handleGo(page) {
+				uni.navigateTo({
+					url: page
+				})
+			},
+			changeSwitch(val) {
+				if (this.offPayment) {
+					this.offVerifyPopup = true
+				} else {
+					this.onVerifyPopup = true
+				}
+			},
+			handleCancel() {
+				this.offVerifyPopup = false
+				this.onVerifyPopup = false
+			},
+			handleOffConfirm() {
+				this.offVerifyPopup = false
+				uni.navigateTo({
+					url: '/pages/offPaymentVerification/offPaymentVerification'
+				})
+			},
+			handleConfirm() {
+				this.setOffPayment(!this.offPayment)
+				this.offVerifyPopup = false
+				this.onVerifyPopup = false
+				if (this.offPayment) {
+					this.successVerifyPopup = true
+				}
+			},
+			handleClose() {
+				this.successVerifyPopup = false
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
 	}
-	const overlayStyle = ref({
-		background: 'rgba(52, 56, 76, 0.3)',
-		backdropFilter: 'blur(2px)',
-		webkitBackdropFilter: 'blur(2px)'
-	})
-	const offVerifyPopup = ref(false)
-	const onVerifyPopup = ref(false)
-	const successVerifyPopup = ref(false)
-	const changeSwitch = (val) => {
-		if (offPayment.value) {
-			offVerifyPopup.value = true
-		} else {
-			onVerifyPopup.value = true
-		}
-	}
-
-	const handleCancel = () => {
-		offVerifyPopup.value = false
-		onVerifyPopup.value = false
-	}
-	const handleOffConfirm = () => {
-		uni.navigateTo({
-			url: '/pages/offPaymentVerification/offPaymentVerification'
-		})
-	}
-
-	const handleConfirm = () => {
-		offPayment.value = !offPayment.value
-		offVerifyPopup.value = false
-		onVerifyPopup.value = false
-		if (offPayment.value) {
-			successVerifyPopup.value = true
-		}
-	}
-
-	const handleClose = () => {
-		successVerifyPopup.value = false
-	}
-
 </script>
+
+
 
 <template>
 	<view class="page-container">
@@ -111,14 +106,14 @@
 						Payment Verification On/Off
 					</view>
 				</view>
-				<up-switch v-model="offPayment" :asyncChange="true" activeColor="#1E68F6" inactiveColor="#1D1F25"
-					@change="changeSwitch" class="custom-switch"></up-switch>
+				<u-switch v-model="offPayment" :asyncChange="true" activeColor="#1E68F6" inactiveColor="#1D1F25"
+					@change="changeSwitch" class="custom-switch"></u-switch>
 			</view>
 		</view>
 
 
 
-		<u-popup :show="offVerifyPopup" :overlayStyle="overlayStyle" mode="center">
+		<u-popup :show="offVerifyPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
 			<view class="popup-body">
 				<view class="title">
 					Password Verification Off
@@ -138,7 +133,7 @@
 			</view>
 		</u-popup>
 
-		<u-popup :show="onVerifyPopup" :overlayStyle="overlayStyle" mode="center">
+		<u-popup :show="onVerifyPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
 			<view class="popup-body">
 
 				<view class="title">
@@ -158,7 +153,7 @@
 				</view>
 			</view>
 		</u-popup>
-		<u-popup :show="successVerifyPopup" :overlayStyle="overlayStyle" mode="center">
+		<u-popup :show="successVerifyPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
 			<view class="popup-body">
 				<view class="title">
 					Open successfully

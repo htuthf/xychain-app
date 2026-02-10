@@ -1,143 +1,120 @@
-<script setup>
-	import {
-		ref,
-		computed
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
+<script>
 	import {
 		Wallet
 	} from "ethers";
+
+	import {
+		mapActions,
+		mapGetters
+	} from 'vuex'
 	import {
 		getWallet
 	} from "@/runtime/walletRuntime";
-
-	import {
-		storeToRefs
-	} from 'pinia'
-
-	import {
-		useUserStore,
-		useAppStore
-	} from '@/store/index.js'
-
-	const userStore = useUserStore()
-	const {
-		mnemonic,
-		privateKey,
-		address
-	} = storeToRefs(userStore)
 	import {
 		pickRandomIndexes,
 		verifyMnemonic
 	} from "@/plugins";
 
-
-
 	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false,
+				verifyPopup: false,
+				inputWords: [],
+				words: [],
+				randomIndex: [],
 
-	const navHeight = ref(44)
-	const overlayStyle = ref({
-		background: 'rgba(52, 56, 76, 0.3)',
-		backdropFilter: 'blur(2px)',
-		webkitBackdropFilter: 'blur(2px)'
-	})
-
-	const disabled = ref(false)
-	const words = ref([])
-	const randomIndex = ref([])
-	const inputWords = ref({})
-	const getWords = computed(() => {
-		return mnemonic.value.split(' ')
-	})
-	const getRandomIndex = () => {
-		console.log(getWords.value.toString())
-		randomIndex.value = pickRandomIndexes(12, 6)
-	}
-
-	const verifyInputWords = computed(() => {
-		const inputWordsKeys = Object.keys(inputWords.value)
-		if (!inputWordsKeys.length) return true
-		const isValid = verifyMnemonic(getWords.value, inputWords.value)
-		return !isValid
-	})
-
-	const verifyPopup = ref(false)
-	const handleClose = () => {
-		verifyPopup.value = false
-	}
-	const appStore = useAppStore()
-	const {
-		encryptedData,
-		appPin
-	} = storeToRefs(appStore)
-
-	const handleGoto = async (type) => {
-		disabled.value = true
-		try {
-			switch (type) {
-				case 'createPin':
-					const inputWordsKeys = Object.keys(inputWords.value)
-					if (!inputWordsKeys.length) return false
-					console.log(getWords.value, inputWords.value)
-					const isValid = verifyMnemonic(getWords.value, inputWords.value)
-					console.error(isValid)
-					if (!isValid) {
-						verifyPopup.value = true
-						return false;
-					}
-					if (appPin.value) {
-						const wallet = getWallet()
-						const encryptedJson = await wallet.encrypt(appPin.value)
-						encryptedData.value = encryptedJson
-						uni.reLaunch({
-							url: '/pages/home/home'
-						});
-					} else {
-						uni.navigateTo({
-							url: '/pages/createPin/createPin'
-						});
-					}
-
-					disabled.value = false;
-					break;
-				case 'import':
-					uni.navigateTo({
-						url: '/pages/import/import'
-					})
-					disabled.value = false;
-					break;
+				overlayStyle: {
+					background: 'rgba(52, 56, 76, 0.3)',
+					backdropFilter: 'blur(2px)',
+					webkitBackdropFilter: 'blur(2px)'
+				},
 			}
-		} catch (error) {
-			console.error(error)
-			//TODO handle the exception
-		}
-	}
-	const verifyWord = (key) => {
-		const inputWord = inputWords.value[key]
-		if (!inputWord) return false
-		if (getWords.value[key] === inputWord.trim()) {
-			return false
-		}
-		return true
-	}
+		},
+		computed: {
+			...mapGetters(['mnemonic', 'appPin']),
+			getWords() {
+				return this.mnemonic.split(' ')
+			},
+			verifyInputWords() {
+				const inputWordsKeys = Object.keys(this.inputWords)
+				if (!inputWordsKeys.length) return true
+				const isValid = verifyMnemonic(this.getWords, this.inputWords)
+				return !isValid
+			}
 
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
-	onLoad(() => {
-		getRandomIndex()
-	})
+		},
+		methods: {
+			...mapActions(['setEncryptedData']),
+			getRandomIndex() {
+				this.randomIndex = pickRandomIndexes(12, 6)
+			},
+			handleClose() {
+				this.verifyPopup = false
+			},
+			async handleGoto(type) {
+				try {
+					this.disabled = true
+					switch (type) {
+						case 'createPin':
+							const inputWordsKeys = Object.keys(this.inputWords)
+							if (!inputWordsKeys.length) return false
+							const isValid = verifyMnemonic(this.getWords, this.inputWords)
+							if (!isValid) {
+								this.verifyPopup = true
+								return false;
+							}
+							if (this.appPin) {
+								const wallet = getWallet()
+								const encryptedJson = await wallet.encrypt(this.appPin)
+								this.setEncryptedData(encryptedJson)
+
+								uni.reLaunch({
+									url: '/pages/home/home'
+								});
+							} else {
+								uni.navigateTo({
+									url: '/pages/createPin/createPin'
+								});
+							}
+							break;
+						case 'import':
+							uni.navigateTo({
+								url: '/pages/import/import'
+							})
+							break;
+					}
+				} catch (error) {
+					console.error(error)
+					//TODO handle the exception
+				} finally {
+					this.disabled = false;
+				}
+			},
+			verifyWord(key) {
+				const inputWord = this.inputWords[key]
+				if (!inputWord) return false
+				if (this.getWords[key] === inputWord.trim()) {
+					return false
+				}
+				return true
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+		onLoad() {
+			this.getRandomIndex()
+		}
+	}
 </script>
-
 <template>
 	<view class="page-container">
 		<custom-bar></custom-bar>
@@ -173,8 +150,8 @@
 			</view>
 		</view>
 
-
-		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" mode="center">
+ 
+		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
 			<view class="popup-body">
 				<view class="error-wrape">
 					<image src="/static/common/error-icon.png" mode="widthFix" class="error-icon"></image>

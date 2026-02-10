@@ -1,34 +1,40 @@
-import {
-	defineStore
-} from 'pinia'
-
-export const useAppStore = defineStore('app', {
-	state: () => ({
-	
-		offPayment: false,
-		encryptedData: null,
-		appPin:null
-	}),
-
-	getters: {
-		isLogin: (state) => !!state.token
+const app = {
+	state: {
+		offPayment: uni.getStorageSync('offPayment') || false,
+		encryptedData: uni.getStorageSync('encryptedData') || null,
+		appPin: uni.getStorageSync('appPin') || null,
 	},
-
-	actions: {
-		setToken(token) {
-			this.token = token
+	mutations: {
+		SET_OFFPAYMENT(state, value) {
+			state.offPayment = value
+			uni.setStorageSync('offPayment', value)
 		},
-		logout() {
-			this.token = ''
-			this.userInfo = null
+		SET_ENCRYPTEDDATE(state, value) {
+			console.log(value)
+			state.encryptedData = value
+			uni.setStorageSync('encryptedData', value)
+		},
+		SET_APPPIN(state, value) {
+			state.appPin = value
+			uni.setStorageSync('appPin', value)
 		}
 	},
-
-	persist: {
-		storage: {
-			getItem: (key) => uni.getStorageSync(key),
-			setItem: (key, value) => uni.setStorageSync(key, value),
-			removeItem: (key) => uni.removeStorageSync(key),
+	actions: {
+		setOffPayment({
+			commit
+		}, value) {
+			commit('SET_OFFPAYMENT', value)
+		},
+		setEncryptedData({
+			commit
+		}, value) {
+			commit('SET_ENCRYPTEDDATE', value)
+		},
+		setAppPin({
+			commit
+		}, value) {
+			commit('SET_APPPIN', value)
 		}
 	}
-})
+}
+export default app

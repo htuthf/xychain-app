@@ -1,79 +1,116 @@
-<script setup>
+<script>
 	import {
-		ref,
-		computed
-	} from "vue";
-	import CustomBar from '@/components/customBar.vue'
-
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
+		mapActions,
+		mapGetters
+	} from 'vuex'
 	import {
 		ethers
 	} from "ethers";
+
 	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useAppStore
-	} from '@/store/index.js'
-	const appStore = useAppStore()
-	const {
-		encryptedData,
-		appPin
-	} = storeToRefs(appStore)
-	import {
+		Provider,
+		toThousands,
+		filterDate,
+		formatEther,
 		filterAddress
-	} from "@/plugins";
-	const navHeight = ref(44)
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height + 20
-			})
-			.exec()
-	})
+	} from '@/plugins/index.js'
 
-	const handleScan = () => {
+	import CustomBar from '@/components/customBar.vue'
+	import uQRCode from '@/plugins/uqrcode.js' //引入uqrcode.js
 
-	}
-	const address = ref('')
-	const AlphaMetaAddress = ref('')
-	const getWalletInfo = async () => {
-		try {
-			uni.showLoading({
-				title: '',
-				mask: true,
-			})
-			let data = await ethers.Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
-			console.log(data.address)
-			address.value = data.address
-			AlphaMetaAddress.value = data.address.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
-		} catch (error) {
-			//TODO handle the exception
-		} finally {
-			uni.hideLoading()
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false,
+				AlphaMetaAddress: '',
+				address: '',
+			}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			fomartAddress() {
+				if (!this.address) return ''
+				const addres = this.address.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
+				return filterAddress(addres, 9, 4)
+			},
+			formatBalance() {
+				if (!this.balance) return 0
+				return toThousands(this.balance)
+			}
+		},
+		methods: {
+			handleScan() {
+				uni.scanCode({
+					onlyFromCamera: true, // 只允许相机扫码
+					scanType: ['qrCode'], // 可加 barCode
+					success: (res) => {
+						console.log('扫码结果:', res.result)
+						console.log('类型:', res.scanType)
+					},
+					fail: (err) => {
+						console.log('扫码失败', err)
+					}
+				})
+			},
+			async getWalletInfo() {
+				try {
+					uni.showLoading({
+						title: '',
+						mask: true,
+					})
+					let data = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
+					console.log(data.address)
+					this.address = data.address
+					this.AlphaMetaAddress = data.address.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
+				} catch (error) {
+					//TODO handle the exception
+				} finally {
+					uni.hideLoading()
+				}
+			},
+			handleCopy() {
+				uni.setClipboardData({
+					data: this.address,
+					success() {
+						uni.showToast({
+							title: 'Copy Success',
+							icon: 'none'
+						})
+					}
+				})
+			},
+			initQrCode() {
+				uQRCode.make({
+					canvasId: 'qrcode',
+					componentInstance: this,
+					text: this.address,
+					size: 200,
+					margin: 10,
+					backgroundColor: '#ffffff',
+					foregroundColor: '#000000',
+					fileType: 'jpg',
+					errorCorrectLevel: uQRCode.errorCorrectLevel.H,
+					success: res => {}
+				})
+			},
+			filterAddress
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+		async onLoad() {
+			await this.getWalletInfo()
+			this.initQrCode()
 		}
 	}
-	const handleCopy = () => {
-		uni.setClipboardData({
-			data: address.value,
-			success() {
-				uni.showToast({
-					title: 'Copy Success',
-					icon: 'none'
-				})
-			}
-		})
-	}
-	onLoad(() => {
-		getWalletInfo()
-	})
 </script>
+
 
 <template>
 	<view class="page-container">
@@ -92,7 +129,8 @@
 			</view>
 			<view class="code-wrapper">
 				<view class="code-content">
-					<up-qrcode cid="ex4" :size="200" :val="address"></up-qrcode>
+					<canvas canvas-id="qrcode" style="width: 200px;height:200px;margin: 0 auto;" />
+					<!-- <up-qrcode cid="ex4" :size="200" :val="address"></up-qrcode> -->
 				</view>
 				<view class="address-wrap">
 					<image src="/static/common/AlphaMeta.png" mode="widthFix" class="token-icon"></image>

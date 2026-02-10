@@ -1,54 +1,79 @@
-<script setup>
+<script>
 	import {
-		ref,
-		computed
-	} from "vue";
+		mapActions,
+		mapGetters
+	} from 'vuex'
 	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-
+		ethers
+	} from "ethers";
 	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useUserStore
-	} from '@/store/index.js'
-	import { filterAddress } from "@/plugins";
-	const userStore = useUserStore()
-	const {
-		address
-	} = storeToRefs(userStore)
+		filterAddress
+	} from "@/plugins";
 
 	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false,
+				address: ''
+			}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			fomartAddress() {
+				if (!this.address) return ''
+				const addres = this.address.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
+				return filterAddress(addres, 9, 4)
+			}
+		},
+		methods: {
+			handleGoto(type) {
+				this.disabled = true
 
-	const navHeight = ref(44)
+				uni.reLaunch({
+					url: '/pages/home/home'
+				})
+				this.disabled = false;
+			},
+			async getAddress() {
+				try {
+					uni.showLoading({
+						mask: true,
+						title: ''
+					})
+					console.log(this.encryptedData)
+					console.log(this.appPin)
+					const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
 
-	const getAddress = computed(()=>{
-			return address.value.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
-	})
-	const disabled = ref(false)
+					console.log(wallet)
+					this.address = wallet.address
 
-	const handleGoto = (type) => {
-		disabled.value = true
+				} catch (error) {
+					console.error(error)
+					//TODO handle the exception
+				} finally {
+					uni.hideLoading()
+					// uni.hideLoading()
+				}
+			}
 
-		uni.reLaunch({
-			url: '/pages/home/home'
-		})
-		disabled.value = false;
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+		onLoad() {
+			this.getAddress()
+		}
 	}
-
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
 </script>
+
+
 
 <template>
 	<view class="page-container">
@@ -70,7 +95,7 @@
 							<image src="/static/common/AlphaMeta.png" mode="widthFix" class="token-icon"></image>
 						</view>
 						<view class="address-text">
-								{{filterAddress(getAddress,9,4)}}
+							{{fomartAddress}}
 						</view>
 					</view>
 					<view class="radio-wrapper">

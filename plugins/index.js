@@ -1,7 +1,11 @@
 import {
-		ethers
-	} from "ethers";
+	ethers
+} from "ethers";
+
 import dayjs from 'dayjs'
+
+
+import{UniRpcProvider } from '@/plugins/uniRpcProvider.js'
 export const pickRandomIndexes = (total, count) => {
 	const indexes = Array.from({
 		length: total
@@ -14,108 +18,13 @@ export const pickRandomIndexes = (total, count) => {
 
 	return indexes.slice(0, count).sort((a, b) => a - b)
 }
+
 export const verifyMnemonic = (words, userInput) => {
 	return Object.entries(userInput).every(([position, value]) => {
 		const index = Number(position)
 		return words[index] === value.trim()
 	})
 }
-
-
-//生成key
-export const deriveKey = async (password, salt) => {
-	const enc = new TextEncoder();
-	const keyMaterial = await crypto.subtle.importKey(
-		"raw",
-		enc.encode(password),
-		"PBKDF2",
-		false,
-		["deriveKey"]
-	);
-
-	return crypto.subtle.deriveKey({
-			name: "PBKDF2",
-			salt,
-			iterations: 100_000,
-			hash: "SHA-256",
-		},
-		keyMaterial, {
-			name: "AES-GCM",
-			length: 256
-		},
-		false,
-		["encrypt", "decrypt"]
-	);
-}
-
-
-//加密
-
-export const encryptPrivateKey = async (privateKey, password) => {
-	const iv = crypto.getRandomValues(new Uint8Array(12));
-	const salt = crypto.getRandomValues(new Uint8Array(16));
-	const key = await deriveKey(password, salt);
-
-	const encrypted = await crypto.subtle.encrypt({
-			name: "AES-GCM",
-			iv
-		},
-		key,
-		new TextEncoder().encode(privateKey)
-	);
-
-	return {
-		cipherText: Array.from(new Uint8Array(encrypted)),
-		iv: Array.from(iv),
-		salt: Array.from(salt),
-	};
-}
-//解密
-export const decryptPrivateKey = async (data, password) => {
-	const {
-		cipher,
-		iv,
-		salt
-	} = data;
-
-	const key = await deriveKey(password, new Uint8Array(salt));
-
-	const decrypted = await crypto.subtle.decrypt({
-			name: "AES-GCM",
-			iv: new Uint8Array(iv)
-		},
-		key,
-		new Uint8Array(cipher)
-	);
-
-	return new TextDecoder().decode(decrypted);
-}
-
-//加密
-export const encryptData = async (plainText, password) => {
-	const enc = new TextEncoder();
-	const iv = crypto.getRandomValues(new Uint8Array(12)); // AES-GCM 必须
-	const salt = crypto.getRandomValues(new Uint8Array(16)); // 用来派生 key
-
-	const key = await deriveKey(password, salt);
-
-	const cipherBuffer = await crypto.subtle.encrypt({
-			name: "AES-GCM",
-			iv
-		},
-		key,
-		enc.encode(plainText)
-	);
-
-	return {
-		cipherText: Array.from(new Uint8Array(cipherBuffer)),
-		iv: Array.from(iv),
-		salt: Array.from(salt),
-	};
-}
-
-
-
 
 export function filterAddress(val, strLength = 18, lastLength = 5) {
 	if (!val) {
@@ -127,10 +36,17 @@ export function filterAddress(val, strLength = 18, lastLength = 5) {
 	return `${start}...${end}`
 }
 
+
+
 export const ethrpc = "http://18.167.160.220:8545"
 export const Provider = () => {
-	return new ethers.providers.JsonRpcProvider(ethrpc)
+	return new UniRpcProvider(ethrpc, {
+		name: "custom",
+		chainId: 9000 // 改成你的链ID
+	})
 }
+
+
 
 export const RetainDecimal = (val, size = 3) => {
 	if (!val || val === 'null') return '0'
@@ -139,6 +55,8 @@ export const RetainDecimal = (val, size = 3) => {
 	}
 	return parseInt(val * Math.pow(10, size)) / Math.pow(10, size)
 }
+
+
 export const toThousands = (val) => {
 	let initNum = parseInt(val)
 	let decimal = +RetainDecimal(val - initNum, 6)

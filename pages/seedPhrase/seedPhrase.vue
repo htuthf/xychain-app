@@ -1,67 +1,66 @@
-<script setup>
+<script>
 	import {
-		ref
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-
+		mapActions,
+		mapGetters
+	} from 'vuex'
 	import {
 		ethers
 	} from "ethers";
-	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useAppStore,
-		useUserStore
-	} from '@/store/index.js'
-	import CustomBar from '@/components/customBar.vue'
 
-	const navHeight = ref(44)
-	const disabled = ref(false)
-	const words = ref([])
-	const appStore = useAppStore()
-	const {
-		encryptedData,
-		appPin
-	} = storeToRefs(appStore)
-	const getWords = async () => {
-		try {
-			uni.showLoading({
-				mask: true,
-				title: ''
-			})
-			const wallet = await ethers.Wallet.fromEncryptedJson(encryptedData.value, appPin.value)
-			words.value = wallet.mnemonic.phrase.split(' ')
-		} catch (error) {
-			console.error(error)
-			//TODO handle the exception
-		} finally {
-			uni.hideLoading()
+	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				showMask: true,
+				mnemonic: ''
+			}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			getWords() {
+				if (this.mnemonic) {
+					return this.mnemonic.split(' ')
+				}
+				return []
+			}
+		},
+		methods: {
+			async getWallet() {
+				try {
+					uni.showLoading({
+						mask: true,
+						title: ''
+					})
+					const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
+					console.log(wallet)
+					this.mnemonic = wallet.mnemonic.phrase
+				} catch (error) {
+					console.error(error)
+
+				} finally {
+					uni.hideLoading()
+				}
+			},
+			handleHide() {
+				this.showMask = false
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+		onLoad() {
+			this.getWallet()
 		}
 	}
-
-
-
-	const showMask = ref(true)
-	const handleHide = () => {
-		showMask.value = false
-	}
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
-	onLoad(() => {
-		getWords()
-	})
 </script>
+
+
 
 <template>
 	<view class="page-container">
@@ -75,10 +74,8 @@
 				<view class="mask" @longpress="handleHide" v-if="showMask">
 					<view class="text">Make sure no one is looking at your screen</view>
 					<view class="text">Tap to reveal your keyphrase</view>
-
 				</view>
-
-				<view class="word-item" v-for="(word,index) in words" :key="index">
+				<view class="word-item" v-for="(word,index) in getWords" :key="index">
 					<view class="word-index">
 						{{index+1}}.
 					</view>
@@ -86,6 +83,7 @@
 						{{word}}
 					</view>
 				</view>
+
 			</view>
 		</view>
 	</view>

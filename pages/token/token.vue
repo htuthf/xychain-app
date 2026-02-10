@@ -1,125 +1,148 @@
-<script setup>
+<script>
 	import {
-		ref,
-		computed,
-		reactive
-	} from "vue";
-	import CustomBar from '@/components/customBar.vue'
-
+		mapActions,
+		mapGetters
+	} from 'vuex'
 	import {
-		onLoad,
-		onReady,
-		onShow,
-		onReachBottom
-	} from '@dcloudio/uni-app'
-
+		ethers
+	} from "ethers";
 
 	import {
 		Provider,
 		toThousands,
 		filterDate,
-		formatEther
+		formatEther,
+		filterAddress
 	} from '@/plugins/index.js'
 	import {
 		request
 	} from '@/plugins/request.js'
-	const navHeight = ref(44)
+	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false,
+				balance: 0,
+				address: '',
+				title: '',
+				finished: false,
+				history: [],
+				query: {
+					limit: 10,
+					page: 0
+				}
+			}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			fomartAddress() {
+				if (!this.address) return ''
+				const addres = this.address.toLocaleLowerCase().replace(/^0x/, 'AlphaMeta')
+				return filterAddress(addres, 9, 4)
+			},
+			formatBalance() {
+				if (!this.balance) return 0
+				return toThousands(this.balance)
+			}
+		},
+		methods: {
+			handleGoto(type) {
+				this.disabled = true
 
-	const title = ref('')
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height + 20
-			})
-			.exec()
-	})
-
-
-
-	const handleCopy = () => {
-		uni.setClipboardData({
-			data: 'asdfas',
-			success() {
-				uni.showToast({
-					title: 'Copy Success',
-					icon: 'none'
+				uni.reLaunch({
+					url: '/pages/home/home'
 				})
+				this.disabled = false;
+			},
+			async getBalance() {
+				try {
+					uni.showLoading({
+						mask: true,
+						title: ''
+					})
+					console.log(this.encryptedData)
+					console.log(this.appPin)
+					const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
+					console.log(wallet)
+					this.address = wallet.address
+					let provider = Provider()
+					let data = await provider.getBalance(wallet.address)
+					console.log('balance====>', data)
+					this.balance = formatEther(data)
+					
+
+				} catch (error) {
+					console.error(error)
+					//TODO handle the exception
+				} finally {
+					uni.hideLoading()
+				}
+			},
+			async getData() {
+				try {
+					this.query.page += 1
+
+					let {
+						data
+					} = await request({
+						url: `/addresses/${this.address}/transactions`,
+						method: 'get',
+						data: this.query
+					})
+					console.log(data)
+					this.history = this.history.concat(data.items)
+
+					if (data.items.length < this.query.limit) {
+						this.finished = true
+					}
+				} catch (e) {
+					console.error(e)
+				}
+			},
+			handleScan() {
+				uni.scanCode({
+					onlyFromCamera: true, // 只允许相机扫码
+					scanType: ['qrCode'], // 可加 barCode
+					success: (res) => {
+						console.log('扫码结果:', res.result)
+						console.log('类型:', res.scanType)
+					},
+					fail: (err) => {
+						console.log('扫码失败', err)
+					}
+				})
+			},
+			handleReceived() {
+				uni.navigateTo({
+					url: '/pages/recevied/recevied'
+				})
+			},
+			toThousands,
+			filterDate,
+			formatEther,
+
+		},
+		onReachBottom() {
+			if (this.finished) {
+				return false;
 			}
-		})
-	}
-	const handleScan = () => {}
-	const query = reactive({
-		limit: 10,
-		page: 0
-	})
-	const finished = ref(false)
-	const history = ref([])
-	const address = ref('')
-	const getData = async () => {
-		try {
-			query.page += 1
-			query.address = ''
-			let {
-				data
-			} = await request({
-				url: `/addresses/${address.value}/transactions`,
-				method: 'get',
-				data: query
-			})
-			console.log(data)
-			history.value = history.value.concat(data.items)
-
-			if (data.items.length < query.limit) {
-				finished.value = true
-			}
-
-
-		} catch (e) {
-			console.error(e)
+			this.getData()
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
+		async onLoad(options) {
+			this.title = options.type + ' Token'
+			await this.getBalance()
+			this.getData()
 		}
 	}
-	const balance = ref(0)
-	const getBalance = async () => {
-		try {
-			let provider = Provider()
-			let data = await provider.getBalance(address.value)
-			console.log('balance====>', data)
-			balance.value = formatEther(data)
-			console.log(address.value)
-
-			// this.balance = formatEther(balance)
-		} catch (e) {
-			console.error(e)
-			uni.showToast({
-				title: e.reason,
-				icon: 'none',
-				// image: '/static/icon/choice.png',
-				mask: true,
-			})
-
-		}
-	}
-	
-	const handleReceived = ()=>{
-		uni.navigateTo({
-			url:'/pages/recevied/recevied'
-		})
-	}
-	onReachBottom(() => {
-		if (finished.value) {
-			return false;
-		}
-		getData()
-	})
-	onLoad(options => {
-		console.log(options)
-		title.value = options.type + ' Token'
-		address.value = options.address
-		getData()
-		getBalance()
-	})
 </script>
 
 <template>
@@ -178,7 +201,7 @@
 								</view>
 							</view>
 						</view>
-						
+
 					</view>
 				</view>
 

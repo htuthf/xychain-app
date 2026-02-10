@@ -1,167 +1,97 @@
-<script setup>
-	import {
-		ref,
-		computed,
-		nextTick,
-		reactive
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-	import {
-		Wallet
-	} from "ethers";
-	import {
-		pickRandomIndexes,
-		verifyMnemonic
-	} from "@/plugins";
-
+<script>
 	import CustomBar from '@/components/customBar.vue'
-
-	const navHeight = ref(44)
-	const overlayStyle = ref({
-		background: 'rgba(52, 56, 76, 0.3)',
-		backdropFilter: 'blur(2px)',
-		webkitBackdropFilter: 'blur(2px)'
-	})
-
-	const disabled = ref(false)
-	const inputWords = ref([])
-
-
-
-	const verifyPopup = ref(false)
-	const handleClose = () => {
-		inputWords.value = []
-		verifyPopup.value = false
-	}
-	const chartData = ref({
-		"categories": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-		"series": [{
-			"name": "",
-			"data": [3, 5, 2, 7.3, 6, 4.5, 5, ],
-
-		}, ]
-	})
-	const chartOptions = reactive({
-		color: ['#4381FF'],
-		dataLabel: false,
-
-		legend: {
-			show: false
+	export default {
+		components: {
+			CustomBar
 		},
-		xAxis: {
-			disabled: false,
-			axisLine: false
-		},
-		yAxis: {
-			
-			
-			 data: [
-			            {
-			             
-			              type: "value",
-			              position: "left",
-			              disabled: false,
-			              axisLine: true,
-			              axisLineColor: "#141518",
-			              calibration: false,
-			              fontColor: "#666666",
-			              fontSize: 13,
-			              textAlign: "left",
-			            
-			              titleFontSize: 13,
-			              titleOffsetY: 0,
-			              titleOffsetX: 0,
-			              titleFontColor: "#666666",
-			              max: null,
-			              tofix: null,
-			              unit: "",
-			              format: "yAxisDemo1"
-			            }
-			          ],
-			          disabled: false,
-			          disableGrid: false,
-			          splitNumber: 5,
-			          gridType: "dash",
-			          dashLength: 8,
-			          gridColor: "#5D6588",
-			          padding: 10,
-			          showTitle: false
+		data() {
+			return {
+				navHeight: 44,
+				chartData: {
+					"categories": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+					"series": [{
+						"name": "",
+						"data": [3, 5, 2, 7.3, 6, 4.5, 5, ],
 
-		},
-		extra: {
-			column: {
-				seriesGap: 5,
-				barBorderRadius: [6, 6, 6, 6],
-				activeBgColor: "#ffffff"
-				
-			},
-			tooltip:{
-				legendShape:'circle'
-			}
+					}, ]
+				},
+				chartOptions: {
+					color: ['#4381FF'],
+					dataLabel: false,
 
-		},
-
-	})
+					legend: {
+						show: false
+					},
+					xAxis: {
+						disabled: false,
+						axisLine: false
+					},
+					yAxis: {
 
 
+						data: [{
 
-	const handleGoto = (type) => {
-		disabled.value = true
+							type: "value",
+							position: "left",
+							disabled: false,
+							axisLine: true,
+							axisLineColor: "#141518",
+							calibration: false,
+							fontColor: "#666666",
+							fontSize: 13,
+							textAlign: "left",
 
-		switch (type) {
-			case 'account':
+							titleFontSize: 13,
+							titleOffsetY: 0,
+							titleOffsetX: 0,
+							titleFontColor: "#666666",
+							max: null,
+							tofix: null,
+							unit: "",
+							format: "yAxisDemo1"
+						}],
+						disabled: false,
+						disableGrid: false,
+						splitNumber: 5,
+						gridType: "dash",
+						dashLength: 8,
+						gridColor: "#5D6588",
+						padding: 10,
+						showTitle: false
 
-				console.log(inputWords.value)
+					},
+					extra: {
+						column: {
+							seriesGap: 5,
+							barBorderRadius: [6, 6, 6, 6],
+							activeBgColor: "#ffffff"
 
-				// const words = inputWords.value.join(' ')
+						},
+						tooltip: {
+							legendShape: 'circle'
+						}
 
+					},
 
-				try {
-					const words = 'siege also region glass find stairs frown adjust aunt guide float horn'
-					const wallet = Wallet.fromPhrase(words)
-					console.log(wallet)
-					uni.navigateTo({
-						url: '/pages/importAccount/importAccount'
-					});
-
-				} catch (error) {
-					console.error(error)
-					verifyPopup.value = true
-					return false
-					//TODO handle the exception
-				} finally {
-					disabled.value = false;
 				}
-				break;
-			case 'create':
-				uni.redirectTo({
-					url: '/pages/create/create'
-				})
-				disabled.value = false;
-				break;
+			}
+		},
+		methods: {
+
+		},
+		mounted() {
+			this.$nextTick(()=>{
+				const $this = this;
+				uni.createSelectorQuery()
+					.select('.header')
+					.boundingClientRect(rect => {
+						$this.navHeight = rect.height
+					})
+					.exec()
+			})
 		}
 	}
-
-	onLoad(async () => {
-		await nextTick()
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', rect)
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
-	onLoad(() => {
-
-
-	})
 </script>
-
 <template>
 	<view class="page-body">
 		<custom-bar :is-back="false" title="Rank"></custom-bar>

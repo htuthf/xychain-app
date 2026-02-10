@@ -1,126 +1,105 @@
-<script setup>
-	import {
-		ref,
-		computed
-	} from "vue";
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
+<script>
 	import {
 		ethers
 	} from "ethers";
+
 	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useAppStore,
-		useUserStore
-	} from '@/store/index.js'
+		mapActions,
+		mapGetters
+	} from 'vuex'
 
 	import {
 		setWallet
-	} from '@/runtime/walletRuntime.js'
+	} from "@/runtime/walletRuntime";
 	import CustomBar from '@/components/customBar.vue'
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				disabled: false,
+				verifyPopup: false,
+				overlayStyle: {
+					background: 'rgba(52, 56, 76, 0.3)',
+					backdropFilter: 'blur(2px)',
+					webkitBackdropFilter: 'blur(2px)'
+				},
+				inputWords: ['piece', 'aspect', 'cabbage', 'utility', 'own', 'vivid', 'front', 'volcano', 'sell', 'kick',
+					'into', 'shop'
+				]
+			}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			getWords() {
+				return this.mnemonic.split(' ')
+			}
+		},
+		methods: {
+			...mapActions(['setEncryptedData']),
+			handleClose() {
+				this.inputWords = []
+				this.verifyPopup = false
+			},
+			async handleGoto(type) {
+				this.disabled = true
 
-	const navHeight = ref(44)
-	const overlayStyle = ref({
-		background: 'rgba(52, 56, 76, 0.3)',
-		backdropFilter: 'blur(2px)',
-		webkitBackdropFilter: 'blur(2px)'
-	})
+				switch (type) {
+					case 'account':
+						try {
+							uni.showLoading({
+								mask: true,
+								title: ''
+							})
+							const words = this.inputWords.join(' ')
+							const wallet = ethers.Wallet.fromMnemonic(words.trim())
+							console.log(wallet)
+							setWallet(wallet)
+							console.log(this.appPin)
+							if (this.appPin) {
+								const encryptedJson = await wallet.encrypt(this.appPin)
+								console.log(encryptedJson)
+								this.setEncryptedData(encryptedJson)
+								uni.hideLoading()
+								uni.navigateTo({
+									url: '/pages/importAccount/importAccount'
+								});
+							} else {
+								uni.hideLoading()
+								uni.navigateTo({
+									url: '/pages/createPin/createPin'
+								});
+							}
+						} catch (error) {
+							console.error(error)
+							this.verifyPopup = true
+							uni.hideLoading()
+						} finally {
+							this.disabled = false;
 
-	const disabled = ref(false)
-	const inputWords = ref(['piece', 'aspect', 'cabbage', 'utility', 'own', 'vivid', 'front', 'volcano', 'sell', 'kick',
-		'into', 'shop'
-	])
-
-
-
-	const verifyPopup = ref(false)
-	const handleClose = () => {
-		inputWords.value = []
-		verifyPopup.value = false
-	}
-
-	const appStore = useAppStore()
-	const {
-		encryptedData,
-		appPin
-	} = storeToRefs(appStore)
-	const userStore = useUserStore()
-	const {
-
-		mnemonic,
-		privateKey,
-		address
-	} = storeToRefs(userStore)
-	const handleGoto = async (type) => {
-		disabled.value = true
-
-		switch (type) {
-			case 'account':
-
-				try {
-					uni.showLoading({
-						mask: true,
-						title: ''
-					})
-					const words = inputWords.value.join(' ')
-					const wallet = ethers.Wallet.fromMnemonic(words.trim())
-					console.log(wallet)
-					// const child = hdNode.derivePath("m/44'/60'/0'/0/0")
-					// const wallet = new ethers.Wallet(child.privateKey)
-					// console.log(hdNode)
-					// console.log(wallet)
-					mnemonic.value = wallet.mnemonic.phrase;
-					privateKey.value = wallet.publicKey;
-					address.value = wallet.address;
-					setWallet(wallet)
-					console.log(appPin.value)
-					if (appPin.value) {
-						const encryptedJson = await wallet.encrypt(appPin.value)
-						console.log(encryptedJson)
-						encryptedData.value = encryptedJson
-						uni.navigateTo({
-							url: '/pages/importAccount/importAccount'
-						});
-					} else {
-						uni.navigateTo({
-							url: '/pages/createPin/createPin'
-						});
-					}
-
-				} catch (error) {
-					console.error(error)
-					verifyPopup.value = true
-					return false
-					//TODO handle the exception
-				} finally {
-					disabled.value = false;
-					uni.hideLoading()
+						}
+						break;
+					case 'create':
+						uni.redirectTo({
+							url: '/pages/create/create'
+						})
+						this.disabled = false;
+						break;
 				}
-				break;
-			case 'create':
-				uni.redirectTo({
-					url: '/pages/create/create'
-				})
-				disabled.value = false;
-				break;
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
 		}
 	}
-
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height
-			})
-			.exec()
-	})
 </script>
+
+
+
 
 <template>
 	<view class="page-container">
@@ -157,7 +136,7 @@
 		</view>
 
 
-		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" mode="center">
+		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
 			<view class="popup-body">
 				<view class="error-wrape">
 					<image src="/static/common/error-icon.png" mode="widthFix" class="error-icon"></image>

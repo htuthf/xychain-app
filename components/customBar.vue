@@ -15,49 +15,47 @@
 	</view>
 </template>
 
-<script setup>
-	import {
-		ref
-	} from 'vue';
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
+<script>
+	export default {
+		props: {
+			title: {
+				type: String,
+				default: ''
+			},
+			isBack: {
+				type: Boolean,
+				default: true
+			},
+			isRight: {
+				type: Boolean,
+				default: false
+			},
+			bgClass: {
+				type: String,
+				default: 'default'
+			}
+		},
+		data() {
+			return {
+				statusBarHeight: 0,
+				navHeight: 44
 
-	defineProps({
-		title: {
-			type: String,
-			default: ''
+			}
 		},
-		isBack: {
-			type: Boolean,
-			default: true
+		methods: {
+			handleBack() {
+				uni.navigateBack({
+					delta: 1
+				})
+			}
 		},
-		isRight: {
-			type: Boolean,
-			default: false
-		},
-		bgClass: {
-			type: String,
-			default: 'default'
+		mounted() {
+			const sysInfo = uni.getSystemInfoSync()
+			this.statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = this.statusBarHeight + 44 // 44 = 自定义导航栏高度
+			this.$emit('getNavHeight', this.navHeight)
 		}
-	})
-	const emit = defineEmits(['getNavHeight', 'click'])
-	const statusBarHeight = ref(0)
-	const navHeight = ref(44)
-
-	const handleBack = () => {
-		uni.navigateBack({
-			delta: 1
-		})
 	}
-	onLoad(() => {
-		const sysInfo = uni.getSystemInfoSync()
-		statusBarHeight.value = sysInfo.statusBarHeight + 12 // 状态栏
-		navHeight.value = statusBarHeight.value + 44 // 44 = 自定义导航栏高度
-		emit('getNavHeight', navHeight.value)
-	})
 </script>
 
 <style lang="scss">

@@ -1,84 +1,66 @@
-<script setup>
+<script>
 	import {
-		ref,
-		computed
-	} from "vue";
+		mapActions,
+		mapGetters
+	} from 'vuex'
+
 	import CustomBar from '@/components/customBar.vue'
-
-	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-	import {
-		storeToRefs
-	} from 'pinia'
-	import {
-		useAppStore
-	} from '@/store/index.js'
-	const navHeight = ref(44)
-	const version = ref('0.0.1')
-	const versionCode = ref(0)
-	const getVersion = () => {
-		//#ifdef APP-PLUS
-		plus.runtime.getProperty(plus.runtime.appid, async (widgetInfo) => {
-			console.log(widgetInfo)
-			version.value = widgetInfo.version;
-			versionCode.value = widgetInfo.versionCode;
-		});
-		//#endif
-	}
-
-	onReady(() => {
-		uni.createSelectorQuery()
-			.select('.header')
-			.boundingClientRect(rect => {
-				console.log('rect', )
-				navHeight.value = rect.height + 20
-			})
-			.exec()
-
-		getVersion()
-	})
-
-	const handleGo = (page) => {
-		uni.navigateTo({
-			url: page
-		})
-	}
-	const overlayStyle = ref({
-		background: 'rgba(52, 56, 76, 0.3)',
-		backdropFilter: 'blur(2px)',
-		webkitBackdropFilter: 'blur(2px)'
-	})
-	const logoutPopup = ref(false)
-
-	const handleOut = () => {
-		logoutPopup.value = true
-	}
-	const handleCancel = () => {
-		logoutPopup.value = false
-	}
-
-
-
-	const appStore = useAppStore()
-	const {
-		encryptedData,
-		appPin,
-		offPayment
-	} = storeToRefs(appStore)
-
-
-	const handleConfirm = () => {
-		encryptedData.value = null
-		offPayment.value = false
-		appPin.value = null
-		uni.reLaunch({
-			url: '/pages/index/index'
-		})
+	export default {
+		components: {
+			CustomBar
+		},
+		data() {
+			return {
+				navHeight: 44,
+				version: '0.0.1',
+				versionCode: 0,
+				logoutPopup: false,
+				overlayStyle: {
+					background: 'rgba(52, 56, 76, 0.3)',
+					backdropFilter: 'blur(2px)',
+					webkitBackdropFilter: 'blur(2px)'
+				}
+			}
+		},
+		methods: {
+			...mapActions(['setEncryptedData', 'setAppPin', 'setOffPayment']),
+			getVersion() {
+				//#ifdef APP-PLUS
+				plus.runtime.getProperty(plus.runtime.appid, async (widgetInfo) => {
+					console.log(widgetInfo)
+					version.value = widgetInfo.version;
+					versionCode.value = widgetInfo.versionCode;
+				});
+				//#endif
+			},
+			handleOut() {
+				this.logoutPopup = true
+			},
+			handleCancel() {
+				this.logoutPopup = false
+			},
+			handleConfirm() {
+				this.setEncryptedData(null)
+				this.setOffPayment(false)
+				this.setAppPin(null)
+				uni.reLaunch({
+					url: '/pages/index/index'
+				})
+			},
+			handleGo(page) {
+				uni.navigateTo({
+					url: page
+				})
+			}
+		},
+		onReady() {
+			const sysInfo = uni.getSystemInfoSync()
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
+		},
 	}
 </script>
+
 
 <template>
 	<view class="page-container">
@@ -169,7 +151,7 @@
 			</view>
 		</view>
 
-		<u-popup :show="logoutPopup" :overlayStyle="overlayStyle" mode="center">
+		<u-popup :show="logoutPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
 			<view class="popup-body">
 				<image src="/static/common/close.png" class="closed-icon" mode="widthFix" @click="handleCancel"></image>
 				<view class="title">

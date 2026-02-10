@@ -1,84 +1,90 @@
-<script setup>
+<script>
 	import {
-		ref
-	} from 'vue';
+		ethers
+	} from "ethers";
 
 	import {
-		onLoad,
-		onReady,
-		onShow
-	} from '@dcloudio/uni-app'
-	import {
-		storeToRefs
-	} from 'pinia'
-
-	import {
-		useAppStore,
-		useUserStore
-	} from '@/store/index.js'
+		mapActions,
+		mapGetters
+	} from 'vuex'
 	import {
 		Provider,
 		formatEther,
 		toThousands
 	} from '@/plugins/index.js'
-	const tabActive = ref('home')
-	const userStore = useUserStore()
-	const {
-		address
-	} = storeToRefs(userStore)
-	const goNext = () => {}
-	const clickMidButton = () => {}
-	const statusBarHeight = ref(0)
-	const navHeight = ref(44)
+	export default {
+		data() {
+			return {
+				balance: 0,
+				statusBarHeight: 0
+			}
+		},
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			formatBalance() {
+				if (!this.balance) return 0
+				return toThousands(this.balance)
+			}
+		},
+		methods: {
+			tokenDetails(type) {
+				uni.navigateTo({
+					url: `/pages/token/token?type=${type}`
+				})
+			},
+			async getBalance() {
+				try {
+					uni.showLoading({
+						mask: true,
+						title: ''
+					})
+					console.log(this.encryptedData)
+					console.log(this.appPin)
+					const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
+					let provider = Provider()
+					let data = await provider.getBalance(wallet.address)
+					console.log('balance====>', data)
+					this.balance = formatEther(data)
 
-	const handleBack = () => {
-		uni.navigateBack({
-			delta: 1
-		})
-	}
-	const handleGoPage = (page) => {
-		uni.navigateTo({
-			url: page
-		})
-	}
-	const tokenDetails = (type) => {
-		uni.navigateTo({
-			url: `/pages/token/token?type=${type}&address=${address.value}`
-		})
-	}
-	const balance = ref(0)
-	const getBalance = async () => {
-		try {
-			let provider = Provider()
-			let data = await provider.getBalance(address.value)
-			console.log('balance====>', data)
-			balance.value = formatEther(data)
-			console.log(address.value)
-
-			// this.balance = formatEther(balance)
-		} catch (e) {
-			console.error(e)
-			uni.showToast({
-				title: e.reason,
-				icon: 'none',
-				// image: '/static/icon/choice.png',
-				mask: true,
-			})
-
+				} catch (e) {
+					console.error(e)
+					uni.showToast({
+						title: e.reason,
+						icon: 'none',
+						// image: '/static/icon/choice.png',
+						mask: true,
+					})
+				} finally {
+					uni.hideLoading()
+				}
+			},
+			handleGoPage(page) {
+				uni.navigateTo({
+					url: page
+				})
+			},
+			goNext() {},
+			clickMidButton() {},
+		},
+		onReady() {
+			const $this = this;
+			uni.createSelectorQuery()
+				.select('.header')
+				.boundingClientRect(rect => {
+					$this.navHeight = rect.height
+				})
+				.exec()
+		},
+		mounted() {
+			this.getBalance()
 		}
 	}
-	onLoad(() => {
-		const sysInfo = uni.getSystemInfoSync()
-		statusBarHeight.value = sysInfo.statusBarHeight // 状态栏
-		getBalance()
-	})
 </script>
-
 <template>
 	<view class="page-body">
 		<view class="header-container">
-			<video src="/static/media/bg.mp4" muted autoplay loop class="home-bg"></video>
-			<!-- <image src="/static/home/homeBg.png" mode="widthFix" class="home-bg"></image> -->
+			 <!-- <video src="/static/media/bg.mp4" autoplay loop muted playsinline :controls="false"	:show-center-play-btn="false" class="home-bg"></video> -->
+			<image src="/static/home/homeBg.png" mode="widthFix" class="home-bg"></image>
 			<view class="header-body" :style="{paddingTop:statusBarHeight+'px'}">
 				<view class="top-wrapper">
 					<view class="left-wrapper">
@@ -98,7 +104,7 @@
 						Total Balance
 					</view>
 					<view class="banlace-value">
-						$ {{toThousands(balance)}}
+						$ {{formatBalance}}
 					</view>
 				</view>
 				<view class="group-wrapper">
