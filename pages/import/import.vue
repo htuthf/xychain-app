@@ -26,8 +26,8 @@
 					backdropFilter: 'blur(2px)',
 					webkitBackdropFilter: 'blur(2px)'
 				},
-				// inputWords:[ 'piece', 'aspect', 'cabbage', 'utility', 'own', 'vivid', 'front', 'volcano', 'sell', 'kick','into', 'shop']
-				inputWords: []
+				inputWords:[ 'piece', 'aspect', 'cabbage', 'utility', 'own', 'vivid', 'front', 'volcano', 'sell', 'kick','into', 'shop']
+				// inputWords: []
 			}
 		},
 		computed: {
