@@ -26,8 +26,10 @@
 					backdropFilter: 'blur(2px)',
 					webkitBackdropFilter: 'blur(2px)'
 				},
-				inputWords:[ 'piece', 'aspect', 'cabbage', 'utility', 'own', 'vivid', 'front', 'volcano', 'sell', 'kick','into', 'shop']
-				// inputWords: []
+				// inputWords: ['piece', 'aspect', 'cabbage', 'utility', 'own', 'vivid', 'front', 'volcano', 'sell', 'kick',
+				// 	'into', 'shop'
+				// ]
+				inputWords: []
 			}
 		},
 		computed: {
@@ -58,7 +60,13 @@
 							setWallet(wallet)
 							console.log(this.appPin)
 							if (this.appPin) {
-								const encryptedJson = await wallet.encrypt(this.appPin)
+								const encryptedJson = await wallet.encrypt(this.appPin, {
+									scrypt: {
+										N: 1 << 12, // 4096
+										r: 8,
+										p: 1
+									}
+								})
 								console.log(encryptedJson)
 								this.setEncryptedData(encryptedJson)
 								uni.hideLoading()

@@ -71,7 +71,13 @@
 							}
 							if (this.appPin) {
 								const wallet = getWallet()
-								const encryptedJson = await wallet.encrypt(this.appPin)
+								const encryptedJson = await wallet.encrypt(this.appPin, {
+									scrypt: {
+										N: 1 << 12, // 4096
+										r: 8,
+										p: 1
+									}
+								})
 								this.setEncryptedData(encryptedJson)
 
 								uni.reLaunch({
@@ -150,7 +156,7 @@
 			</view>
 		</view>
 
- 
+
 		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
 			<view class="popup-body">
 				<view class="error-wrape">

@@ -87,7 +87,13 @@
 								title: ''
 							})
 							const wallet = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.appPin)
-							const encryptedJson = await wallet.encrypt(this.pin)
+							const encryptedJson = await wallet.encrypt(this.pin, {
+								scrypt: {
+									N: 1 << 12, // 4096
+									r: 8,
+									p: 1
+								}
+							})
 							console.log(encryptedJson)
 							this.setAppPin(this.pin)
 							this.setEncryptedData(encryptedJson)
@@ -119,7 +125,7 @@
 		},
 		onReady() {
 			const sysInfo = uni.getSystemInfoSync()
-			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状�栏
 			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
 		},
 	}

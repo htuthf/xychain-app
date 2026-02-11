@@ -97,8 +97,8 @@
 	<view class="page-body">
 		<view class="header-container">
 			<!-- <video src="/static/media/bg.mp4" autoplay loop muted playsinline :controls="false"	:show-center-play-btn="false" class="home-bg"></video> -->
-			<!-- <image src="/static/home/homeBg.png" mode="widthFix" class="home-bg"></image> -->
-			<image src="/static/Home_bg-750px.gif" mode="widthFix" class="home-bg"></image>
+			<image src="/static/home/homeBg.png" mode="widthFix" class="home-bg"></image>
+			<!-- <image src="/static/Home_bg-750px.gif" mode="widthFix" class="home-bg"></image> -->
 			<view class="header-body" :style="{paddingTop:statusBarHeight+'px'}">
 				<view class="top-wrapper">
 					<view class="left-wrapper">
