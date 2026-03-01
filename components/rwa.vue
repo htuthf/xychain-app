@@ -27,11 +27,55 @@
 					price: parseFloat(data.price), // 转为数字类型的价格
 					changePercent: parseFloat(data.change_percent) // 转为数字类型的涨跌幅
 				}));
-
+				if (stocksArray.length < 5) {
+					return []
+				}
 				if (this.sortType) {
 					return [...stocksArray].sort((a, b) => a.changePercent - b.changePercent);
 				} else {
 					return [...stocksArray].sort((a, b) => b.changePercent - a.changePercent);
+				}
+			},
+			getBlocks() {
+
+				const keyArray = Object.keys(this.blocks)
+				if (keyArray.length < 5) {
+					return {}
+				}
+				return this.blocks
+			},
+			getMarketStatusText() {
+				const {
+					isOpen,
+					isPartialDay,
+					holidayInfo
+				} = this.marketStatus;
+
+				if (holidayInfo) {
+					if (isPartialDay) {
+						return 'Partially Filled'; // 如感恩节 09:30-13:00
+					} else {
+						return 'Market Holiday'; // 如圣诞节、新年
+					}
+				} else {
+					return isOpen ? 'Trading' : 'Closed';
+				}
+			},
+			getStatusClass() {
+				const {
+					isOpen,
+					isPartialDay,
+					holidayInfo
+				} = this.marketStatus;
+
+				if (holidayInfo) {
+					if (isPartialDay) {
+						return 'failled'; // 如感恩节 09:30-13:00
+					} else {
+						return 'holiday'; // 如圣诞节、新年
+					}
+				} else {
+					return isOpen ? 'trading' : 'closed';
 				}
 			}
 		},
@@ -82,7 +126,7 @@
 			</view>
 			<view class="swiper">
 				<swiper class="swiper-container">
-					<swiper-item v-for="(item,key,index) in blocks" :key="index" :autoplay="true" :circular="true">
+					<swiper-item v-for="(item,key,index) in getBlocks" :key="index" :autoplay="true" :circular="true">
 						<view class="swipe-item">
 							<view class="top-wrapper">
 								<view class="token-wrapper">
@@ -152,15 +196,17 @@
 								</view>
 							</view>
 
-							<view class="token-text">
-								$ {{item.price}}
+							<view class="token-text" :class="getStatusClass">
+								{{getMarketStatusText}}
 							</view>
+
+
 						</view>
 					</view>
 					<view class="right-wrapper">
-						<!-- <view class="balance-text">
-							{{item.amount}}M
-						</view> -->
+						<view class="balance-text">
+							$ {{item.price}}
+						</view>
 						<view class="arrow-wrapper">
 
 							<image v-show="item.changePercent>0" src="/static/home/up-icon.png" mode="widthFix"
@@ -458,6 +504,22 @@
 						line-height: 36rpx;
 						/* 18.6px */
 						letter-spacing: -0.24px;
+
+						.closed {
+							color: #5D6588;
+						}
+
+						.trading {
+							color: #11CABE;
+						}
+
+						.holiday {
+							color: #5D6588;
+						}
+
+						.failled {
+							color: #F7931A;
+						}
 					}
 				}
 			}

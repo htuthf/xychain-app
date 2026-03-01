@@ -90,7 +90,11 @@
 	<view class="page-body">
 		<view class="header-container">
 			<!-- <video src="/static/media/bg.mp4" autoplay loop muted playsinline :controls="false"	:show-center-play-btn="false" class="home-bg"></video> -->
-			<image src="/static/home/homeBg.png" mode="widthFix" class="home-bg"></image>
+			<view class="bg-image-container">
+				<image src="/static/home/homeBg.png" mode="widthFix" class="home-bg"></image>
+				<image src="/static/home/homeBg.png" mode="widthFix" class="home-bg2"></image>
+			</view>
+
 			<!-- <image src="/static/Home_bg-750px.gif" mode="widthFix" class="home-bg"></image> -->
 			<view class="header-body" :style="{paddingTop:statusBarHeight+'px'}">
 				<view class="top-wrapper">
@@ -128,7 +132,7 @@
 						</view>
 					</view>
 					<!-- @click="handleGoPage('/pages/node/node')" -->
-					<view class="nav-item" >
+					<view class="nav-item">
 						<image src="/static/home/node.png" mode="widthFix" class="nav-icon"></image>
 						<view class="text">
 							Node
@@ -227,9 +231,27 @@
 	.header-container {
 		position: relative;
 
-		.home-bg {
+		.bg-image-container {
+			position: relative;
+			overflow: hidden;
 			width: 750rpx;
 			height: 750rpx;
+		}
+
+		.home-bg {
+			position: absolute;
+			width: 120%;
+			height: 120%;
+			opacity: 0.6;
+			animation: flow1 8s ease-in-out infinite;
+		}
+
+		.home-bg2 {
+			position: absolute;
+			width: 120%;
+			height: 120%;
+			opacity: 0.4;
+			animation: flow2 12s ease-in-out infinite;
 		}
 
 		.header-body {
@@ -459,6 +481,37 @@
 					}
 				}
 			}
+		}
+	}
+
+
+	/* 流动动画1 */
+	@keyframes flow1 {
+		0% {
+			transform: translate(0%, 0%) scale(1) rotate(0deg);
+		}
+
+		50% {
+			transform: translate(-3%, -2%) scale(1.05) rotate(0.5deg);
+		}
+
+		100% {
+			transform: translate(0%, 0%) scale(1) rotate(0deg);
+		}
+	}
+
+	/* 流动动画2 */
+	@keyframes flow2 {
+		0% {
+			transform: translate(0%, 0%) scale(1.02) rotate(0deg);
+		}
+
+		50% {
+			transform: translate(3%, 2%) scale(1.08) rotate(-0.5deg);
+		}
+
+		100% {
+			transform: translate(0%, 0%) scale(1.02) rotate(0deg);
 		}
 	}
 </style>
