@@ -2,7 +2,9 @@ const app = {
 	state: {
 		offPayment: uni.getStorageSync('offPayment') || false,
 		encryptedData: uni.getStorageSync('encryptedData') || null,
-		appPin: uni.getStorageSync('appPin') || null,
+		// appPin: uni.getStorageSync('appPin') || null,
+		appPin: null,
+		errorSize: 0,
 	},
 	mutations: {
 		SET_OFFPAYMENT(state, value) {
@@ -16,7 +18,11 @@ const app = {
 		},
 		SET_APPPIN(state, value) {
 			state.appPin = value
-			uni.setStorageSync('appPin', value)
+			// uni.setStorageSync('appPin', value)
+		},
+		SET_ERROR_SIZE(state, value) {
+			state.errorSize = value
+			uni.setStorageSync('errorSize', value)
 		}
 	},
 	actions: {
@@ -34,6 +40,11 @@ const app = {
 			commit
 		}, value) {
 			commit('SET_APPPIN', value)
+		},
+		setErrorSize({
+			commit
+		}, value) {
+			commit('SET_ERROR_SIZE', value)
 		}
 	}
 }

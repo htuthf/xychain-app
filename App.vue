@@ -1,6 +1,22 @@
 <script>
+	import {
+		mapActions,
+		mapGetters
+	} from 'vuex'
+	
 	export default {
+		computed: {
+			...mapGetters(['encryptedData', 'appPin']),
+			getWords() {
+				return this.mnemonic.split(' ')
+			}
+		},
 		onLaunch: function() {
+			if(this.encryptedData){
+				uni.reLaunch({
+					url:'/pages/login/login'
+				})
+			}
 			console.log('App Launch')
 		},
 		onShow: function() {

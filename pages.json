@@ -148,6 +148,12 @@
 			"style": {
 				"navigationBarTitleText": "websit"
 			}
+		},
+		{
+			"path" : "pages/login/login",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

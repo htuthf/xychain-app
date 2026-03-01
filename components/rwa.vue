@@ -4,87 +4,64 @@
 		components: {
 			CustomBar
 		},
+		props: {
+			blocks: {
+				type: Object,
+				default: {}
+			},
+			marketStatus: {
+				type: Object,
+				default: {}
+			}
+		},
 		data() {
 			return {
 				navHeight: 44,
-				sortType: true,
-				blocks: [{
-					icon: '/static/rwa/nvda.png',
-					title: 'NVDA AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: 2.36
-				}, {
-					icon: '/static/rwa/goog.png',
-					title: 'GOOG AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: 2.36
-				}, {
-					icon: '/static/rwa/appl.png',
-					title: 'AAPL AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: 2.36
-				}, {
-					icon: '/static/rwa/msft.png',
-					title: 'MSFT AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: 2.36
-				}, {
-					icon: '/static/rwa/amzn.png',
-					title: 'AMZN AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: 2.36
-				}, {
-					icon: '/static/rwa/meta.png',
-					title: 'META AlphaMeta ',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: -2.36
-				}, {
-					icon: '/static/rwa/tsm.png',
-					title: 'TSM AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: 2.36
-				}, {
-					icon: '/static/rwa/tsla.png',
-					title: 'TSLA AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: -2.36
-				}, {
-					icon: '/static/rwa/avgo.png',
-					title: 'AVGO AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: 2.36
-				}, {
-					icon: '/static/rwa/mu.png',
-					title: 'MU AlphaMeta',
-					price: 0.3454364,
-					amount: 41.83,
-					rate: 2.36
-				}]
+				sortType: true
 			}
 		},
 		computed: {
 			getSortData() {
-				return [...this.blocks].sort((a, b) => {
-					if (this.sortType) {
-						return a.rate - b.rate
-					} else {
-						return b.rate - a.rate
-					}
-				})
+				const stocksArray = Object.entries(this.blocks).map(([symbol, data]) => ({
+					symbol: symbol, // 股票代码（如 META）
+					price: parseFloat(data.price), // 转为数字类型的价格
+					changePercent: parseFloat(data.change_percent) // 转为数字类型的涨跌幅
+				}));
+
+				if (this.sortType) {
+					return [...stocksArray].sort((a, b) => a.changePercent - b.changePercent);
+				} else {
+					return [...stocksArray].sort((a, b) => b.changePercent - a.changePercent);
+				}
 			}
 		},
 		methods: {
 			changeSortType() {
 				this.sortType = !this.sortType
+			},
+			getIcon(icon) {
+				switch (icon) {
+					case 'NVDA':
+						return '/static/rwa/nvda.png';
+					case 'META':
+						return '/static/rwa/meta.png';
+					case 'TSLA':
+						return '/static/rwa/tsla.png';
+					case 'GOOG':
+						return '/static/rwa/goog.png';
+					case 'AAPL':
+						return '/static/rwa/appl.png';
+					case 'MSFT':
+						return '/static/rwa/msft.png';
+					case 'AMZN':
+						return '/static/rwa/amzn.png';
+					case 'TSM':
+						return '/static/rwa/tsm.png';
+					case 'AVGO':
+						return '/static/rwa/avgo.png';
+					case 'MU':
+						return '/static/rwa/mu.png';
+				}
 			},
 			swipeChange(index) {},
 			swipeClick(index) {},
@@ -100,28 +77,27 @@
 	<view class="page-body">
 		<custom-bar :is-back="false" title="RWA"></custom-bar>
 		<view class="page-main" :style="{paddingTop: navHeight + 'px'}">
-
 			<view class="title-cell">
 				Hot
 			</view>
 			<view class="swiper">
 				<swiper class="swiper-container">
-					<swiper-item v-for="(item,index) in blocks" :autoplay="true" :circular="true">
+					<swiper-item v-for="(item,key,index) in blocks" :key="index" :autoplay="true" :circular="true">
 						<view class="swipe-item">
 							<view class="top-wrapper">
 								<view class="token-wrapper">
-									<image :src="item.icon" mode="widthFix" class="token-icon"></image>
+									<image :src="getIcon(key)" mode="widthFix" class="token-icon"></image>
 									<view class="token-name">
-										{{item.title}}
+										{{key}}
 									</view>
 								</view>
 								<view class="token-value">
-									<image v-show="item.rate>0" src="/static/home/up-icon.png" mode="widthFix"
+									<image v-show="item.change_percent>0" src="/static/home/up-icon.png" mode="widthFix"
 										class="arrow-icon"></image>
-									<image v-show="item.rate<=0" src="/static/home/down-icon.png" mode="widthFix"
-										class="arrow-icon"></image>
-									<view class="value-text" :class="item.rate<=0?'down-text':'up-text'">
-										{{item.rate}}%
+									<image v-show="item.change_percent<=0" src="/static/home/down-icon.png"
+										mode="widthFix" class="arrow-icon"></image>
+									<view class="value-text" :class="item.change_percent<=0?'down-text':'up-text'">
+										{{item.change_percent}}%
 									</view>
 								</view>
 							</view>
@@ -141,11 +117,11 @@
 					<view class="left-text">
 						Stock
 					</view>
-					<view class="right-text">
+					<view class="right-text" @click="changeSortType">
 						<view class="text">
 							Market Cap
 						</view>
-						<view class="sort" @click="changeSortType">
+						<view class="sort">
 							<image src="/static/common/top.png" v-show="sortType" mode="widthFix"
 								class="sort-icon active-top-icon">
 							</image>
@@ -164,7 +140,7 @@
 				<view class="token-item" v-for="(item,index) in getSortData" :key="index">
 					<view class="left-wrapper">
 						<view class="image-wrap">
-							<image :src="item.icon" mode="widthFix" class="token-icon"></image>
+							<image :src="getIcon(item.symbol)" mode="widthFix" class="token-icon"></image>
 
 						</view>
 
@@ -172,7 +148,7 @@
 							<view class="rank-wrapper">
 
 								<view class="token-name">
-									{{item.title}}
+									{{item.symbol}}
 								</view>
 							</view>
 
@@ -182,17 +158,17 @@
 						</view>
 					</view>
 					<view class="right-wrapper">
-						<view class="balance-text">
+						<!-- <view class="balance-text">
 							{{item.amount}}M
-						</view>
+						</view> -->
 						<view class="arrow-wrapper">
 
-							<image v-show="item.rate>0" src="/static/home/up-icon.png" mode="widthFix"
+							<image v-show="item.changePercent>0" src="/static/home/up-icon.png" mode="widthFix"
 								class="arrow-icon"></image>
-							<image v-show="item.rate<=0" src="/static/home/down-icon.png" mode="widthFix"
+							<image v-show="item.changePercent<=0" src="/static/home/down-icon.png" mode="widthFix"
 								class="arrow-icon"></image>
-							<view class="arrow-text" :class="item.rate<=0?'down-text':'up-text'">
-								{{item.rate}}%(24h)
+							<view class="arrow-text" :class="item.changePercent<=0?'down-text':'up-text'">
+								{{item.changePercent}}%(24h)
 							</view>
 						</view>
 					</view>

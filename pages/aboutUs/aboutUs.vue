@@ -54,7 +54,7 @@
 						Official website
 					</view>
 					<view class="right-cell">
-						https://AlphaMeta.cn
+						https://alphameta.network/
 					</view>
 				</view>
 			</view>

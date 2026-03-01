@@ -3,7 +3,6 @@
 		ethers
 	} from "ethers";
 
-	import socket from '@/plugins/socket.js'
 	import {
 		mapActions,
 		mapGetters
@@ -17,12 +16,16 @@
 		request
 	} from '@/plugins/request.js'
 	export default {
-
+		props: {
+			tokenList: {
+				type: Object,
+				default: {}
+			}
+		},
 		data() {
 			return {
 				balance: 0,
 				statusBarHeight: 0,
-				tokenList: []
 			}
 		},
 		computed: {
@@ -80,16 +83,6 @@
 			this.statusBarHeight = sysInfo.statusBarHeight + 12 // 鐘舵�佹爮
 			this.navHeight = this.statusBarHeight + 44 // 44 = 鑷畾涔夊鑸爮楂樺害
 			this.getBalance()
-			const $this = this;
-			socket.connectSocket()
-			socket.onMessage(data => {
-				// console./log('socket data:', data)
-				$this.tokenList = data.data
-				// 假设后端推送的是数组
-				// if (Array.isArray(data)) {
-				// 	this.list = data
-				// }
-			})
 		}
 	}
 </script>
@@ -134,7 +127,8 @@
 							Top Up
 						</view>
 					</view>
-					<view class="nav-item" @click="handleGoPage('/pages/node/node')">
+					<!-- @click="handleGoPage('/pages/node/node')" -->
+					<view class="nav-item" >
 						<image src="/static/home/node.png" mode="widthFix" class="nav-icon"></image>
 						<view class="text">
 							Node
@@ -183,7 +177,7 @@
 						</view> -->
 					</view>
 				</view>
-				<view class="token-item" v-for="(item,key) in tokenList">
+				<view class="token-item" v-for="(item,key) in tokenList" :key="key">
 					<view class="left-wrapper">
 						<image v-if="key==='eth'" src="/static/home/eth-token.png" mode="widthFix" class="token-icon">
 						</image>

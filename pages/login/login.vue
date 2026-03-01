@@ -7,9 +7,6 @@
 		mapGetters
 	} from 'vuex'
 
-	import {
-		getWallet
-	} from "@/runtime/walletRuntime";
 	import CustomBar from '@/components/customBar.vue'
 	export default {
 		components: {
@@ -21,6 +18,7 @@
 				disabled: false,
 				verifyPopup: false,
 				pin: '',
+				errorText: '',
 				keyboard: [{
 						code: 1,
 						text: ''
@@ -69,69 +67,77 @@
 			}
 		},
 		computed: {
-			...mapGetters(['encryptedData', 'appPin']),
-			getWords() {
-				return this.mnemonic.split(' ')
-			}
-
+			...mapGetters(['encryptedData', 'errorSize'])
 		},
 		methods: {
-			...mapActions(['setEncryptedData', 'setAppPin']),
+			...mapActions(['setEncryptedData', 'setAppPin', 'setErrorSize']),
 			async handleInput(code) {
 				try {
-					if (this.pin.length > 6) return false
 					this.pin += code
+					this.errorText = ''
 					let pinLength = this.pin.length;
 					if (pinLength >= 6) {
 						uni.showLoading({
 							mask: true,
 							title: ''
 						})
-						const wallet = getWallet()
-						const encryptedJson = await wallet.encrypt(this.pin, {
-							scrypt: {
-								N: 1 << 12, // 4096
-								r: 8,
-								p: 1
-							}
-						})
-						this.setEncryptedData(encryptedJson)
+						const data = await ethers.Wallet.fromEncryptedJson(this.encryptedData, this.pin)
 						this.setAppPin(this.pin)
-						uni.navigateTo({
-							url: '/pages/verifyPin/verifyPin'
+						uni.redirectTo({
+							url: '/pages/home/home'
 						});
 					}
 				} catch (error) {
-					console.error(error)
-					//TODO handle the exception
+					this.setErrorSize(this.errorSize + 1)
+					console.error(this.errorSize)
+					if (this.errorSize > 4) {
+						this.verifyPopup = true
+					} else {
+						this.pin = ''
+						this.errorText = `Incorrect PIN. ${this.errorSize} attempts remaining.`
+					}
+
 				} finally {
 					uni.hideLoading()
 				}
 			},
 			handleDelete() {
 				this.pin = this.pin.substring(0, this.pin.length - 1)
+			},
+			verifyWord(key) {
+				const inputWord = this.inputWords[key]
+				if (!inputWord) return false
+				if (this.words[key] === inputWord.trim()) {
+					return false
+				}
+				return true
+			},
+			handleClose() {
+				this.setEncryptedData(null)
+				this.setAppPin(null)
+				this.verifyPopup = false
+				uni.reLaunch({
+					url: '/pages/import/import'
+				})
 			}
+
 		},
 		onReady() {
 			const sysInfo = uni.getSystemInfoSync()
-			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状��栏
+			const statusBarHeight = sysInfo.statusBarHeight + 12 // 状态栏
 			this.navHeight = statusBarHeight + 44 // 44 = 自定义导航栏高度
 		},
 	}
 </script>
-
-
-
-
 <template>
 	<view class="page-container">
-		<custom-bar></custom-bar>
+
 		<view class="page-body" :style="{paddingTop: navHeight + 'px'}">
 			<view class="title">
-				Step 1: Set Your PIN
+				Verify Pin Code
 			</view>
 			<view class="sub-title">
-				Set a PIN to authorize transactions and secure access to your wallet.
+				Please enter your PIN code to access the AlphaMeta wallet.
 			</view>
 			<view class="pin-container">
 				<view class="pin-dot" :class="{actived:pin.length>=i,focus:pin.length+1===i}" v-for="i in 6" :key="i">
@@ -151,7 +157,31 @@
 					</button>
 				</view>
 			</view>
+			<view class="error-tips" v-if="errorText">
+				{{errorText}}
+			</view>
 		</view>
+
+
+		<u-popup :show="verifyPopup" :overlayStyle="overlayStyle" bgColor="transparent" mode="center">
+			<view class="popup-body">
+				<view class="error-wrape">
+					<image src="/static/common/error-icon.png" mode="widthFix" class="error-icon"></image>
+				</view>
+
+				<view class="title">
+					Verification Failed
+				</view>
+				<view class="sub-title">
+					Too many incorrect PIN attempts.
+					Please log in again.
+				</view>
+				<button class="button" @click="handleClose">
+					<text>Go to Login</text>
+				</button>
+
+			</view>
+		</u-popup>
 	</view>
 </template>
 
@@ -181,6 +211,8 @@
 				letter-spacing: -0.28px;
 				margin-bottom: 96rpx;
 			}
+
+
 
 			.pin-container {
 				display: grid;
@@ -217,7 +249,7 @@
 							left: 50%;
 							top: 50%;
 							transform: translate(-50%, -50%);
-							content: "";
+							content: '';
 							color: #ffffff;
 							animation: blink 1s steps(1) infinite;
 						}
@@ -225,7 +257,6 @@
 				}
 			}
 		}
-
 
 		.keyboard-block {
 			position: absolute;
@@ -293,6 +324,79 @@
 					width: 46rpx;
 					height: 34rpx;
 				}
+			}
+		}
+
+		.error-tips {
+			margin-top: 24rpx;
+			color: #FA2256;
+			font-family: Inter;
+			font-size: 28rpx;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 155%;
+			/* 21.7px */
+			letter-spacing: -0.28px;
+		}
+
+		.popup-body {
+			width: 670rpx;
+			background: #0D0D0D;
+			border-radius: 32rpx;
+			padding: 64rpx 32rpx;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			box-sizing: border-box;
+
+			.error-wrape {
+				width: 144rpx;
+				height: 144rpx;
+				margin-bottom: 48rpx;
+
+				.error-icon {
+					width: 144rpx;
+					height: 144rpx;
+				}
+			}
+
+			.title {
+				color: #ffffff;
+				text-align: center;
+				font-family: Inter;
+				font-size: 36rpx;
+				font-weight: 600;
+				line-height: 46rpx;
+				margin-bottom: 16rpx;
+			}
+
+			.sub-title {
+				padding: 0 40rpx;
+				color: #5D6588;
+				text-align: center;
+				font-family: Inter;
+				font-size: 28rpx;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 44rpx;
+				letter-spacing: -0.28px;
+				margin-bottom: 48rpx;
+
+			}
+
+			.button {
+				width: 100%;
+				height: 96rpx;
+				font-size: 32rpx;
+				color: #ffffff;
+				font-weight: 700;
+				line-height: 1;
+				padding: 32rpx 64rpx;
+				border-radius: 96rpx;
+
+
+				background: linear-gradient(266deg, #002263 -0.27%, #1E68F6 98.58%, #246CF9 98.59%);
+
 			}
 		}
 	}

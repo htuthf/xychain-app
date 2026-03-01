@@ -1,4 +1,8 @@
 <script>
+	import socket from '@/plugins/socket.js'
+	import {
+		SOCKET_URL
+	} from '@/config/index.js'
 	import Home from '@/components/home.vue'
 	import Rank from '@/components/rank.vue'
 	import Browser from '@/components/browser.vue'
@@ -13,7 +17,11 @@
 		data() {
 			return {
 				tabActive: 'home',
-				activePage: ''
+				activePage: '',
+				tokenList: {},
+				rwaBlocks: {},
+				marketStatus: {},
+				collectionList: []
 			}
 		},
 		methods: {
@@ -54,6 +62,50 @@
 		},
 		onLoad() {
 			this.activePage = 'Home'
+		},
+		onShow() {
+			const $this = this;
+			socket.connectSocket(SOCKET_URL)
+			socket.onMessage(data => {
+				// console.log('socket data:', data)
+				if (data.type === 'tickers_update') {
+					$this.tokenList = data.data
+				} else if (data.type === 'collection_update') {
+					const findIndex = $this.collectionList.findIndex(item => item.symbol === data.symbol)
+
+					if (findIndex > -1) {
+						$this.collectionList.splice(findIndex, 1, {
+							error: null,
+							floorPriceETH: data.floorPriceETH,
+							floorPriceUSDT: data.floorPriceUSDT,
+							lastUpdate: data.lastUpdate,
+							name: data.name,
+							symbol: data.symbol,
+						})
+					}
+
+				} else if (data.type === 'all_collections') {
+					$this.collectionList = data.collections;
+				} else if (data.type === 'stocks_update') {
+
+					$this.rwaBlocks = data.data;
+					$this.marketStatus = data.marketStatus || {}
+
+				}
+				// 
+				// 假设后端推送的是数组
+				// if (Array.isArray(data)) {
+				// 	this.list = data
+				// }
+			})
+		},
+		onUnload() {
+			socket.closeSocket()
+			console.error('onUnload')
+		},
+		onHide() {
+			socket.closeSocket()
+			console.error('onHide')
 		}
 	}
 </script>
@@ -62,7 +114,8 @@
 
 <template>
 	<view class="page-container">
-		<component :is="activePage"></component>
+		<component :tokenList="tokenList" :rankList="collectionList" :is="activePage" :blocks="rwaBlocks"
+			:marketStatus="marketStatus"></component>
 		<u-tabbar class="custom-tabbar" :value="tabActive" @change="changeTab" :fixed="true" :placeholder="false"
 			:safeAreaInsetBottom="true">
 			<u-tabbar-item text="Home" name="home">

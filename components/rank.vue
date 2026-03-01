@@ -1,8 +1,22 @@
 <script>
+	import {
+		formatEther,
+		toThousands
+	} from '@/plugins/index.js'
+	import {
+		NFT_SOCKET_URL
+	} from '@/config/index.js'
+	import nftSocket from '@/plugins/nftSocket.js'
 	import CustomBar from '@/components/customBar.vue'
 	export default {
 		components: {
 			CustomBar
+		},
+		props: {
+			rankList: {
+				type: Array,
+				default: []
+			}
 		},
 		data() {
 			return {
@@ -73,11 +87,33 @@
 
 					},
 
+				},
+				rankIcons: {
+					BAYC: '/static/rank/Rank1.png',
+					PPG: '/static/rank/Rank2.png',
+					MBIRD: '/static/rank/Rank3.png',
+					AZUKI: '/static/rank/Rank4.png',
+					DEGODS: '/static/rank/Rank5.png',
+					COURT: '/static/rank/Rank6.png',
+					DOODLE: '/static/rank/Rank7.png',
+					CLONEX: '/static/rank/Rank8.png',
+					MEEBIT: '/static/rank/Rank9.png',
+					KONGZ: '/static/rank/Rank10.png'
 				}
+
 			}
 		},
+		// computed: {
+		// 	sortRank() {
+		// 		return this.rankList.sort((a, b) => {
+		// 			return +b.floorPriceUSDT - +a.floorPriceUSDT
+		// 		})
+		// 	}
+		// },
 		methods: {
-
+			getIcon(item) {
+				return this.rankIcons[item.symbol]
+			}
 		},
 		mounted() {
 			const sysInfo = uni.getSystemInfoSync()
@@ -90,79 +126,58 @@
 	<view class="page-body">
 		<custom-bar :is-back="false" title="Rank"></custom-bar>
 		<view class="page-main" :style="{paddingTop: navHeight + 'px'}">
-			<view class="balance-wrapper">
+			<!-- <view class="balance-wrapper" >
 				<view class="title">
 					Statistics
 				</view>
 				<view class="balance-value">
 					$625,895.89
 				</view>
-			</view>
-			<view class="chart-contianer">
+			</view> -->
+			<!-- <view class="chart-contianer">
 				<qiun-data-charts type="column" :opts="chartOptions" :chartData="chartData"
 					tooltipFormat="tooltipDemo1" />
-			</view>
-			<view class="group-wrapper">
-				<view class="item-wrapper">
-					<image src="/static/home/circle_up.png" mode="widthFix" class="circle-icon"></image>
-					<view class="text-wrapper">
-						<view class="value">
-							$54.24
-						</view>
-						<view class="title">
-							Earnings
-						</view>
-					</view>
-				</view>
-				<view class="item-wrapper">
-					<image src="/static/home/circle_down.png" mode="widthFix" class="circle-icon"></image>
-					<view class="text-wrapper">
-						<view class="value">
-							$54.24
-						</view>
-						<view class="title">
-							Return(24h)
-						</view>
-					</view>
-				</view>
-			</view>
+			</view> -->
+
 
 			<view class="list-container">
 				<view class="top-wrapper">
 					<view class="left-text">
 						Token
 					</view>
-					<view class="right-text">
+					<!-- <view class="right-text">
 						View all
-					</view>
+					</view> -->
 				</view>
 
-				<view class="token-item" v-for="i in 10" :key="i">
+				<view class="token-item" v-for="(item,index) in rankList" :key="index">
 					<view class="left-wrapper">
-						<image src="/static/home/meta-token.png" mode="widthFix" class="token-icon"></image>
+						<image :src="getIcon(item)" mode="widthFix" class="token-icon"></image>
 						<view class="name-wrapper">
 							<view class="rank-wrapper">
-								<view class="rank-index">{{i}}</view>
+								<view class="rank-index">{{index+1}}</view>
 								<view class="token-name">
-									AlphaMeta
+									{{item.symbol}}
 								</view>
 							</view>
 
 							<view class="token-text">
-								AlphaMeta
+								{{item.name}}
 							</view>
 						</view>
 					</view>
 					<view class="right-wrapper">
 						<view class="balance-text">
-							$45,43
+							${{item.floorPriceUSDT}}
 						</view>
-						<view class="arrow-wrapper">
-							<image src="/static/home/up-icon.png" mode="widthFix" class="arrow-icon"></image>
-							<view class="arrow-text up">
-								2.36%
+						<!-- <view class="arrow-wrapper">
+							<image src="/static/home/up-icon.png" v-if="item.rate>=0" mode="widthFix"
+								class="arrow-icon"></image>
+							<image src="/static/home/down-icon.png" v-else mode="widthFix" class="arrow-icon"></image>
+							<view class="arrow-text" :class="item.rate>=0?'up':'down'">
+								{{item.rate}}%(24h)
 							</view>
-						</view>
+						</view> -->
 					</view>
 				</view>
 			</view>
@@ -368,6 +383,7 @@
 				.arrow-wrapper {
 					display: flex;
 					align-items: center;
+					justify-content: flex-end;
 
 					.arrow-icon {
 						width: 28rpx;

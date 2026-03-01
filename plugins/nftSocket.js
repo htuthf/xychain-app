@@ -6,10 +6,9 @@ let socketTask = null
 let reconnectTimer = null
 let heartbeatTimer = null
 let messageHandlers = []
-let stop_heart = false
+let SOCKET_URL = null
 const HEARTBEAT_INTERVAL = 15000 // 15s
 const RECONNECT_DELAY = 3000 // 3s
-let SOCKET_URL = null
 
 function connectSocket(URL) {
 	if (socketTask) return
@@ -17,7 +16,6 @@ function connectSocket(URL) {
 		SOCKET_URL = URL
 	}
 	if (!SOCKET_URL) return
-	stop_heart = false
 	socketTask = uni.connectSocket({
 		url: SOCKET_URL,
 		success() {
@@ -53,10 +51,8 @@ function connectSocket(URL) {
 		console.log('[socket] close')
 		socketOpen = false
 		socketTask = null
-		if (!stop_heart) {
-			stopHeartbeat()
-			reconnect()
-		}
+		stopHeartbeat()
+		reconnect()
 	})
 }
 
@@ -90,7 +86,6 @@ function reconnect() {
 }
 
 function startHeartbeat() {
-	if (stop_heart) return false;
 	stopHeartbeat()
 	heartbeatTimer = setInterval(() => {
 		if (socketOpen) {
@@ -103,7 +98,6 @@ function startHeartbeat() {
 
 function stopHeartbeat() {
 	if (heartbeatTimer) {
-		stop_heart = true
 		clearInterval(heartbeatTimer)
 		heartbeatTimer = null
 	}

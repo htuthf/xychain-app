@@ -164,8 +164,8 @@
 					<view class="banlace-value">
 						{{toThousands(balance)}}
 					</view>
-					<view class="button-group flex item-center space-between" @click="handleReceived">
-						<button class="btn">
+					<view class="button-group flex item-center space-between" >
+						<button class="btn" @click="handleReceived">
 							<image src="/static/token/Received.png" mode="widthFix" class="btn-icon"></image>
 							<text>Received</text>
 						</button>
@@ -182,7 +182,7 @@
 					</view>
 
 					<view class="list">
-						<view class="token-item" v-for="(item,index) in history">
+						<view class="token-item" v-for="(item,index) in history" :key="index">
 							<view class="left-wrapper">
 								<image v-show="item.tx_class==='eoa_transfer'" src="/static/token/received-icon.png"
 									mode="widthFix" class="token-icon"></image>
