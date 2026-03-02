@@ -240,17 +240,17 @@
 
 		.home-bg {
 			position: absolute;
-			width: 120%;
-			height: 120%;
-			opacity: 0.6;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
 			animation: flow1 8s ease-in-out infinite;
 		}
 
 		.home-bg2 {
 			position: absolute;
-			width: 120%;
-			height: 120%;
-			opacity: 0.4;
+			width: 100%;
+			height: 100%;
+			opacity: 1;
 			animation: flow2 12s ease-in-out infinite;
 		}
 

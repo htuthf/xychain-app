@@ -11,6 +11,33 @@
 				tabActive: 'DeFi',
 				tokenList: {
 					DeFi: [{
+							icon: '/static/brower/Ethereum@2x.png',
+							title: 'Ethereum',
+							url: 'https://ethereum.org/'
+						}, {
+							icon: '/static/brower/Polygon@2x.png',
+							title: 'Polygon',
+							url: 'https://polygon.com/'
+						}, {
+							icon: '/static/brower/BinanceChain.png',
+							title: 'Binance Chain',
+							url: 'https://www.bnbchain.org/'
+						}, {
+							icon: '/static/brower/Arbitrum@2x.png',
+							title: 'Arbitrum',
+							url: 'https://arbitrum.io/'
+						}, {
+							icon: '/static/brower/Optimism@2x.png',
+							title: 'Optimism',
+							url: 'https://www.optimism.io/'
+						},
+						{
+							icon: '/static/brower/Solana@2x.png',
+							title: 'Solana',
+							url: 'https://solana.com/'
+						},
+					],
+					NFTs: [{
 							icon: '/static/brower/OpenSea@2x.png',
 							title: 'OpenSea',
 							url: 'https://opensea.io/'
@@ -40,33 +67,8 @@
 							title: 'Foundation',
 							url: 'https://foundation.app/'
 						}
-					],
-					NFTs: [{
-							icon: '/static/brower/Ethereum@2x.png',
-							title: 'Ethereum',
-							url: 'https://ethereum.org/'
-						}, {
-							icon: '/static/brower/Polygon@2x.png',
-							title: 'Polygon',
-							url: 'https://polygon.com/'
-						}, {
-							icon: '/static/brower/Binance Chain@2x.png',
-							title: 'Binance Chain',
-							url: 'https://www.bnbchain.org/'
-						}, {
-							icon: '/static/brower/Arbitrum@2x.png',
-							title: 'Arbitrum',
-							url: 'https://arbitrum.io/'
-						}, {
-							icon: '/static/brower/Optimism@2x.png',
-							title: 'Optimism',
-							url: 'https://www.optimism.io/'
-						},
-						{
-							icon: '/static/brower/Solana@2x.png',
-							title: 'Solana',
-							url: 'https://solana.com/'
-						},
+
+
 					]
 				}
 			}

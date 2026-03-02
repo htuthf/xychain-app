@@ -116,7 +116,7 @@
 	<view class="page-container">
 		<component :tokenList="tokenList" :rankList="collectionList" :is="activePage" :blocks="rwaBlocks"
 			:marketStatus="marketStatus"></component>
-		<u-tabbar class="custom-tabbar" :value="tabActive" @change="changeTab" :fixed="true" :placeholder="false"
+		<u-tabbar class="custom-tabbar" activeColor="#1E68F6" inactiveColor="#5D6588" :value="tabActive" @change="changeTab" :fixed="true" :placeholder="false"
 			:safeAreaInsetBottom="true">
 			<u-tabbar-item text="Home" name="home">
 				<image class="tabbar-icon" slot="active-icon" src="/static/home/home_active.png"></image>

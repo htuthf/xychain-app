@@ -129,8 +129,8 @@
 							background: #141518;
 
 							.token-icon {
-								width: 48rpx;
-								height: 48rpx;
+								width: 104rpx;
+								height: 104rpx;
 							}
 						}
 
