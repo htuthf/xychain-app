@@ -87,9 +87,18 @@
 				} else if (data.type === 'all_collections') {
 					$this.collectionList = data.collections;
 				} else if (data.type === 'stocks_update') {
-					console.log(data)
-					$this.rwaBlocks = data.stocks?data.stocks:data.data;
-					$this.marketStatus = data.marketStatus || {}
+					
+					if(data.marketStatus){
+						console.log(data)
+						$this.rwaBlocks = data.data;
+						$this.marketStatus = data.marketStatus || {}
+					}else{
+						console.log(data.data)
+						$this.rwaBlocks = data.data.stocks;
+						$this.marketStatus = data.data.marketStatus || {}
+					}
+					
+					
 
 				}
 				// 
